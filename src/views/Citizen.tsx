@@ -20,6 +20,8 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast }
   const [citizenPhone, setCitizenPhone] = useState('');
   const [photo, setPhoto] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [isVerifyingImage, setIsVerifyingImage] = useState(false);
+  const [imageVerificationError, setImageVerificationError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedId, setSubmittedId] = useState<string | null>(null);
   
@@ -122,11 +124,67 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast }
     }
   };
 
+  const verifyImageWithModel = async (file: File) => {
+    setIsVerifyingImage(true);
+    setImageVerificationError(null);
+    try {
+      const img = new Image();
+      img.src = URL.createObjectURL(file);
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+
+      if (typeof (window as any).mobilenet === 'undefined') {
+        console.warn('MobileNet script not loaded. Bypassing check.');
+        setIsVerifyingImage(false);
+        return;
+      }
+
+      console.log('[AI Vision] Loading Neural Net...');
+      const model = await (window as any).mobilenet.load();
+      console.log('[AI Vision] Running classification...');
+      const predictions = await model.classify(img);
+      console.log('[AI Vision] Predictions:', predictions);
+
+      // Water infrastructure keywords
+      const waterKeywords = [
+        'water', 'pipe', 'pump', 'well', 'faucet', 'leak', 'spout', 'conduit',
+        'hose', 'fountain', 'gutter', 'drain', 'river', 'mud', 'ditch',
+        'excavation', 'valve', 'plumbing', 'tubing', 'washbasin', 'sink',
+        'puddle', 'pond', 'soil', 'earth', 'ground', 'trench', 'tile', 'mason',
+        'spout', 'potter', 'bucket', 'tank', 'reservoir', 'hydrant', 'faucet'
+      ];
+
+      const matches = predictions.some((p: any) =>
+        waterKeywords.some(keyword => p.className.toLowerCase().includes(keyword))
+      );
+
+      if (!matches) {
+        const topClasses = predictions.map((p: any) => p.className.split(',')[0]).join(' / ');
+        setImageVerificationError(
+          lang === 'ta'
+            ? `⚠️ பட சரிபார்ப்பு தோல்வி: பதிவேற்றிய படம் "${topClasses}" ஐக் குறிக்கிறது. இது நகராட்சி நீர் சிக்கல்களுடன் பொருந்தவில்லை. சரியான புகைப்படத்தை பதிவேற்றவும்.`
+            : `⚠️ Image Verification Failed: Uploaded image detected as "${topClasses}". It does not match municipal water issues (leaks, pipes, pumps, excavation). Please upload a valid site photo.`
+        );
+        setPhoto(null);
+        setPhotoPreview(null);
+      } else {
+        console.log('[AI Vision] Success: image verified.');
+      }
+    } catch (err) {
+      console.error('[AI Vision] Error running verification:', err);
+    } finally {
+      setIsVerifyingImage(false);
+    }
+  };
+
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setPhoto(file);
       setPhotoPreview(URL.createObjectURL(file));
+      verifyImageWithModel(file);
     }
   };
 
@@ -343,7 +401,7 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast }
               </div>
 
               <div className="form-group">
-                <label>{lang === 'ta' ? 'புகைப்படம் (விரும்பினால்)' : 'Upload Grievance Photo'} (Optional)</label>
+                <label>{lang === 'ta' ? 'புகைப்படம் (கட்டாயமில்லை)' : 'Upload Grievance Photo'} (Verification Active)</label>
                 <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                   <input
                     type="file"
@@ -363,6 +421,17 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast }
                     />
                   )}
                 </div>
+                {isVerifyingImage && (
+                  <div style={{ fontSize: '0.72rem', color: 'var(--primary)', fontWeight: 'bold', marginTop: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{ fontSize: '0.9rem', animation: 'pulse-glow 1s infinite' }}>🔍</span>
+                    <span>AI neural net scanning image contents...</span>
+                  </div>
+                )}
+                {imageVerificationError && (
+                  <div className="alert-banner critical" style={{ marginTop: '8px', padding: '8px 12px', fontSize: '0.72rem', color: '#B91C1C', background: '#FEF2F2', borderLeft: '3px solid #EF4444' }}>
+                    {imageVerificationError}
+                  </div>
+                )}
               </div>
 
               <div className="form-row">
