@@ -37,6 +37,13 @@ export const ControlRoom: React.FC<ControlRoomProps> = ({ lang, complaints, user
   const [reassignNotes, setReassignNotes] = useState('');
   const [isActioning, setIsActioning] = useState(false);
 
+  // Dynamic Operations KPI calculations
+  const totalPending = complaints.filter(c => c.status !== 'Resolved').length;
+  const criticalCount = complaints.filter(c => c.severity === 'Critical' && c.status !== 'Resolved').length;
+  const activeCrewsCount = users.filter(u => u.role === 'Crew').length;
+  const busyCrewsCount = users.filter(u => u.role === 'Crew' && complaints.some(c => c.assignedCrew === u.id && c.status !== 'Resolved')).length;
+  const dispatchRate = activeCrewsCount > 0 ? ((busyCrewsCount / activeCrewsCount) * 100).toFixed(0) : '0';
+
   // Filter complaints
   const filtered = complaints.filter(c => {
     if (filterSeverity === 'All') return true;
@@ -110,6 +117,41 @@ export const ControlRoom: React.FC<ControlRoomProps> = ({ lang, complaints, user
           <button className={`btn ${filterSeverity === 'All' ? 'btn-primary' : 'btn-secondary'}`} style={{ fontSize: '0.75rem', padding: '4px 10px' }} onClick={() => setFilterSeverity('All')}>All Grievances</button>
           <button className={`btn ${filterSeverity === 'Critical' ? 'btn-primary' : 'btn-secondary'}`} style={{ fontSize: '0.75rem', padding: '4px 10px' }} onClick={() => setFilterSeverity('Critical')}>🔥 Critical</button>
           <button className={`btn ${filterSeverity === 'Active' ? 'btn-primary' : 'btn-secondary'}`} style={{ fontSize: '0.75rem', padding: '4px 10px' }} onClick={() => setFilterSeverity('Active')}>⚙ Active</button>
+        </div>
+      </div>
+
+      {/* Live Operations KPI Bar */}
+      <div className="col-12" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
+        <div className="glass-panel" style={{ padding: '12px 16px', background: '#FFFFFF', borderLeft: '3px solid var(--accent)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.3px', fontWeight: 'bold' }}>Active Backlog</span>
+            <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--primary)', marginTop: '2px' }}>{totalPending} Tickets</div>
+          </div>
+          <span style={{ fontSize: '1.5rem' }}>📋</span>
+        </div>
+
+        <div className="glass-panel" style={{ padding: '12px 16px', background: '#FFFFFF', borderLeft: '3px solid var(--danger)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.3px', fontWeight: 'bold' }}>🔥 Urgent Repairs</span>
+            <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--danger)', marginTop: '2px' }}>{criticalCount} Critical</div>
+          </div>
+          <span style={{ fontSize: '1.5rem' }}>⚡</span>
+        </div>
+
+        <div className="glass-panel" style={{ padding: '12px 16px', background: '#FFFFFF', borderLeft: '3px solid var(--success)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.3px', fontWeight: 'bold' }}>Crews Deployed</span>
+            <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--success)', marginTop: '2px' }}>{busyCrewsCount} / {activeCrewsCount}</div>
+          </div>
+          <span style={{ fontSize: '1.5rem' }}>👷‍♂️</span>
+        </div>
+
+        <div className="glass-panel" style={{ padding: '12px 16px', background: '#FFFFFF', borderLeft: '3px solid var(--secondary)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.3px', fontWeight: 'bold' }}>Dispatch Rate</span>
+            <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--secondary)', marginTop: '2px' }}>{dispatchRate}%</div>
+          </div>
+          <span style={{ fontSize: '1.5rem' }}>📊</span>
         </div>
       </div>
 

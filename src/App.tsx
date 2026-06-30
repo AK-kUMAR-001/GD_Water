@@ -65,8 +65,8 @@ function App() {
   useEffect(() => {
     fetchAllData();
 
-    // Auto polling every 10 seconds to sync ticket state transitions
-    const interval = setInterval(fetchAllData, 10000);
+    // Auto polling every 3 seconds to sync ticket state transitions instantly
+    const interval = setInterval(fetchAllData, 3000);
     return () => clearInterval(interval);
   }, []);
 
