@@ -54,21 +54,33 @@ async function startBot() {
   sock.ev.on('messages.upsert', async (m) => {
     try {
       const msg = m.messages[0];
+      if (!msg) return;
+
+      console.log(`[WhatsApp Debug] Incoming raw message payload:`, JSON.stringify({
+        key: msg.key,
+        messageKeys: msg.message ? Object.keys(msg.message) : null,
+        pushName: msg.pushName
+      }, null, 2));
+
       if (!msg.message || msg.key.fromMe) return;
 
       const senderJid = msg.key.remoteJid;
-      // Skip status update events or group chats
-      if (!senderJid.endsWith('@s.whatsapp.net')) return;
+      if (!senderJid.endsWith('@s.whatsapp.net') && !senderJid.endsWith('@lid')) return;
 
-      const senderPhone = senderJid.split('@')[0];
+      let senderPhone = senderJid.split('@')[0];
+      if (msg.key.remoteJidAlt && msg.key.remoteJidAlt.endsWith('@s.whatsapp.net')) {
+        senderPhone = msg.key.remoteJidAlt.split('@')[0];
+      }
       
       const bodyText = msg.message.conversation || 
                        msg.message.extendedTextMessage?.text || 
+                       msg.message.imageMessage?.caption ||
+                       msg.message.videoMessage?.caption ||
                        '';
 
-      if (!bodyText.trim()) return;
+      console.log(`[WhatsApp Debug] Extracted text: "${bodyText}" from sender: ${senderPhone}`);
 
-      console.log(`[WhatsApp Bot] Received message from ${senderPhone}: "${bodyText}"`);
+      if (!bodyText.trim()) return;
 
       // Forward message to Express API emulator endpoint to register the complaint
       const response = await fetch('http://localhost:5000/api/whatsapp/emulator', {
