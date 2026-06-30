@@ -291,50 +291,104 @@ app.post('/api/complaints/:id/assign', (req, res) => {
   res.json(complaint);
 });
 
-// TWILIO WHATSAPP WEBHOOK ENDPOINT
-app.post('/api/whatsapp/webhook', express.urlencoded({ extended: true }), (req, res) => {
-  try {
-    const bodyText = req.body.Body || '';
-    const fromSender = req.body.From || '';
-    const citizenPhone = fromSender.replace('whatsapp:', '').trim() || '+91 8925081899';
+// --- WHATSAPP STATE MACHINE SESSION STORE ---
+const sessions = {};
 
-    console.log(`[WhatsApp Bot] Inbound msg from ${citizenPhone}: "${bodyText}"`);
-
-    // 1. Run Jaccard NLP Engine to categorize
-    const nlpResult = nlp.classifyComplaint(bodyText);
+function processWhatsAppMessage(citizenPhone, bodyText) {
+  const cleanPhone = citizenPhone.trim();
+  const text = bodyText.trim();
+  
+  if (!sessions[cleanPhone]) {
+    sessions[cleanPhone] = {
+      state: 'MAIN_MENU',
+      tempComplaint: null
+    };
+  }
+  
+  const session = sessions[cleanPhone];
+  
+  // Reset command
+  if (text.toLowerCase() === 'reset' || text.toLowerCase() === 'menu' || text === '0') {
+    session.state = 'MAIN_MENU';
+    session.tempComplaint = null;
+    return `Welcome back to Neer Ugam (நீர் யுகம்) Help Desk! 🚰\n\nPlease select an option:\n\nType *1* to File a Water Grievance / Complaint (புகார் பதிவு செய்ய)\nType *2* for General Queries / FAQ (சந்தேகங்கள் / பொதுவான கேள்விகள்)`;
+  }
+  
+  if (session.state === 'MAIN_MENU') {
+    if (text === '1' || text.toLowerCase().includes('complaint') || text.toLowerCase().includes('file') || text.includes('புகார்')) {
+      session.state = 'AWAITING_COMPLAINT_DESC';
+      return `📝 *File a Water Grievance* (புகார் பதிவு செய்ய)\n\nPlease describe the water issue in detail (e.g., "pipeline leakage near bus stand" or "சாக்கடை நீர் கலப்பு").\n\n*(Type 'reset' at any time to return to the main menu)*`;
+    } else if (text === '2' || text.toLowerCase().includes('query') || text.toLowerCase().includes('doubt') || text.toLowerCase().includes('faq') || text.includes('சந்தேகம்')) {
+      return `❓ *Neer Ugam - FAQ & Assistance Desk*:\n\n` +
+             `1. *Drinking Water Schedule*: South Zone Wards receive drinking water supply every Tuesday and Friday (alternate rotations).\n` +
+             `2. *New Connections*: Apply at the Municipal Corporation desk. Deposit: ₹2,500.\n` +
+             `3. *Track Complaints*: Visit http://localhost:5173/ to check live repair progress.\n` +
+             `4. *Emergency Contact*: 1800-425-1234 (Corporate Helpline).\n\n` +
+             `*Type '1'* at any time to file a new complaint, or *type 'reset'* to go back.`;
+    } else {
+      return `Welcome to Neer Ugam (நீர் யுகம்) Help Desk! 🚰\n\nPlease select an option:\n\nType *1* to File a Water Grievance / Complaint (புகார் பதிவு செய்ய)\nType *2* for General Queries / FAQ (சந்தேகங்கள் / பொதுவான கேள்விகள்)`;
+    }
+  }
+  
+  if (session.state === 'AWAITING_COMPLAINT_DESC') {
+    const nlpResult = nlp.classifyComplaint(text);
     const finalCategory = nlpResult.predictedCategory;
     const severity = ['Pipeline Burst', 'Sewer Mixing', 'Water Contamination'].includes(finalCategory) ? 'Critical' : 'Medium';
-
+    
+    session.tempComplaint = {
+      description: text,
+      category: finalCategory,
+      severity: severity,
+      nlpResult: nlpResult
+    };
+    
+    session.state = 'AWAITING_COMPLAINT_LOCATION';
+    
+    return `🚰 *Issue Classified*: **${finalCategory}** (${severity} severity)\n\n` +
+           `📍 *Next Step*: Please enter the location or street name where this issue is occurring (e.g., "Sundarapuram Main Road" or "Ward 61 Bypass").`;
+  }
+  
+  if (session.state === 'AWAITING_COMPLAINT_LOCATION') {
+    const temp = session.tempComplaint;
+    if (!temp) {
+      session.state = 'MAIN_MENU';
+      return `Session error. Let's start over.\n\nType *1* to File a Water Grievance / Complaint (புகார் பதிவு செய்ய)\nType *2* for General Queries / FAQ (சந்தேகங்கள் / பொதுவான கேள்விகள்)`;
+    }
+    
+    const locationName = text;
+    
     // Determine Ward routing (Default Ward 61)
     let assignedWard = '61';
-    let locationName = 'Sundarapuram Bypass Road, Coimbatore';
-    if (bodyText.toLowerCase().includes('kurichi') || bodyText.toLowerCase().includes('lake')) {
+    const lowerLoc = locationName.toLowerCase();
+    if (lowerLoc.includes('kurichi') || lowerLoc.includes('lake') || lowerLoc.includes('62')) {
       assignedWard = '62';
-      locationName = 'Kurichi Lake Road, Coimbatore';
+    } else if (lowerLoc.includes('saravanampatti') || lowerLoc.includes('12')) {
+      assignedWard = '12';
+    } else if (lowerLoc.includes('ganapathy') || lowerLoc.includes('15')) {
+      assignedWard = '15';
     }
-
+    
     const data = db.readData();
     const newId = `AQ-${1000 + data.complaints.length + 1}`;
-
-    const wardObj = data.wards.find(w => w.id === assignedWard);
-    const slaHours = finalCategory === 'Pipeline Burst' ? 12 : 24;
+    const wardObj = data.wards.find(w => w.id === `ward-${assignedWard}`);
+    const slaHours = temp.category === 'Pipeline Burst' || temp.category === 'Water Contamination' || temp.category === 'Sewer Mixing' ? 12 : 24;
     const slaDeadline = new Date(Date.now() + slaHours * 3600000).toISOString();
-
+    
     const newComplaint = {
       id: newId,
-      category: finalCategory,
-      latitude: assignedWard === '61' ? 10.9578 : 10.9530,
-      longitude: assignedWard === '61' ? 76.9740 : 76.9810,
-      locationName,
-      description: bodyText,
+      category: temp.category,
+      latitude: assignedWard === '61' ? 10.9578 : assignedWard === '62' ? 10.9530 : assignedWard === '12' ? 11.0289 : 11.0265,
+      longitude: assignedWard === '61' ? 76.9740 : assignedWard === '62' ? 76.9810 : assignedWard === '12' ? 76.9928 : 76.9954,
+      locationName: `${locationName}, Coimbatore`,
+      description: temp.description,
       voiceDescription: '',
       imageUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600',
       afterImageUrl: '',
       verificationImageUrl: '',
-      severity,
+      severity: temp.severity,
       status: 'Reported',
-      citizenPhone,
-      citizenName: 'WhatsApp Citizen',
+      citizenPhone: cleanPhone,
+      citizenName: `WhatsApp User (${cleanPhone})`,
       dateReported: new Date().toISOString(),
       dateAssigned: '',
       dateCompleted: '',
@@ -349,42 +403,56 @@ app.post('/api/whatsapp/webhook', express.urlencoded({ extended: true }), (req, 
       masterComplaintId: '',
       duplicateCount: 0,
       aiModelDetails: {
-        predictedCategory: nlpResult.predictedCategory,
-        confidence: nlpResult.confidence,
-        matchLogs: nlpResult.matchLogs,
-        matchedTokens: nlpResult.matchedTokens,
-        inputText: bodyText
+        predictedCategory: temp.nlpResult.predictedCategory,
+        confidence: temp.nlpResult.confidence,
+        matchLogs: temp.nlpResult.matchLogs,
+        matchedTokens: temp.nlpResult.matchedTokens,
+        inputText: temp.description
       },
       history: [
         {
           timestamp: new Date().toISOString(),
           action: 'Complaint Registered',
           officerName: 'WhatsApp Bot',
-          notes: `Grievance registered automatically via WhatsApp bot text stream. AI classified category as ${finalCategory}. Routed to Ward ${assignedWard}.`
+          notes: `Grievance registered automatically via WhatsApp guided dialog. AI classified category as ${temp.category}. Routed to Ward ${assignedWard}.`
         }
       ]
     };
-
+    
     data.complaints.unshift(newComplaint);
     db.writeData(data);
-    db.logAudit('WhatsApp Bot', 'Register Complaint', `Registered ticket ${newId} for ${citizenPhone}`);
+    db.logAudit('WhatsApp Bot', 'Register Complaint', `Registered ticket ${newId} for ${cleanPhone}`);
+    
+    // Reset state
+    session.state = 'MAIN_MENU';
+    session.tempComplaint = null;
+    
+    return `Neer Ugam (நீர் யுகம்) Alert: Grievance registered successfully! 🎉\n\nTicket ID: ${newId}\nCategory: ${temp.category}\nLocation: ${newComplaint.locationName}\nRouted to: Ward ${assignedWard} (${wardObj ? wardObj.name.split('-')[1].trim() : 'Sundarapuram'})\nSLA Target: ${slaHours} Hours\n\nTrack status anytime on: http://localhost:5173/\n\nType *reset* or *0* to return to the main menu.`;
+  }
+  
+  session.state = 'MAIN_MENU';
+  return `Welcome to Neer Ugam (நீர் யுகம்) Help Desk! 🚰\n\nPlease select an option:\n\nType *1* to File a Water Grievance / Complaint (புகார் பதிவு செய்ய)\nType *2* for General Queries / FAQ (சந்தேகங்கள் / பொதுவான கேள்விகள்)`;
+}
 
-    // Return TwiML XML response for Twilio
+// TWILIO WHATSAPP WEBHOOK ENDPOINT
+app.post('/api/whatsapp/webhook', express.urlencoded({ extended: true }), (req, res) => {
+  try {
+    const bodyText = req.body.Body || '';
+    const fromSender = req.body.From || '';
+    const citizenPhone = fromSender.replace('whatsapp:', '').trim() || '+91 8925081899';
+
+    console.log(`[WhatsApp Bot] Inbound msg from ${citizenPhone}: "${bodyText}"`);
+
+    const reply = processWhatsAppMessage(citizenPhone, bodyText);
+
     res.type('text/xml');
     res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Message>Neer Ugam (நீர் யுகம்) Alert: Grievance registered successfully!
-
-Ticket ID: ${newId}
-Category: ${finalCategory}
-Routed to: Ward ${assignedWard} (${locationName})
-SLA Target: ${slaHours} Hours
-
-Track status anytime on: http://localhost:5173/</Message>
+  <Message>${reply}</Message>
 </Response>`);
   } catch (err) {
     console.error('[WhatsApp Bot] Webhook error:', err);
-    res.type('text/xml').send('<Response><Message>Failed to process grievance registration.</Message></Response>');
+    res.type('text/xml').send('<Response><Message>Failed to process message.</Message></Response>');
   }
 });
 
@@ -397,77 +465,11 @@ app.post('/api/whatsapp/emulator', express.json(), (req, res) => {
 
     console.log(`[WhatsApp Emulator] Inbound msg from ${citizenPhone}: "${bodyText}"`);
 
-    // Run NLP classifier
-    const nlpResult = nlp.classifyComplaint(bodyText);
-    const finalCategory = nlpResult.predictedCategory;
-    const severity = ['Pipeline Burst', 'Sewer Mixing', 'Water Contamination'].includes(finalCategory) ? 'Critical' : 'Medium';
-
-    let assignedWard = '61';
-    let locationName = 'Sundarapuram Bypass Road, Coimbatore';
-    if (bodyText.toLowerCase().includes('kurichi') || bodyText.toLowerCase().includes('lake')) {
-      assignedWard = '62';
-      locationName = 'Kurichi Lake Road, Coimbatore';
-    }
-
-    const data = db.readData();
-    const newId = `AQ-${1000 + data.complaints.length + 1}`;
-
-    const wardObj = data.wards.find(w => w.id === assignedWard);
-    const slaHours = finalCategory === 'Pipeline Burst' ? 12 : 24;
-    const slaDeadline = new Date(Date.now() + slaHours * 3600000).toISOString();
-
-    const newComplaint = {
-      id: newId,
-      category: finalCategory,
-      latitude: assignedWard === '61' ? 10.9578 : 10.9530,
-      longitude: assignedWard === '61' ? 76.9740 : 76.9810,
-      locationName,
-      description: bodyText,
-      voiceDescription: '',
-      imageUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600',
-      afterImageUrl: '',
-      verificationImageUrl: '',
-      severity,
-      status: 'Reported',
-      citizenPhone,
-      citizenName: 'WhatsApp Citizen',
-      dateReported: new Date().toISOString(),
-      dateAssigned: '',
-      dateCompleted: '',
-      dateVerified: '',
-      assignedCrew: '',
-      supervisorId: wardObj ? wardObj.supervisorId : 'super-1',
-      engineerId: wardObj ? wardObj.engineerId : 'eng-1',
-      slaHours,
-      slaDeadline,
-      escalationLevel: 0,
-      isDuplicate: false,
-      masterComplaintId: '',
-      duplicateCount: 0,
-      aiModelDetails: {
-        predictedCategory: nlpResult.predictedCategory,
-        confidence: nlpResult.confidence,
-        matchLogs: nlpResult.matchLogs,
-        matchedTokens: nlpResult.matchedTokens,
-        inputText: bodyText
-      },
-      history: [
-        {
-          timestamp: new Date().toISOString(),
-          action: 'Complaint Registered',
-          officerName: 'WhatsApp Bot',
-          notes: `Grievance registered automatically via WhatsApp bot emulator. AI classified category as ${finalCategory}. Routed to Ward ${assignedWard}.`
-        }
-      ]
-    };
-
-    data.complaints.unshift(newComplaint);
-    db.writeData(data);
-    db.logAudit('WhatsApp Bot', 'Emulator Register', `Registered ticket ${newId} for ${citizenPhone}`);
+    const reply = processWhatsAppMessage(citizenPhone, bodyText);
 
     res.json({
       success: true,
-      reply: `Neer Ugam (நீர் யுகம்) Alert: Grievance registered successfully!\n\nTicket ID: ${newId}\nCategory: ${finalCategory}\nRouted to: Ward ${assignedWard} (${locationName})\nSLA Target: ${slaHours} Hours\n\nTrack status anytime on: http://localhost:5173/`
+      reply
     });
   } catch (err) {
     console.error('[WhatsApp Emulator] Error:', err);

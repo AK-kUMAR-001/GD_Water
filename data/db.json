@@ -213,6 +213,521 @@
   ],
   "complaints": [
     {
+      "id": "AQ-1015",
+      "category": "Low Water Pressure",
+      "latitude": 10.9578,
+      "longitude": 76.974,
+      "locationName": "Sundarapuram Bypass Road, Coimbatore",
+      "description": "Neer Ugam (நீர் யுகம்) Alert: Grievance registered successfully!\n\nTicket ID: AQ-1014\nCategory: Low Water Pressure\nRouted to: Ward 61 (Sundarapuram Bypass Road, Coimbatore)\nSLA Target: 24 Hours\n\nTrack status anytime on: http://localhost:5173/",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "919944319337",
+      "citizenName": "WhatsApp Citizen",
+      "dateReported": "2026-06-30T13:31:22.692Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T13:31:22.692Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "masterComplaintId": "",
+      "duplicateCount": 0,
+      "aiModelDetails": {
+        "predictedCategory": "Low Water Pressure",
+        "confidence": 9,
+        "matchLogs": {
+          "Water Leakage": {
+            "score": 3,
+            "matchedWords": [
+              "low"
+            ]
+          },
+          "Water Theft": {
+            "score": 3,
+            "matchedWords": [
+              "bypass"
+            ]
+          },
+          "Illegal Connection": {
+            "score": 3,
+            "matchedWords": [
+              "registered"
+            ]
+          },
+          "Low Water Pressure": {
+            "score": 6,
+            "matchedWords": [
+              "low",
+              "pressure"
+            ]
+          },
+          "Contaminated Water": {
+            "score": 3,
+            "matchedWords": [
+              "low"
+            ]
+          },
+          "Overflowing Tank": {
+            "score": 3,
+            "matchedWords": [
+              "low"
+            ]
+          }
+        },
+        "matchedTokens": [
+          "low",
+          "pressure"
+        ],
+        "inputText": "Neer Ugam (நீர் யுகம்) Alert: Grievance registered successfully!\n\nTicket ID: AQ-1014\nCategory: Low Water Pressure\nRouted to: Ward 61 (Sundarapuram Bypass Road, Coimbatore)\nSLA Target: 24 Hours\n\nTrack status anytime on: http://localhost:5173/"
+      },
+      "history": [
+        {
+          "timestamp": "2026-06-30T13:31:22.692Z",
+          "action": "Complaint Registered",
+          "officerName": "WhatsApp Bot",
+          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Low Water Pressure. Routed to Ward 61."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1014",
+      "category": "Low Water Pressure",
+      "latitude": 10.9578,
+      "longitude": 76.974,
+      "locationName": "Sundarapuram Bypass Road, Coimbatore",
+      "description": "Hi pipeline issue at sundarapuram \nLocation 3rd Street",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "919944319337",
+      "citizenName": "WhatsApp Citizen",
+      "dateReported": "2026-06-30T13:30:50.340Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T13:30:50.340Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "masterComplaintId": "",
+      "duplicateCount": 0,
+      "aiModelDetails": {
+        "predictedCategory": "Low Water Pressure",
+        "confidence": 21,
+        "matchLogs": {
+          "Pipeline Burst": {
+            "score": 14,
+            "matchedWords": [
+              "hi"
+            ]
+          },
+          "Low Water Pressure": {
+            "score": 15,
+            "matchedWords": [
+              "hi"
+            ]
+          }
+        },
+        "matchedTokens": [
+          "hi"
+        ],
+        "inputText": "Hi pipeline issue at sundarapuram \nLocation 3rd Street"
+      },
+      "history": [
+        {
+          "timestamp": "2026-06-30T13:30:50.340Z",
+          "action": "Complaint Registered",
+          "officerName": "WhatsApp Bot",
+          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Low Water Pressure. Routed to Ward 61."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1013",
+      "category": "Low Water Pressure",
+      "latitude": 10.9578,
+      "longitude": 76.974,
+      "locationName": "Sundarapuram Bypass Road, Coimbatore",
+      "description": "Hi",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "919944319337",
+      "citizenName": "WhatsApp Citizen",
+      "dateReported": "2026-06-30T13:28:15.825Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T13:28:15.825Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "masterComplaintId": "",
+      "duplicateCount": 0,
+      "aiModelDetails": {
+        "predictedCategory": "Low Water Pressure",
+        "confidence": 90,
+        "matchLogs": {
+          "Pipeline Burst": {
+            "score": 63,
+            "matchedWords": [
+              "hi"
+            ]
+          },
+          "Low Water Pressure": {
+            "score": 64,
+            "matchedWords": [
+              "hi"
+            ]
+          }
+        },
+        "matchedTokens": [
+          "hi"
+        ],
+        "inputText": "Hi"
+      },
+      "history": [
+        {
+          "timestamp": "2026-06-30T13:28:15.825Z",
+          "action": "Complaint Registered",
+          "officerName": "WhatsApp Bot",
+          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Low Water Pressure. Routed to Ward 61."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1012",
+      "category": "Broken Public Tap",
+      "latitude": 10.9578,
+      "longitude": 76.974,
+      "locationName": "Sundarapuram Bypass Road, Coimbatore",
+      "description": "Ahh ok pah",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "919789280911",
+      "citizenName": "WhatsApp Citizen",
+      "dateReported": "2026-06-30T13:27:35.264Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T13:27:35.264Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "masterComplaintId": "",
+      "duplicateCount": 0,
+      "aiModelDetails": {
+        "predictedCategory": "Broken Public Tap",
+        "confidence": 33,
+        "matchLogs": {
+          "Pipeline Burst": {
+            "score": 22,
+            "matchedWords": [
+              "ok"
+            ]
+          },
+          "Illegal Connection": {
+            "score": 23,
+            "matchedWords": [
+              "ok"
+            ]
+          },
+          "Broken Public Tap": {
+            "score": 24,
+            "matchedWords": [
+              "ok"
+            ]
+          },
+          "Water Meter Damage": {
+            "score": 24,
+            "matchedWords": [
+              "ok"
+            ]
+          }
+        },
+        "matchedTokens": [
+          "ok"
+        ],
+        "inputText": "Ahh ok pah"
+      },
+      "history": [
+        {
+          "timestamp": "2026-06-30T13:27:35.264Z",
+          "action": "Complaint Registered",
+          "officerName": "WhatsApp Bot",
+          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Broken Public Tap. Routed to Ward 61."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1011",
+      "category": "Others",
+      "latitude": 10.9578,
+      "longitude": 76.974,
+      "locationName": "Sundarapuram Bypass Road, Coimbatore",
+      "description": "3 time",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "919789280911",
+      "citizenName": "WhatsApp Citizen",
+      "dateReported": "2026-06-30T13:27:12.017Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T13:27:12.017Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "masterComplaintId": "",
+      "duplicateCount": 0,
+      "aiModelDetails": {
+        "predictedCategory": "Others",
+        "confidence": 100,
+        "matchLogs": {},
+        "matchedTokens": [],
+        "inputText": "3 time"
+      },
+      "history": [
+        {
+          "timestamp": "2026-06-30T13:27:12.017Z",
+          "action": "Complaint Registered",
+          "officerName": "WhatsApp Bot",
+          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1010",
+      "category": "Broken Public Tap",
+      "latitude": 10.9578,
+      "longitude": 76.974,
+      "locationName": "Sundarapuram Bypass Road, Coimbatore",
+      "description": "Ena achu da",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "919789280911",
+      "citizenName": "WhatsApp Citizen",
+      "dateReported": "2026-06-30T13:27:08.634Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T13:27:08.634Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "masterComplaintId": "",
+      "duplicateCount": 0,
+      "aiModelDetails": {
+        "predictedCategory": "Broken Public Tap",
+        "confidence": 33,
+        "matchLogs": {
+          "No Water Supply": {
+            "score": 23,
+            "matchedWords": [
+              "da"
+            ]
+          },
+          "Broken Public Tap": {
+            "score": 24,
+            "matchedWords": [
+              "da"
+            ]
+          },
+          "Water Meter Damage": {
+            "score": 24,
+            "matchedWords": [
+              "da"
+            ]
+          }
+        },
+        "matchedTokens": [
+          "da"
+        ],
+        "inputText": "Ena achu da"
+      },
+      "history": [
+        {
+          "timestamp": "2026-06-30T13:27:08.634Z",
+          "action": "Complaint Registered",
+          "officerName": "WhatsApp Bot",
+          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Broken Public Tap. Routed to Ward 61."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1009",
+      "category": "Others",
+      "latitude": 10.9578,
+      "longitude": 76.974,
+      "locationName": "Sundarapuram Bypass Road, Coimbatore",
+      "description": "Oi",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "919789280911",
+      "citizenName": "WhatsApp Citizen",
+      "dateReported": "2026-06-30T13:26:58.502Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T13:26:58.502Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "masterComplaintId": "",
+      "duplicateCount": 0,
+      "aiModelDetails": {
+        "predictedCategory": "Others",
+        "confidence": 100,
+        "matchLogs": {},
+        "matchedTokens": [],
+        "inputText": "Oi"
+      },
+      "history": [
+        {
+          "timestamp": "2026-06-30T13:26:58.502Z",
+          "action": "Complaint Registered",
+          "officerName": "WhatsApp Bot",
+          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1008",
+      "category": "Others",
+      "latitude": 10.9578,
+      "longitude": 76.974,
+      "locationName": "Sundarapuram Bypass Road, Coimbatore",
+      "description": "Yathuku ithu",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "919789280911",
+      "citizenName": "WhatsApp Citizen",
+      "dateReported": "2026-06-30T13:26:40.966Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T13:26:40.966Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "masterComplaintId": "",
+      "duplicateCount": 0,
+      "aiModelDetails": {
+        "predictedCategory": "Others",
+        "confidence": 100,
+        "matchLogs": {},
+        "matchedTokens": [],
+        "inputText": "Yathuku ithu"
+      },
+      "history": [
+        {
+          "timestamp": "2026-06-30T13:26:40.966Z",
+          "action": "Complaint Registered",
+          "officerName": "WhatsApp Bot",
+          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1007",
+      "category": "Others",
+      "latitude": 10.9578,
+      "longitude": 76.974,
+      "locationName": "Sundarapuram Bypass Road, Coimbatore",
+      "description": "Oi",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "919789280911",
+      "citizenName": "WhatsApp Citizen",
+      "dateReported": "2026-06-30T13:26:10.535Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T13:26:10.535Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "masterComplaintId": "",
+      "duplicateCount": 0,
+      "aiModelDetails": {
+        "predictedCategory": "Others",
+        "confidence": 100,
+        "matchLogs": {},
+        "matchedTokens": [],
+        "inputText": "Oi"
+      },
+      "history": [
+        {
+          "timestamp": "2026-06-30T13:26:10.535Z",
+          "action": "Complaint Registered",
+          "officerName": "WhatsApp Bot",
+          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
+        }
+      ]
+    },
+    {
       "id": "AQ-1001",
       "category": "Pipeline Burst",
       "latitude": 10.9582,
@@ -491,6 +1006,60 @@
     }
   ],
   "auditLogs": [
+    {
+      "timestamp": "2026-06-30T13:31:22.694Z",
+      "user": "WhatsApp Bot",
+      "action": "Emulator Register",
+      "notes": "Registered ticket AQ-1015 for 919944319337"
+    },
+    {
+      "timestamp": "2026-06-30T13:30:50.341Z",
+      "user": "WhatsApp Bot",
+      "action": "Emulator Register",
+      "notes": "Registered ticket AQ-1014 for 919944319337"
+    },
+    {
+      "timestamp": "2026-06-30T13:28:15.828Z",
+      "user": "WhatsApp Bot",
+      "action": "Emulator Register",
+      "notes": "Registered ticket AQ-1013 for 919944319337"
+    },
+    {
+      "timestamp": "2026-06-30T13:27:35.265Z",
+      "user": "WhatsApp Bot",
+      "action": "Emulator Register",
+      "notes": "Registered ticket AQ-1012 for 919789280911"
+    },
+    {
+      "timestamp": "2026-06-30T13:27:12.018Z",
+      "user": "WhatsApp Bot",
+      "action": "Emulator Register",
+      "notes": "Registered ticket AQ-1011 for 919789280911"
+    },
+    {
+      "timestamp": "2026-06-30T13:27:08.635Z",
+      "user": "WhatsApp Bot",
+      "action": "Emulator Register",
+      "notes": "Registered ticket AQ-1010 for 919789280911"
+    },
+    {
+      "timestamp": "2026-06-30T13:26:58.503Z",
+      "user": "WhatsApp Bot",
+      "action": "Emulator Register",
+      "notes": "Registered ticket AQ-1009 for 919789280911"
+    },
+    {
+      "timestamp": "2026-06-30T13:26:40.967Z",
+      "user": "WhatsApp Bot",
+      "action": "Emulator Register",
+      "notes": "Registered ticket AQ-1008 for 919789280911"
+    },
+    {
+      "timestamp": "2026-06-30T13:26:10.536Z",
+      "user": "WhatsApp Bot",
+      "action": "Emulator Register",
+      "notes": "Registered ticket AQ-1007 for 919789280911"
+    },
     {
       "timestamp": "2026-06-28T12:24:06.613Z",
       "user": "System",
