@@ -2,6 +2,7 @@ const { default: makeWASocket, useMultiFileAuthState, DisconnectReason } = requi
 const qrcode = require('qrcode-terminal');
 const pino = require('pino');
 const path = require('path');
+const fs = require('fs');
 
 async function startBot() {
   const { state, saveCreds } = await useMultiFileAuthState(path.join(__dirname, '../data/bot-auth-session'));
@@ -20,6 +21,18 @@ async function startBot() {
       console.log('\n--- SCAN THIS QR CODE WITH YOUR WHATSAPP TO ACTIVATE THE BOT ---');
       qrcode.generate(qr, { small: true });
       console.log('----------------------------------------------------------------\n');
+
+      // Also generate a clean high-resolution PNG image for scanning comfort
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(qr)}`;
+      fetch(qrUrl)
+        .then(res => res.arrayBuffer())
+        .then(buffer => {
+          const destPath = path.join(__dirname, '../public/whatsapp-qr.png');
+          fs.writeFileSync(destPath, Buffer.from(buffer));
+          console.log(`[WhatsApp Bot] High-res QR saved to: ${destPath}`);
+          console.log(`Please scan it at: http://localhost:5173/whatsapp-qr.png`);
+        })
+        .catch(err => console.error('[WhatsApp Bot] Failed to generate PNG QR:', err.message));
     }
 
     if (connection === 'close') {
