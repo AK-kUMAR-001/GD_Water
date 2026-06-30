@@ -223,6 +223,12 @@ app.post('/api/complaints', upload.single('photo'), (req, res) => {
     const smsMessage = `Neer Ugam: Grievance ${newComplaint.id} (${newComplaint.category}) registered. AI auto-routed to ${wardObj?.name || 'Ward 61'}.`;
     sendSmsNotification(newComplaint.citizenPhone, smsMessage);
 
+    // Send WhatsApp notification to Citizen
+    sendWhatsAppAlert(newComplaint.citizenPhone, `📢 *Neer Ugam (நீர் யுகம்) Alert*:\n\nYour complaint has been successfully registered!\n\n*Ticket ID*: ${newComplaint.id}\n*Category*: ${newComplaint.category}\n*Location*: ${newComplaint.locationName}\n*SLA Target*: ${newComplaint.slaHours} Hours\n\nTrack progress on: http://localhost:5173/`);
+
+    // Send WhatsApp notification to Supervisor (8925081899)
+    sendWhatsAppAlert('8925081899', `📢 *Neer Ugam Dispatch Alert*:\n\nA new water grievance has been registered in your zone!\n\n*Ticket ID*: ${newComplaint.id}\n*Category*: ${newComplaint.category}\n*Location*: ${newComplaint.locationName}\n*Severity*: ${newComplaint.severity}\n\nPlease open your supervisor console at http://localhost:5173/ and assign a field repair crew immediately.`);
+
     res.status(201).json(newComplaint);
   } catch (err) {
     console.error(err);
@@ -258,6 +264,31 @@ async function sendSmsNotification(toPhone, message) {
   }
 }
 
+// Helper for WhatsApp notification transmission via self-hosted bot
+async function sendWhatsAppAlert(phone, message) {
+  try {
+    let cleanPhone = phone.replace(/[\s-()+]/g, '').trim();
+    if (!cleanPhone.startsWith('91') && cleanPhone.length === 10) {
+      cleanPhone = '91' + cleanPhone;
+    }
+    
+    console.log(`[WhatsApp Outbound API] Triggering alert to ${cleanPhone}: "${message}"`);
+    
+    const botRes = await fetch('http://localhost:5001/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        phone: cleanPhone,
+        text: message
+      })
+    });
+    const botData = await botRes.json();
+    console.log('[WhatsApp Outbound API] Bot response:', botData);
+  } catch (err) {
+    console.error('[WhatsApp Outbound API] Outbound notify failed:', err.message);
+  }
+}
+
 // Assign complaint to crew (Supervisor dashboard)
 app.post('/api/complaints/:id/assign', (req, res) => {
   const { id } = req.params;
@@ -287,6 +318,12 @@ app.post('/api/complaints/:id/assign', (req, res) => {
   const targetPhone = crewId === 'crew-1' ? '8925081899' : (crew.phone || '8925081899');
   const dispatchMessage = `Neer Ugam: Grievance ${id} assigned to ${crew.name}. Proceed to site immediately.`;
   sendSmsNotification(targetPhone, dispatchMessage);
+
+  // Send WhatsApp notification to crew lead
+  sendWhatsAppAlert(targetPhone, `👷‍♂️ *Neer Ugam Crew Duty*:\n\nGrievance *${id}* (${complaint.category}) has been assigned to you!\n\n*Location*: ${complaint.locationName}\n*Notes*: ${notes || 'Proceed immediately'}\n\nPlease proceed to site, inspect, and update progress in your field terminal.`);
+
+  // Send WhatsApp notification to citizen
+  sendWhatsAppAlert(complaint.citizenPhone, `📢 *Neer Ugam Alert*:\n\nYour complaint *${id}* has been assigned to *${crew.name}* (Lead: Murugan) for execution. Our field crew is moving to the site.`);
 
   res.json(complaint);
 });
@@ -520,6 +557,16 @@ app.post('/api/complaints/:id/crew-update', upload.fields([{ name: 'beforePhoto'
   }
 
   db.writeData(data);
+
+  // Trigger WhatsApp status updates based on crew actions
+  if (startWork === 'true') {
+    sendWhatsAppAlert(complaint.citizenPhone, `📢 *Neer Ugam Alert*:\n\nOur repair crew has arrived at the site and started working on your complaint *${id}*.`);
+  } else {
+    // Resolved by crew, awaiting JE verification
+    sendWhatsAppAlert('8925081899', `✅ *Neer Ugam Alert*: Crew Alpha has completed repair work for complaint *${id}* (${complaint.category}) at *${complaint.locationName}*. Awaiting site verification.`);
+    sendWhatsAppAlert(complaint.citizenPhone, `📢 *Neer Ugam Alert*:\n\nRepair of your complaint *${id}* has been completed! Awaiting official engineering verification.`);
+  }
+
   res.json(complaint);
 });
 
@@ -573,6 +620,15 @@ app.post('/api/complaints/:id/verify', upload.single('verificationPhoto'), (req,
   }
 
   db.writeData(data);
+
+  // Trigger WhatsApp verification notifications
+  if (status === 'Resolved') {
+    sendWhatsAppAlert(complaint.citizenPhone, `🎉 *Neer Ugam (நீர் யுகம்) Success*:\n\nYour complaint *${id}* has been verified and successfully closed! Thank you for helping us keep Coimbatore clean. 🚰`);
+  } else if (status === 'Rejected') {
+    // Alert crew lead of failure
+    sendWhatsAppAlert('8925081899', `⚠️ *Neer Ugam Rework*: Verification failed for grievance *${id}*. Notes: ${notes || 'Seal quality insufficient'}. Please return to site for immediate rework.`);
+  }
+
   res.json(complaint);
 });
 

@@ -213,6 +213,65 @@
   ],
   "complaints": [
     {
+      "id": "AQ-1016",
+      "category": "Pump Failure",
+      "latitude": 10.9578,
+      "longitude": 76.974,
+      "locationName": "Rathinam tech zone ,2 turn near Grand hall, Coimbatore",
+      "description": "Pump breaking",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "919944319337",
+      "citizenName": "WhatsApp User (919944319337)",
+      "dateReported": "2026-06-30T13:36:36.671Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T13:36:36.671Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "masterComplaintId": "",
+      "duplicateCount": 0,
+      "aiModelDetails": {
+        "predictedCategory": "Pump Failure",
+        "confidence": 46,
+        "matchLogs": {
+          "Water Theft": {
+            "score": 33,
+            "matchedWords": [
+              "pump"
+            ]
+          },
+          "Pump Failure": {
+            "score": 33,
+            "matchedWords": [
+              "pump"
+            ]
+          }
+        },
+        "matchedTokens": [
+          "pump"
+        ],
+        "inputText": "Pump breaking"
+      },
+      "history": [
+        {
+          "timestamp": "2026-06-30T13:36:36.671Z",
+          "action": "Complaint Registered",
+          "officerName": "WhatsApp Bot",
+          "notes": "Grievance registered automatically via WhatsApp guided dialog. AI classified category as Pump Failure. Routed to Ward 61."
+        }
+      ]
+    },
+    {
       "id": "AQ-1015",
       "category": "Low Water Pressure",
       "latitude": 10.9578,
@@ -1006,6 +1065,12 @@
     }
   ],
   "auditLogs": [
+    {
+      "timestamp": "2026-06-30T13:36:36.674Z",
+      "user": "WhatsApp Bot",
+      "action": "Register Complaint",
+      "notes": "Registered ticket AQ-1016 for 919944319337"
+    },
     {
       "timestamp": "2026-06-30T13:31:22.694Z",
       "user": "WhatsApp Bot",
