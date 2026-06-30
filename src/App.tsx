@@ -5,6 +5,7 @@ import { ControlRoom } from './views/ControlRoom';
 import { Supervisor } from './views/Supervisor';
 import { RepairCrew } from './views/RepairCrew';
 import { Collector } from './views/Collector';
+import { WhatsAppSimulator } from './components/WhatsAppSimulator';
 
 function App() {
   const [lang, setLang] = useState<Language>('en');
@@ -306,6 +307,9 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Floating Interactive WhatsApp Chat Bot Simulator */}
+      <WhatsAppSimulator onRefresh={fetchAllData} />
 
     </div>
   );

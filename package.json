@@ -9,17 +9,23 @@
     "client": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "bot": "node server/bot.js"
   },
   "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc13",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "multer": "^2.2.0",
+    "qrcode-terminal": "^0.12.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/cli": "^8.4.1",
+    "@capacitor/core": "^8.4.1",
     "@types/node": "^24.13.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",

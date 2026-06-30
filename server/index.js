@@ -291,6 +291,190 @@ app.post('/api/complaints/:id/assign', (req, res) => {
   res.json(complaint);
 });
 
+// TWILIO WHATSAPP WEBHOOK ENDPOINT
+app.post('/api/whatsapp/webhook', express.urlencoded({ extended: true }), (req, res) => {
+  try {
+    const bodyText = req.body.Body || '';
+    const fromSender = req.body.From || '';
+    const citizenPhone = fromSender.replace('whatsapp:', '').trim() || '+91 8925081899';
+
+    console.log(`[WhatsApp Bot] Inbound msg from ${citizenPhone}: "${bodyText}"`);
+
+    // 1. Run Jaccard NLP Engine to categorize
+    const nlpResult = nlp.classifyComplaint(bodyText);
+    const finalCategory = nlpResult.predictedCategory;
+    const severity = ['Pipeline Burst', 'Sewer Mixing', 'Water Contamination'].includes(finalCategory) ? 'Critical' : 'Medium';
+
+    // Determine Ward routing (Default Ward 61)
+    let assignedWard = '61';
+    let locationName = 'Sundarapuram Bypass Road, Coimbatore';
+    if (bodyText.toLowerCase().includes('kurichi') || bodyText.toLowerCase().includes('lake')) {
+      assignedWard = '62';
+      locationName = 'Kurichi Lake Road, Coimbatore';
+    }
+
+    const data = db.readData();
+    const newId = `AQ-${1000 + data.complaints.length + 1}`;
+
+    const wardObj = data.wards.find(w => w.id === assignedWard);
+    const slaHours = finalCategory === 'Pipeline Burst' ? 12 : 24;
+    const slaDeadline = new Date(Date.now() + slaHours * 3600000).toISOString();
+
+    const newComplaint = {
+      id: newId,
+      category: finalCategory,
+      latitude: assignedWard === '61' ? 10.9578 : 10.9530,
+      longitude: assignedWard === '61' ? 76.9740 : 76.9810,
+      locationName,
+      description: bodyText,
+      voiceDescription: '',
+      imageUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600',
+      afterImageUrl: '',
+      verificationImageUrl: '',
+      severity,
+      status: 'Reported',
+      citizenPhone,
+      citizenName: 'WhatsApp Citizen',
+      dateReported: new Date().toISOString(),
+      dateAssigned: '',
+      dateCompleted: '',
+      dateVerified: '',
+      assignedCrew: '',
+      supervisorId: wardObj ? wardObj.supervisorId : 'super-1',
+      engineerId: wardObj ? wardObj.engineerId : 'eng-1',
+      slaHours,
+      slaDeadline,
+      escalationLevel: 0,
+      isDuplicate: false,
+      masterComplaintId: '',
+      duplicateCount: 0,
+      aiModelDetails: {
+        predictedCategory: nlpResult.predictedCategory,
+        confidence: nlpResult.confidence,
+        matchLogs: nlpResult.matchLogs,
+        matchedTokens: nlpResult.matchedTokens,
+        inputText: bodyText
+      },
+      history: [
+        {
+          timestamp: new Date().toISOString(),
+          action: 'Complaint Registered',
+          officerName: 'WhatsApp Bot',
+          notes: `Grievance registered automatically via WhatsApp bot text stream. AI classified category as ${finalCategory}. Routed to Ward ${assignedWard}.`
+        }
+      ]
+    };
+
+    data.complaints.unshift(newComplaint);
+    db.writeData(data);
+    db.logAudit('WhatsApp Bot', 'Register Complaint', `Registered ticket ${newId} for ${citizenPhone}`);
+
+    // Return TwiML XML response for Twilio
+    res.type('text/xml');
+    res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Message>Neer Ugam (நீர் யுகம்) Alert: Grievance registered successfully!
+
+Ticket ID: ${newId}
+Category: ${finalCategory}
+Routed to: Ward ${assignedWard} (${locationName})
+SLA Target: ${slaHours} Hours
+
+Track status anytime on: http://localhost:5173/</Message>
+</Response>`);
+  } catch (err) {
+    console.error('[WhatsApp Bot] Webhook error:', err);
+    res.type('text/xml').send('<Response><Message>Failed to process grievance registration.</Message></Response>');
+  }
+});
+
+// WHATSAPP CHAT EMULATOR API ENDPOINT (For in-browser Simulator UI)
+app.post('/api/whatsapp/emulator', express.json(), (req, res) => {
+  try {
+    const { phone, message } = req.body;
+    const bodyText = message || '';
+    const citizenPhone = phone || '+91 8925081899';
+
+    console.log(`[WhatsApp Emulator] Inbound msg from ${citizenPhone}: "${bodyText}"`);
+
+    // Run NLP classifier
+    const nlpResult = nlp.classifyComplaint(bodyText);
+    const finalCategory = nlpResult.predictedCategory;
+    const severity = ['Pipeline Burst', 'Sewer Mixing', 'Water Contamination'].includes(finalCategory) ? 'Critical' : 'Medium';
+
+    let assignedWard = '61';
+    let locationName = 'Sundarapuram Bypass Road, Coimbatore';
+    if (bodyText.toLowerCase().includes('kurichi') || bodyText.toLowerCase().includes('lake')) {
+      assignedWard = '62';
+      locationName = 'Kurichi Lake Road, Coimbatore';
+    }
+
+    const data = db.readData();
+    const newId = `AQ-${1000 + data.complaints.length + 1}`;
+
+    const wardObj = data.wards.find(w => w.id === assignedWard);
+    const slaHours = finalCategory === 'Pipeline Burst' ? 12 : 24;
+    const slaDeadline = new Date(Date.now() + slaHours * 3600000).toISOString();
+
+    const newComplaint = {
+      id: newId,
+      category: finalCategory,
+      latitude: assignedWard === '61' ? 10.9578 : 10.9530,
+      longitude: assignedWard === '61' ? 76.9740 : 76.9810,
+      locationName,
+      description: bodyText,
+      voiceDescription: '',
+      imageUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600',
+      afterImageUrl: '',
+      verificationImageUrl: '',
+      severity,
+      status: 'Reported',
+      citizenPhone,
+      citizenName: 'WhatsApp Citizen',
+      dateReported: new Date().toISOString(),
+      dateAssigned: '',
+      dateCompleted: '',
+      dateVerified: '',
+      assignedCrew: '',
+      supervisorId: wardObj ? wardObj.supervisorId : 'super-1',
+      engineerId: wardObj ? wardObj.engineerId : 'eng-1',
+      slaHours,
+      slaDeadline,
+      escalationLevel: 0,
+      isDuplicate: false,
+      masterComplaintId: '',
+      duplicateCount: 0,
+      aiModelDetails: {
+        predictedCategory: nlpResult.predictedCategory,
+        confidence: nlpResult.confidence,
+        matchLogs: nlpResult.matchLogs,
+        matchedTokens: nlpResult.matchedTokens,
+        inputText: bodyText
+      },
+      history: [
+        {
+          timestamp: new Date().toISOString(),
+          action: 'Complaint Registered',
+          officerName: 'WhatsApp Bot',
+          notes: `Grievance registered automatically via WhatsApp bot emulator. AI classified category as ${finalCategory}. Routed to Ward ${assignedWard}.`
+        }
+      ]
+    };
+
+    data.complaints.unshift(newComplaint);
+    db.writeData(data);
+    db.logAudit('WhatsApp Bot', 'Emulator Register', `Registered ticket ${newId} for ${citizenPhone}`);
+
+    res.json({
+      success: true,
+      reply: `Neer Ugam (நீர் யுகம்) Alert: Grievance registered successfully!\n\nTicket ID: ${newId}\nCategory: ${finalCategory}\nRouted to: Ward ${assignedWard} (${locationName})\nSLA Target: ${slaHours} Hours\n\nTrack status anytime on: http://localhost:5173/`
+    });
+  } catch (err) {
+    console.error('[WhatsApp Emulator] Error:', err);
+    res.status(500).json({ error: 'Failed to process emulator message.' });
+  }
+});
+
 // Update repair progress (Repair crew interface)
 app.post('/api/complaints/:id/crew-update', upload.fields([{ name: 'beforePhoto' }, { name: 'afterPhoto' }]), (req, res) => {
   const { id } = req.params;
