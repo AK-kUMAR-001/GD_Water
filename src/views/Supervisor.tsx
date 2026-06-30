@@ -51,18 +51,7 @@ export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users,
 
   const selected = complaints.find(c => c.id === selectedId);
 
-  const handleResetDemo = async () => {
-    if (!confirm('Are you sure you want to reset all grievances to default mock records?')) return;
-    try {
-      const res = await fetch('/api/reset-demo', { method: 'POST' });
-      if (res.ok) {
-        onRefresh();
-        alert('Database reset successful! Workflow is ready.');
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
+
 
   const handleDispatch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -120,14 +109,6 @@ export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users,
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <button
-            type="button"
-            onClick={handleResetDemo}
-            className="btn btn-danger"
-            style={{ padding: '6px 12px', fontSize: '0.7rem', textTransform: 'none' }}
-          >
-            🔄 Reset Demo DB
-          </button>
           <div style={{ textAlign: 'right' }}>
             <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>MUNICIPAL ACTIONS DESK</span>
             <p style={{ color: 'var(--accent)', fontWeight: 'bold', fontSize: '0.9rem' }}>{t.supervisor} Dashboard</p>

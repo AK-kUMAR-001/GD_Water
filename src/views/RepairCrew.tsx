@@ -40,18 +40,7 @@ export const RepairCrew: React.FC<RepairCrewProps> = ({ lang, complaints, onRefr
 
   const activeTask = complaints.find(c => c.id === activeTaskId);
 
-  const handleResetDemo = async () => {
-    if (!confirm('Are you sure you want to reset all grievances to default mock records?')) return;
-    try {
-      const res = await fetch('/api/reset-demo', { method: 'POST' });
-      if (res.ok) {
-        onRefresh();
-        alert('Database reset successful! Workflow is ready.');
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
+
 
   // Set mock photos to make testing easy without needing local files
   const applyMockPhotos = () => {
@@ -147,14 +136,6 @@ export const RepairCrew: React.FC<RepairCrewProps> = ({ lang, complaints, onRefr
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <button
-            type="button"
-            onClick={handleResetDemo}
-            className="btn btn-danger"
-            style={{ padding: '6px 12px', fontSize: '0.7rem', textTransform: 'none' }}
-          >
-            🔄 Reset Demo DB
-          </button>
           <div style={{ textAlign: 'right' }}>
             <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>BSNL FIELD CONNECTED</span>
             <p style={{ color: 'var(--accent)', fontWeight: 'bold', fontSize: '0.9rem' }}>Reparation Desk</p>

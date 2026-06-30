@@ -46,6 +46,22 @@ function App() {
     }
   };
 
+  const handleGlobalReset = async () => {
+    if (!confirm('Are you sure you want to reset all grievances to default mock records?')) return;
+    try {
+      const res = await fetch('/api/reset-demo', { method: 'POST' });
+      if (res.ok) {
+        alert('Database reset successful! Workflow is ready.');
+        fetchAllData();
+      } else {
+        alert('Reset failed.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Network error during reset.');
+    }
+  };
+
   useEffect(() => {
     fetchAllData();
 
@@ -113,8 +129,26 @@ function App() {
           </p>
         </div>
 
-        {/* Right: Language Toggle & Device Simulator switch button */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '10px', width: '250px' }}>
+        {/* Right: Reset, Language Toggle & Device Simulator switch buttons */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '10px', width: '380px' }}>
+          <button 
+            onClick={handleGlobalReset}
+            style={{
+              background: '#FF9800',
+              border: 'none',
+              color: 'white',
+              padding: '0.4rem 0.8rem',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '0.75rem',
+              fontWeight: '700',
+              transition: 'var(--transition)'
+            }}
+            title="Reset Database to initial template"
+          >
+            🔄 Reset Demo DB
+          </button>
+
           <button 
             onClick={() => setIsMobileMode(!isMobileMode)}
             style={{
