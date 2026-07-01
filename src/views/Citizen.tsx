@@ -80,49 +80,62 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast, 
 
   const captureGps = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (pos) => {
-          const latitude = pos.coords.latitude;
-          const longitude = pos.coords.longitude;
-          setGps({ lat: latitude, lng: longitude });
-          
-          // Call free reverse geocoder
-          try {
-            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18`);
-            if (response.ok) {
-              const data = await response.json();
-              if (data && data.display_name) {
-                setDetectedAddress(data.display_name);
-                return;
-              }
+      setDetectedAddress(lang === 'ta' ? 'ஜிபிஎஸ் ஒருங்கிணைப்புகளைத் தேடுகிறது...' : 'Acquiring GPS coordinates...');
+      
+      const successCallback = async (pos: any) => {
+        const latitude = pos.coords.latitude;
+        const longitude = pos.coords.longitude;
+        setGps({ lat: latitude, lng: longitude });
+        
+        try {
+          const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18`);
+          if (response.ok) {
+            const data = await response.json();
+            if (data && data.display_name) {
+              setDetectedAddress(data.display_name);
+              return;
             }
-          } catch (e) {
-            console.error('Error reverse geocoding:', e);
           }
-
-          // Mock fallback geocoding details based on coimbatore zones
-          if (latitude > 11.0) {
-            setDetectedAddress(longitude > 76.993 
-              ? 'Sathy Road, Saravanampatti, Coimbatore Ward 12, Tamil Nadu'
-              : 'Ganapathy Main Street, Coimbatore Ward 15, Tamil Nadu'
-            );
-          } else {
-            setDetectedAddress(longitude > 76.972
-              ? 'Sundarapuram Bypass Road, Coimbatore Ward 61, Tamil Nadu'
-              : 'Kurichi Lake Road, Coimbatore Ward 62, Tamil Nadu'
-            );
-          }
-        },
-        (err) => {
-          console.error(err);
-          // Set mock location and address
-          setGps({ lat: 10.9578, lng: 76.9740 });
-          setDetectedAddress('Sundarapuram Bypass Road, Coimbatore Ward 61, Tamil Nadu');
+        } catch (e) {
+          console.error('Error reverse geocoding:', e);
         }
+
+        if (latitude > 11.0) {
+          setDetectedAddress(longitude > 76.993 
+            ? 'Sathy Road, Saravanampatti, Coimbatore Ward 12, Tamil Nadu'
+            : 'Ganapathy Main Street, Coimbatore Ward 15, Tamil Nadu'
+          );
+        } else {
+          setDetectedAddress(longitude > 76.972
+            ? 'Sundarapuram Bypass Road, Coimbatore Ward 61, Tamil Nadu'
+            : 'Kurichi Lake Road, Coimbatore Ward 62, Tamil Nadu'
+          );
+        }
+      };
+
+      const errorCallback = (err: any) => {
+        console.warn('High accuracy GPS failed, trying coarse fallback...', err);
+        navigator.geolocation.getCurrentPosition(
+          successCallback,
+          (coarseErr) => {
+            console.error('Coarse Geolocation failed:', coarseErr);
+            alert(lang === 'ta' ? 'ஜிபிஎஸ் இணைப்பை பெற முடியவில்லை. உங்கள் மொபைல் அமைப்புகளில் இருப்பிட சேவைகளை ஆன் செய்யவும்.' : 'GPS signal unavailable. Please ensure your device Location Services are turned ON.');
+            setGps({ lat: 10.9578, lng: 76.9740 });
+            setDetectedAddress(lang === 'ta' ? 'சுந்தராபுரம் பைபாஸ் சாலை, கோவை (இருப்பிடக் குறைபாடு)' : 'Sundarapuram Bypass Road, Coimbatore (Location Fallback)');
+          },
+          { enableHighAccuracy: false, timeout: 5000, maximumAge: 10000 }
+        );
+      };
+
+      navigator.geolocation.getCurrentPosition(
+        successCallback,
+        errorCallback,
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
       );
     } else {
+      alert('Geolocation not supported by this device.');
       setGps({ lat: 10.9578, lng: 76.9740 });
-      setDetectedAddress('Sundarapuram Bypass Road, Coimbatore Ward 61, Tamil Nadu');
+      setDetectedAddress('Sundarapuram Bypass Road, Coimbatore (Device Fallback)');
     }
   };
 
