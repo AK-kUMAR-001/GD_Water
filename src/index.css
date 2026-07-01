@@ -689,3 +689,7 @@ body {
 .mobile-mode-active .stat-val {
   font-size: 1.1rem !important;
 }
+
+.mobile-mode-active .form-row {
+  grid-template-columns: 1fr !important;
+}

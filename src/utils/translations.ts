@@ -19,7 +19,7 @@ export const translations = {
     // Actions & Buttons
     reportIssue: 'Register Water Infrastructure Grievance',
     trackIssue: 'Track complaints',
-    submit: 'Submit Grievance',
+    submit: 'Submit Complaint',
     submitting: 'Submitting Registry...',
     cancel: 'Cancel',
     assign: 'Assign Crew',
