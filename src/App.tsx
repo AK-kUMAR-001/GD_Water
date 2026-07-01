@@ -15,6 +15,7 @@ function App() {
   const [isRealMobile, setIsRealMobile] = useState(window.innerWidth < 1024);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [serverIp, setServerIp] = useState(localStorage.getItem('backend_server_ip') || '');
+  const [connectionStatus, setConnectionStatus] = useState<'connected' | 'failed' | 'connecting'>('connecting');
   const [complaints, setComplaints] = useState<any[]>([]);
   const [users, setUsers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -42,9 +43,13 @@ function App() {
         const usrs = await userRes.json();
         setComplaints(comps);
         setUsers(usrs);
+        setConnectionStatus('connected');
+      } else {
+        setConnectionStatus('failed');
       }
     } catch (err) {
       console.error('Error fetching data from local backend server:', err);
+      setConnectionStatus('failed');
     } finally {
       setIsLoading(false);
     }
@@ -452,11 +457,20 @@ function App() {
 
           {/* Server Connection Settings for Both Desktop & Mobile */}
           <div className="glass-panel" style={{ padding: '12px', background: '#FFF3E0', borderTop: '4px solid #FF9800', marginTop: '10px', boxSizing: 'border-box' }}>
-            <h3 style={{ fontSize: '0.75rem', fontWeight: '800', color: '#E65100', textTransform: 'uppercase', marginBottom: '6px', margin: 0 }}>
-              🔗 Server IP Connection
-            </h3>
-            <p style={{ fontSize: '0.65rem', color: '#5D4037', marginBottom: '8px', marginTop: '4px', lineHeight: '1.3' }}>
-              Enter your PC's IP address to sync data on your real phone.
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+              <h3 style={{ fontSize: '0.75rem', fontWeight: '800', color: '#E65100', textTransform: 'uppercase', margin: 0 }}>
+                🔗 Server IP Connection
+              </h3>
+              <span style={{ fontSize: '0.62rem', fontWeight: 'bold' }}>
+                {connectionStatus === 'connected' && <span style={{ color: 'var(--success)' }}>🟢 Live</span>}
+                {connectionStatus === 'failed' && <span style={{ color: 'var(--danger)' }}>🔴 Offline</span>}
+                {connectionStatus === 'connecting' && <span style={{ color: 'var(--warning)' }}>🟡 Syncing</span>}
+              </span>
+            </div>
+            <p style={{ fontSize: '0.62rem', color: '#5D4037', marginBottom: '8px', marginTop: '2px', lineHeight: '1.3' }}>
+              {connectionStatus === 'failed' 
+                ? '⚠️ Offline: Ensure phone & PC are on SAME Wi-Fi, and firewall allows port 5000.'
+                : 'Enter your PC\'s IP address to sync data on your real phone.'}
             </p>
             <input 
               type="text" 
