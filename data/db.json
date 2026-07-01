@@ -213,6 +213,289 @@
   ],
   "complaints": [
     {
+      "id": "AQ-1007",
+      "category": "Pipeline Burst",
+      "latitude": 10.9582,
+      "longitude": 76.9741,
+      "locationName": "Sundarapuram Bus Stand, Coimbatore",
+      "description": "Major drinking water pipeline burst near the bus shelter. Water shooting up to 10 feet. Flooding the main road and disrupting traffic.",
+      "voiceDescription": "Sundarapuram bus stand kitta water pipe burst aayi flow aaguthu.",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Critical",
+      "status": "Reported",
+      "citizenPhone": "+91 99887 76655",
+      "citizenName": "K. Srinivasan",
+      "dateReported": "2026-07-01T15:09:31.381Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 12,
+      "slaDeadline": "2026-07-02T01:29:25.493Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "duplicateCount": 0,
+      "history": [
+        {
+          "timestamp": "2026-07-01T13:29:25.493Z",
+          "action": "Complaint Submitted",
+          "officerName": "Citizen",
+          "notes": "Reported via Web Portal. AI classified issue as Pipeline Burst, Severity: Critical. Routed to South Zone."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1008",
+      "category": "Water Leakage",
+      "latitude": 10.9612,
+      "longitude": 76.9702,
+      "locationName": "Lichy Road, Near Kurichi lake road, Coimbatore",
+      "description": "Minor water leakage from the public pipeline connection. Constant flow of water from under the pavement.",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Medium",
+      "status": "Reported",
+      "citizenPhone": "+91 94432 00987",
+      "citizenName": "A. Rahim",
+      "dateReported": "2026-07-01T14:59:31.381Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-02T09:29:25.493Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "duplicateCount": 0,
+      "history": [
+        {
+          "timestamp": "2026-07-01T09:29:25.493Z",
+          "action": "Complaint Submitted",
+          "officerName": "Citizen",
+          "notes": "Reported via Web Portal."
+        },
+        {
+          "timestamp": "2026-07-01T09:59:25.493Z",
+          "action": "Assigned to Crew",
+          "officerName": "Supervisor R. Jagadeesan",
+          "notes": "Assigned to Crew Beta for immediate site inspection."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1009",
+      "category": "Water Theft",
+      "latitude": 11.0289,
+      "longitude": 76.9928,
+      "locationName": "Ward 12, Saravanampatti, Coimbatore",
+      "description": "A commercial establishment has tapped directly into the municipal supply line illegally using an electric pump.",
+      "voiceDescription": "",
+      "imageUrl": "",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "High",
+      "status": "Reported",
+      "citizenPhone": "+91 98421 12345",
+      "citizenName": "Anonymous Citizen",
+      "dateReported": "2026-07-01T14:49:31.381Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-2",
+      "engineerId": "eng-2",
+      "slaHours": 24,
+      "slaDeadline": "2026-07-01T18:29:25.493Z",
+      "escalationLevel": 0,
+      "isDuplicate": false,
+      "duplicateCount": 0,
+      "history": [
+        {
+          "timestamp": "2026-06-30T18:29:25.493Z",
+          "action": "Complaint Submitted",
+          "officerName": "Citizen",
+          "notes": "Reported anonymously. AI Severity: High."
+        },
+        {
+          "timestamp": "2026-06-30T19:29:25.493Z",
+          "action": "Assigned to Crew",
+          "officerName": "Supervisor V. Ramanathan",
+          "notes": "Crew Gamma dispatched to confiscate unauthorized pumping equipment."
+        },
+        {
+          "timestamp": "2026-07-01T04:29:25.493Z",
+          "action": "Work Started",
+          "officerName": "Crew Gamma (Lead: Kathir)",
+          "notes": "Arrived at location. Confirming illegal connection valve. Initiating cutoff."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1010",
+      "category": "Contaminated Water",
+      "latitude": 10.9575,
+      "longitude": 76.9735,
+      "locationName": "Phase 2 Housing Board, Kurichi",
+      "description": "Tap water received has a foul drainage smell and is yellowish brown in color. High risk of waterborne diseases. Sewer mixing suspected.",
+      "voiceDescription": "Thanni romba contamination ah varuthu, smell adikkuthu.",
+      "imageUrl": "https://images.unsplash.com/photo-1576089172869-4f5f6f315620?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=600",
+      "verificationImageUrl": "",
+      "severity": "Critical",
+      "status": "Reported",
+      "citizenPhone": "+91 97766 55443",
+      "citizenName": "M. Karpagam",
+      "dateReported": "2026-07-01T14:39:31.381Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 12,
+      "slaDeadline": "2026-07-01T08:29:25.493Z",
+      "escalationLevel": 6,
+      "isDuplicate": false,
+      "duplicateCount": 0,
+      "history": [
+        {
+          "timestamp": "2026-06-30T20:29:25.493Z",
+          "action": "Complaint Submitted",
+          "officerName": "Citizen",
+          "notes": "Reported via Web Portal."
+        },
+        {
+          "timestamp": "2026-06-30T20:59:25.493Z",
+          "action": "Assigned to Crew",
+          "officerName": "Supervisor R. Jagadeesan",
+          "notes": "Assigned to Crew Alpha. Urgently trace contamination sources."
+        },
+        {
+          "timestamp": "2026-07-01T08:29:25.493Z",
+          "action": "SLA Escalation (Level 1)",
+          "officerName": "System",
+          "notes": "SLA of 12 Hours exceeded. Escalated to Supervisor R. Jagadeesan."
+        },
+        {
+          "timestamp": "2026-07-01T12:29:25.493Z",
+          "action": "Repair Completed",
+          "officerName": "Crew Alpha (Lead: Murugan)",
+          "notes": "Identified a minor leak near the drainage crossing. Replaced the gasket and sealed the pipeline. Disinfected. Water is clear now. Awaiting JE verification."
+        },
+        {
+          "timestamp": "2026-07-01T15:09:33.149Z",
+          "action": "SLA Escalated (Level 6)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 7 hour(s). Complaint escalated automatically to: State Water Department."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1011",
+      "category": "Pump Failure",
+      "latitude": 11.0265,
+      "longitude": 76.9954,
+      "locationName": "Sathy Road, Ganapathy, Coimbatore",
+      "description": "The overhead water tank pump has burned out. No supply for the last 3 days. Thousands of families are suffering.",
+      "voiceDescription": "",
+      "imageUrl": "",
+      "afterImageUrl": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600",
+      "verificationImageUrl": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=600",
+      "severity": "High",
+      "status": "Reported",
+      "citizenPhone": "+91 90033 44556",
+      "citizenName": "J. Ronald",
+      "dateReported": "2026-07-01T14:29:31.381Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-2",
+      "engineerId": "eng-2",
+      "slaHours": 24,
+      "slaDeadline": "2026-06-30T14:29:25.493Z",
+      "escalationLevel": 6,
+      "isDuplicate": false,
+      "duplicateCount": 0,
+      "history": [
+        {
+          "timestamp": "2026-06-29T14:29:25.493Z",
+          "action": "Complaint Submitted",
+          "officerName": "Citizen",
+          "notes": "Reported."
+        },
+        {
+          "timestamp": "2026-06-29T15:29:25.493Z",
+          "action": "Assigned to Crew",
+          "officerName": "Supervisor V. Ramanathan",
+          "notes": "Assigned Crew Delta."
+        },
+        {
+          "timestamp": "2026-06-30T14:29:25.493Z",
+          "action": "Repair Completed",
+          "officerName": "Crew Delta (Lead: Palani)",
+          "notes": "Motor coil rewound and replaced. Operational now. Tank filled."
+        },
+        {
+          "timestamp": "2026-06-30T16:29:25.493Z",
+          "action": "Site Verified and Closed",
+          "officerName": "Engineer Er. M. Preetha",
+          "notes": "Visited site. Checked motor load and water pressure. Work is perfect. Closed complaint."
+        },
+        {
+          "timestamp": "2026-07-01T15:09:33.149Z",
+          "action": "SLA Escalated (Level 6)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 25 hour(s). Complaint escalated automatically to: State Water Department."
+        }
+      ]
+    },
+    {
+      "id": "AQ-1012",
+      "category": "Pipeline Burst",
+      "latitude": 10.958,
+      "longitude": 76.974,
+      "locationName": "Sundarapuram bus shelter, Kurichi Ward 61",
+      "description": "Massive burst of main pipeline. Water is flooding the shops.",
+      "voiceDescription": "",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
+      "afterImageUrl": "",
+      "verificationImageUrl": "",
+      "severity": "Critical",
+      "status": "Reported",
+      "citizenPhone": "+91 94444 88888",
+      "citizenName": "Pranesh Kumar",
+      "dateReported": "2026-07-01T14:19:31.381Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
+      "supervisorId": "super-1",
+      "engineerId": "eng-1",
+      "slaHours": 12,
+      "slaDeadline": "2026-07-02T01:59:25.493Z",
+      "escalationLevel": 0,
+      "isDuplicate": true,
+      "masterComplaintId": "AQ-1001",
+      "duplicateCount": 0,
+      "history": [
+        {
+          "timestamp": "2026-07-01T13:59:25.493Z",
+          "action": "Complaint Submitted",
+          "officerName": "Citizen",
+          "notes": "Reported via Web Portal. Auto-flagged as Duplicate of AQ-1001. Merged under master complaint."
+        }
+      ]
+    },
+    {
       "id": "AQ-1001",
       "category": "Pipeline Burst",
       "latitude": 10.9582,
@@ -497,6 +780,12 @@
     }
   ],
   "auditLogs": [
+    {
+      "timestamp": "2026-07-01T15:09:31.384Z",
+      "user": "Admin",
+      "action": "Insert Demo Data",
+      "notes": "Injected 6 mock complaints into active database."
+    },
     {
       "timestamp": "2026-07-01T14:09:26.889Z",
       "user": "Admin",
