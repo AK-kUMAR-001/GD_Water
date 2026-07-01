@@ -85,14 +85,14 @@ export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users, i
     <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)', gap: '20px' }}>
       
       {/* Header Profile Info */}
-      <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderLeft: '4px solid var(--accent)' }}>
+      <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'flex-start' : 'center', justifyContent: 'space-between', gap: isMobile ? '12px' : '0', borderLeft: '4px solid var(--accent)' }}>
         <div>
           <h2 style={{ color: 'var(--primary)', fontSize: '1.2rem', fontWeight: 800 }}>Coimbatore District Collectorate Desk</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', marginTop: '2px' }}>
             Officer-in-Charge: <strong style={{ color: 'var(--primary)' }}>S. Kranthi Kumar Pati, IAS (District Collector)</strong> | Jurisdiction: <strong style={{ color: 'var(--primary)' }}>Coimbatore Corporation</strong>
           </p>
         </div>
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div style={{ display: 'flex', gap: '10px', selfAlign: isMobile ? 'flex-start' : 'center' }}>
           <button className="btn btn-primary" onClick={handleExportExcel} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem' }}>
             📥 {t.exportExcel}
           </button>
@@ -158,11 +158,11 @@ export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users, i
               <table className="data-table">
                 <thead>
                   <tr>
-                    <th>Grievance ID</th>
-                    <th>Category</th>
-                    <th>Breached Authority</th>
-                    <th>SLA Deadline Countdown</th>
-                    <th>Administrative Actions</th>
+                    <th style={{ minWidth: '100px', whiteSpace: 'nowrap' }}>Grievance ID</th>
+                    <th style={{ minWidth: '130px', whiteSpace: 'nowrap' }}>Category</th>
+                    <th style={{ minWidth: '160px', whiteSpace: 'nowrap' }}>Breached Authority</th>
+                    <th style={{ minWidth: '165px', whiteSpace: 'nowrap' }}>SLA Deadline Countdown</th>
+                    <th style={{ minWidth: '180px', whiteSpace: 'nowrap' }}>Administrative Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -296,11 +296,11 @@ export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users, i
             <table className="data-table">
               <thead>
                 <tr>
-                  <th>Officer Name</th>
-                  <th>Designation Role</th>
-                  <th>Division Area</th>
-                  <th>Active Wards Charges</th>
-                  <th>SLA Compliance Score</th>
+                  <th style={{ minWidth: '140px', whiteSpace: 'nowrap' }}>Officer Name</th>
+                  <th style={{ minWidth: '120px', whiteSpace: 'nowrap' }}>Designation Role</th>
+                  <th style={{ minWidth: '180px', whiteSpace: 'nowrap' }}>Division Area</th>
+                  <th style={{ minWidth: '160px', whiteSpace: 'nowrap' }}>Active Wards Charges</th>
+                  <th style={{ minWidth: '160px', whiteSpace: 'nowrap' }}>SLA Compliance Score</th>
                 </tr>
               </thead>
               <tbody>

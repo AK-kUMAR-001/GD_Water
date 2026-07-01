@@ -270,18 +270,12 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast, 
           <h2 style={{ color: 'var(--primary)', fontSize: '1.25rem', fontWeight: 800 }}>{t.citizen} Portal</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', marginTop: '2px' }}>{t.tagline}</p>
         </div>
-        <div style={{ display: 'flex', gap: '15px' }}>
-          <div style={{ textAlign: 'right' }}>
-            <span className="live-pulse"></span>
-            <span style={{ fontSize: '0.72rem', fontWeight: 'bold', color: 'var(--success)', marginLeft: '8px', textTransform: 'uppercase' }}>AI Routing Engine Live</span>
-          </div>
-        </div>
       </div>
 
       {/* Column 1: Submit Form */}
       <div className="col-6 glass-panel" style={{ animation: 'fadeIn 0.3s ease-out' }}>
-        <div className="card-header">
-          <h3>✍️ {t.reportIssue}</h3>
+        <div className="card-header" style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'flex-start' : 'center', gap: isMobile ? '4px' : '0', justifyContent: 'space-between' }}>
+          <h3 style={{ margin: 0 }}>✍️ {t.reportIssue}</h3>
           <span style={{ fontSize: '0.72rem', color: 'var(--warning)', fontWeight: 'bold' }}>⚡ 30s Quick Report</span>
         </div>
         <div className="card-body">
@@ -401,9 +395,11 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast, 
                 </button>
               </div>
 
-              <div className="form-group">
-                <label>{lang === 'ta' ? 'புகைப்படம் (கட்டாயமில்லை)' : 'Upload Grievance Photo'} (Verification Active)</label>
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+              <div className="form-group" style={{ textAlign: 'center' }}>
+                <label style={{ display: 'block', textAlign: 'center', width: '100%', marginBottom: '6px' }}>
+                  {lang === 'ta' ? 'புகைப்படம் (கட்டாயமில்லை)' : 'Upload Grievance Photo'} (Verification Active)
+                </label>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center' }}>
                   <input
                     type="file"
                     accept="image/*"
@@ -411,7 +407,7 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast, 
                     style={{ display: 'none' }}
                     id="citizen-upload"
                   />
-                  <label htmlFor="citizen-upload" className="btn btn-secondary" style={{ cursor: 'pointer', flex: 1, fontSize: '0.78rem' }}>
+                  <label htmlFor="citizen-upload" className="btn btn-secondary" style={{ cursor: 'pointer', padding: '6px 20px', fontSize: '0.78rem' }}>
                     📷 Choose Photo File
                   </label>
                   {photoPreview && (

@@ -105,7 +105,7 @@ export const ControlRoom: React.FC<ControlRoomProps> = ({ lang, complaints, user
     <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)', gap: '20px' }}>
       
       {/* Header Info */}
-      <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderLeft: '4px solid var(--primary)' }}>
+      <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'flex-start' : 'center', justifyContent: 'space-between', gap: isMobile ? '12px' : '0', borderLeft: '4px solid var(--primary)' }}>
         <div>
           <h2 style={{ color: 'var(--primary)', fontSize: '1.2rem', fontWeight: 800 }}>
             {lang === 'ta' ? 'இளநிலைப் பொறியாளர் செயல்பாட்டு கன்சோல்' : 'Junior Engineer (JE) Operations Desk'}
@@ -114,7 +114,7 @@ export const ControlRoom: React.FC<ControlRoomProps> = ({ lang, complaints, user
             Live GIS Grievance Tracker Mapping | Manual Crew Allocation & Overrides | Radio Notices Transmissions.
           </p>
         </div>
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: 'flex', gap: '8px', flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
           <button className={`btn ${filterSeverity === 'All' ? 'btn-primary' : 'btn-secondary'}`} style={{ fontSize: '0.75rem', padding: '4px 10px' }} onClick={() => setFilterSeverity('All')}>All Grievances</button>
           <button className={`btn ${filterSeverity === 'Critical' ? 'btn-primary' : 'btn-secondary'}`} style={{ fontSize: '0.75rem', padding: '4px 10px' }} onClick={() => setFilterSeverity('Critical')}>🔥 Critical</button>
           <button className={`btn ${filterSeverity === 'Active' ? 'btn-primary' : 'btn-secondary'}`} style={{ fontSize: '0.75rem', padding: '4px 10px' }} onClick={() => setFilterSeverity('Active')}>⚙ Active</button>
@@ -222,13 +222,13 @@ export const ControlRoom: React.FC<ControlRoomProps> = ({ lang, complaints, user
               <table className="data-table">
                 <thead>
                   <tr>
-                    <th>Grievance ID</th>
-                    <th>Category</th>
-                    <th>Site Location</th>
-                    <th>Assigned Crew</th>
-                    <th>Severity</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th style={{ minWidth: '100px', whiteSpace: 'nowrap' }}>Grievance ID</th>
+                    <th style={{ minWidth: '130px', whiteSpace: 'nowrap' }}>Category</th>
+                    <th style={{ minWidth: '240px' }}>Site Location</th>
+                    <th style={{ minWidth: '130px', whiteSpace: 'nowrap' }}>Assigned Crew</th>
+                    <th style={{ minWidth: '100px', whiteSpace: 'nowrap' }}>Severity</th>
+                    <th style={{ minWidth: '100px', whiteSpace: 'nowrap' }}>Status</th>
+                    <th style={{ minWidth: '120px', whiteSpace: 'nowrap' }}>Action</th>
                   </tr>
                 </thead>
                 <tbody>

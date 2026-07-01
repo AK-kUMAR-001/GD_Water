@@ -102,15 +102,15 @@ export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users,
     <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)', gap: '20px' }}>
       
       {/* Header Profile Info */}
-      <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderLeft: '4px solid var(--accent)' }}>
+      <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'flex-start' : 'center', justifyContent: 'space-between', gap: isMobile ? '12px' : '0', borderLeft: '4px solid var(--accent)' }}>
         <div>
           <h2 style={{ color: 'var(--primary)', fontSize: '1.2rem', fontWeight: 800 }}>Welcome back, {supervisorUser.name}</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', marginTop: '2px' }}>
             Zone: <strong style={{ color: 'var(--primary)' }}>{supervisorUser.zone}</strong> | Jurisdiction: <strong style={{ color: 'var(--primary)' }}>Ward 61 & Ward 62 (South Division)</strong>
           </p>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <div style={{ textAlign: 'right' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px', selfAlign: isMobile ? 'flex-start' : 'center' }}>
+          <div style={{ textAlign: isMobile ? 'left' : 'right' }}>
             <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>MUNICIPAL ACTIONS DESK</span>
             <p style={{ color: 'var(--accent)', fontWeight: 'bold', fontSize: '0.9rem' }}>{t.supervisor} Dashboard</p>
           </div>
@@ -164,12 +164,12 @@ export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users,
               <table className="data-table">
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Category</th>
-                    <th>Ward / Site</th>
-                    <th>Time Filed</th>
-                    <th>Severity</th>
-                    <th>Dispatch</th>
+                    <th style={{ minWidth: '60px', whiteSpace: 'nowrap' }}>ID</th>
+                    <th style={{ minWidth: '120px', whiteSpace: 'nowrap' }}>Category</th>
+                    <th style={{ minWidth: '220px' }}>Ward / Site</th>
+                    <th style={{ minWidth: '100px', whiteSpace: 'nowrap' }}>Time Filed</th>
+                    <th style={{ minWidth: '95px', whiteSpace: 'nowrap' }}>Severity</th>
+                    <th style={{ minWidth: '110px', whiteSpace: 'nowrap' }}>Dispatch</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -281,13 +281,13 @@ export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users,
               <table className="data-table">
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Category</th>
-                    <th>Site Location</th>
-                    <th>Assigned Crew</th>
-                    <th>SLA Deadline Countdown</th>
-                    <th>Status Status</th>
-                    <th>Action Contact</th>
+                    <th style={{ minWidth: '60px', whiteSpace: 'nowrap' }}>ID</th>
+                    <th style={{ minWidth: '120px', whiteSpace: 'nowrap' }}>Category</th>
+                    <th style={{ minWidth: '220px' }}>Site Location</th>
+                    <th style={{ minWidth: '125px', whiteSpace: 'nowrap' }}>Assigned Crew</th>
+                    <th style={{ minWidth: '160px', whiteSpace: 'nowrap' }}>SLA Deadline Countdown</th>
+                    <th style={{ minWidth: '95px', whiteSpace: 'nowrap' }}>Status Status</th>
+                    <th style={{ minWidth: '110px', whiteSpace: 'nowrap' }}>Action Contact</th>
                   </tr>
                 </thead>
                 <tbody>

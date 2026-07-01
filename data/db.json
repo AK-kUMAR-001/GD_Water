@@ -852,7 +852,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T07:24:06.613Z",
-      "escalationLevel": 3,
+      "escalationLevel": 4,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
@@ -879,6 +879,12 @@
           "action": "SLA Escalated (Level 3)",
           "officerName": "System SLA Guard",
           "notes": "SLA breached by 3 hour(s). Complaint escalated automatically to: Executive Engineer."
+        },
+        {
+          "timestamp": "2026-07-01T10:24:14.800Z",
+          "action": "SLA Escalated (Level 4)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 4 hour(s). Complaint escalated automatically to: Municipal Commissioner."
         }
       ]
     },

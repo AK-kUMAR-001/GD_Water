@@ -129,7 +129,7 @@ export const RepairCrew: React.FC<RepairCrewProps> = ({ lang, complaints, onRefr
     <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)', gap: '20px' }}>
       
       {/* Header Profile Banner */}
-      <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderLeft: '4px solid var(--accent)' }}>
+      <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'flex-start' : 'center', justifyContent: 'space-between', gap: isMobile ? '12px' : '0', borderLeft: '4px solid var(--accent)' }}>
         <div>
           <h2 style={{ color: 'var(--primary)', fontSize: '1.2rem', fontWeight: 800 }}>{lang === 'ta' ? 'களப்பணி பழுதுநீக்குதல் பிரிவு' : 'Field Crew Action Terminal'}</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', marginTop: '2px' }}>
@@ -137,7 +137,7 @@ export const RepairCrew: React.FC<RepairCrewProps> = ({ lang, complaints, onRefr
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <div style={{ textAlign: 'right' }}>
+          <div style={{ textAlign: isMobile ? 'left' : 'right' }}>
             <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>BSNL FIELD CONNECTED</span>
             <p style={{ color: 'var(--accent)', fontWeight: 'bold', fontSize: '0.9rem' }}>Reparation Desk</p>
           </div>
