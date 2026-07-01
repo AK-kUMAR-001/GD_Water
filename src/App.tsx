@@ -6,11 +6,15 @@ import { Supervisor } from './views/Supervisor';
 import { RepairCrew } from './views/RepairCrew';
 import { Collector } from './views/Collector';
 import { WhatsAppSimulator } from './components/WhatsAppSimulator';
+import { getBackendUrl } from './utils/api';
 
 function App() {
   const [lang, setLang] = useState<Language>('en');
   const [role, setRole] = useState<Role>('Citizen');
   const [isMobileMode, setIsMobileMode] = useState(false);
+  const [isRealMobile, setIsRealMobile] = useState(window.innerWidth < 1024);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [serverIp, setServerIp] = useState(localStorage.getItem('backend_server_ip') || '');
   const [complaints, setComplaints] = useState<any[]>([]);
   const [users, setUsers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,8 +33,8 @@ function App() {
   const fetchAllData = async () => {
     try {
       const [compRes, userRes] = await Promise.all([
-        fetch('/api/complaints'),
-        fetch('/api/users')
+        fetch(getBackendUrl('/api/complaints')),
+        fetch(getBackendUrl('/api/users'))
       ]);
 
       if (compRes.ok && userRes.ok) {
@@ -49,7 +53,7 @@ function App() {
   const handleGlobalReset = async () => {
     if (!confirm('Are you sure you want to reset all grievances to default mock records?')) return;
     try {
-      const res = await fetch('/api/reset-demo', { method: 'POST' });
+      const res = await fetch(getBackendUrl('/api/reset-demo'), { method: 'POST' });
       if (res.ok) {
         alert('Database reset successful! Workflow is ready.');
         fetchAllData();
@@ -67,7 +71,16 @@ function App() {
 
     // Auto polling every 3 seconds to sync ticket state transitions instantly
     const interval = setInterval(fetchAllData, 3000);
-    return () => clearInterval(interval);
+
+    const handleResize = () => {
+      setIsRealMobile(window.innerWidth < 1024);
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const toggleLanguage = () => {
@@ -77,17 +90,17 @@ function App() {
   const getActiveView = () => {
     switch (role) {
       case 'Citizen':
-        return <Citizen lang={lang} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode} />;
+        return <Citizen lang={lang} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode || isRealMobile} />;
       case 'ControlRoom':
-        return <ControlRoom lang={lang} complaints={complaints} users={users} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode} />;
+        return <ControlRoom lang={lang} complaints={complaints} users={users} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode || isRealMobile} />;
       case 'Supervisor':
-        return <Supervisor lang={lang} complaints={complaints} users={users} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode} />;
+        return <Supervisor lang={lang} complaints={complaints} users={users} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode || isRealMobile} />;
       case 'Crew':
-        return <RepairCrew lang={lang} complaints={complaints} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode} />;
+        return <RepairCrew lang={lang} complaints={complaints} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode || isRealMobile} />;
       case 'Collector':
-        return <Collector lang={lang} complaints={complaints} users={users} isMobile={isMobileMode} />;
+        return <Collector lang={lang} complaints={complaints} users={users} isMobile={isMobileMode || isRealMobile} />;
       default:
-        return <Citizen lang={lang} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode} />;
+        return <Citizen lang={lang} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode || isRealMobile} />;
     }
   };
 
@@ -102,90 +115,168 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Official Header with Centered App Name and Localized Quote */}
-      <header className="app-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem 2rem' }}>
-        
-        {/* Left: Emblem logo mock section */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '250px' }}>
-          <div className="logo-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2.5">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
+      {/* Responsive Header Configuration */}
+      {isRealMobile ? (
+        <header className="app-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem 1rem', background: 'var(--primary)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <button 
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: 'white',
+                fontSize: '1.4rem',
+                cursor: 'pointer',
+                padding: '4px 8px',
+                display: 'flex',
+                alignItems: 'center'
+              }}
+              title="Open Navigation Menu"
+            >
+              ☰
+            </button>
+            <h1 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#FFFFFF', margin: 0, letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+              {lang === 'ta' ? 'நீர் யுகம்' : 'Neer Ugam'}
+            </h1>
           </div>
-          <div>
-            <span style={{ fontSize: '0.62rem', color: '#ECEFF1', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 'bold', display: 'block', lineHeight: '1.2' }}>
-              Tamil Nadu<br />Water Authority
-            </span>
-          </div>
-        </div>
-
-        {/* Middle: Centered App Name & Quotes */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
-          <h1 style={{ fontSize: '1.6rem', fontWeight: '800', color: '#FFFFFF', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
-            {lang === 'ta' ? 'நீர் யுகம்' : 'Neer Ugam'}
-          </h1>
-          <p style={{ fontSize: '0.68rem', color: '#ECEFF1', fontStyle: 'italic', marginTop: '2px', fontWeight: '600' }}>
-            "{t.quote}"
-          </p>
-        </div>
-
-        {/* Right: Reset, Language Toggle & Device Simulator switch buttons */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '10px', width: '380px' }}>
-          <button 
-            onClick={handleGlobalReset}
-            style={{
-              background: '#FF9800',
-              border: 'none',
-              color: 'white',
-              padding: '0.4rem 0.8rem',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '0.75rem',
-              fontWeight: '700',
-              transition: 'var(--transition)'
-            }}
-            title="Reset Database to initial template"
-          >
-            🔄 Reset Demo DB
-          </button>
-
-          <button 
-            onClick={() => setIsMobileMode(!isMobileMode)}
-            style={{
-              background: isMobileMode ? 'var(--accent)' : 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              color: isMobileMode ? 'var(--primary-dark)' : 'white',
-              padding: '0.4rem 0.8rem',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '0.75rem',
-              fontWeight: '700',
-              transition: 'var(--transition)'
-            }}
-          >
-            📱 {isMobileMode ? 'Desktop View' : 'Mobile View'}
-          </button>
-          
-          <button className="language-btn" onClick={toggleLanguage} style={{ padding: '0.4rem 0.8rem' }}>
+          <button className="language-btn" onClick={toggleLanguage} style={{ padding: '0.35rem 0.7rem', fontSize: '0.72rem' }}>
             🌐 {lang === 'en' ? 'தமிழ்' : 'English'}
           </button>
-        </div>
-      </header>
+        </header>
+      ) : (
+        <header className="app-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem 2rem' }}>
+          {/* Left: Emblem logo mock section */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '250px' }}>
+            <div className="logo-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2.5">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
+            <div>
+              <span style={{ fontSize: '0.62rem', color: '#ECEFF1', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 'bold', display: 'block', lineHeight: '1.2' }}>
+                Tamil Nadu<br />Water Authority
+              </span>
+            </div>
+          </div>
 
-      {/* Main Layout Grid: Persistent Side Navigation + Active Workspace content */}
-      <div style={{ display: 'flex', gap: '25px', padding: '25px 30px', minHeight: 'calc(100vh - 75px)', background: 'var(--bg-main)' }}>
+          {/* Middle: Centered App Name & Quotes */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
+            <h1 style={{ fontSize: '1.6rem', fontWeight: '800', color: '#FFFFFF', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+              {lang === 'ta' ? 'நீர் யுகம்' : 'Neer Ugam'}
+            </h1>
+            <p style={{ fontSize: '0.68rem', color: '#ECEFF1', fontStyle: 'italic', marginTop: '2px', fontWeight: '600' }}>
+              "{t.quote}"
+            </p>
+          </div>
+
+          {/* Right: Reset, Language Toggle & Device Simulator switch buttons */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '10px', width: '380px' }}>
+            <button 
+              onClick={handleGlobalReset}
+              style={{
+                background: '#FF9800',
+                border: 'none',
+                color: 'white',
+                padding: '0.4rem 0.8rem',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                transition: 'var(--transition)'
+              }}
+              title="Reset Database to initial template"
+            >
+              🔄 Reset Demo DB
+            </button>
+
+            <button 
+              onClick={() => setIsMobileMode(!isMobileMode)}
+              style={{
+                background: isMobileMode ? 'var(--accent)' : 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                color: isMobileMode ? 'var(--primary-dark)' : 'white',
+                padding: '0.4rem 0.8rem',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                transition: 'var(--transition)'
+              }}
+            >
+              📱 {isMobileMode ? 'Desktop View' : 'Mobile View'}
+            </button>
+            
+            <button className="language-btn" onClick={toggleLanguage} style={{ padding: '0.4rem 0.8rem' }}>
+              🌐 {lang === 'en' ? 'தமிழ்' : 'English'}
+            </button>
+          </div>
+        </header>
+      )}
+
+      {/* Main Layout Grid */}
+      <div style={{ 
+        display: 'flex', 
+        gap: isRealMobile ? '0' : '25px', 
+        padding: isRealMobile ? '10px' : '25px 30px', 
+        minHeight: 'calc(100vh - 65px)', 
+        background: 'var(--bg-main)',
+        position: 'relative'
+      }}>
         
-        {/* Left Sidebar Layout containing 2 Navigation Containers */}
-        <aside style={{ width: '280px', display: 'flex', flexDirection: 'column', gap: '20px', flexShrink: 0 }}>
-          
+        {/* Left Sidebar Layout */}
+        <aside style={
+          isRealMobile ? {
+            position: 'fixed',
+            top: 0,
+            left: isSidebarOpen ? 0 : '-300px',
+            width: '280px',
+            height: '100vh',
+            background: 'var(--bg-main)',
+            zIndex: 1000,
+            boxShadow: '5px 0 15px rgba(0,0,0,0.25)',
+            transition: 'left 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            padding: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            boxSizing: 'border-box',
+            overflowY: 'auto'
+          } : {
+            width: '280px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            flexShrink: 0
+          }
+        }>
+          {/* Drawer Close Button for mobile */}
+          {isRealMobile && (
+            <button 
+              onClick={() => setIsSidebarOpen(false)}
+              style={{
+                alignSelf: 'flex-end',
+                background: 'rgba(0, 0, 0, 0.05)',
+                border: 'none',
+                color: 'var(--primary)',
+                padding: '4px 10px',
+                borderRadius: '4px',
+                fontSize: '0.72rem',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              ✕ Close Menu
+            </button>
+          )}
+
           {/* Container 1: Citizen Section */}
           <div className="glass-panel" style={{ padding: '15px', background: '#FFFFFF', borderTop: '4px solid var(--accent)' }}>
             <h3 style={{ fontSize: '0.78rem', fontWeight: '800', color: 'var(--primary)', textTransform: 'uppercase', marginBottom: '10px', borderBottom: '1.5px solid var(--border-color)', paddingBottom: '6px' }}>
               👥 {lang === 'ta' ? 'பொதுமக்கள் பிரிவு' : 'Citizen Grievances'}
             </h3>
-            <button
+            <button 
               className={`dev-role-btn ${role === 'Citizen' ? 'active' : ''}`}
-              onClick={() => setRole('Citizen')}
+              onClick={() => { setRole('Citizen'); setIsSidebarOpen(false); }}
               style={{
                 width: '100%',
                 textAlign: 'left',
@@ -203,7 +294,7 @@ function App() {
             </button>
           </div>
 
-          {/* Container 2: Government Member Section */}
+          {/* Container 2: Gov Section */}
           <div className="glass-panel" style={{ padding: '15px', background: '#FFFFFF', borderTop: '4px solid var(--primary)' }}>
             <h3 style={{ fontSize: '0.78rem', fontWeight: '800', color: 'var(--primary)', textTransform: 'uppercase', marginBottom: '10px', borderBottom: '1.5px solid var(--border-color)', paddingBottom: '6px' }}>
               🏛 {lang === 'ta' ? 'அரசு அதிகாரிகள்' : 'Government Member'}
@@ -212,7 +303,7 @@ function App() {
               
               <button
                 className={`dev-role-btn ${role === 'Crew' ? 'active' : ''}`}
-                onClick={() => setRole('Crew')}
+                onClick={() => { setRole('Crew'); setIsSidebarOpen(false); }}
                 style={{
                   width: '100%',
                   textAlign: 'left',
@@ -231,7 +322,7 @@ function App() {
 
               <button
                 className={`dev-role-btn ${role === 'Supervisor' ? 'active' : ''}`}
-                onClick={() => setRole('Supervisor')}
+                onClick={() => { setRole('Supervisor'); setIsSidebarOpen(false); }}
                 style={{
                   width: '100%',
                   textAlign: 'left',
@@ -250,7 +341,7 @@ function App() {
 
               <button
                 className={`dev-role-btn ${role === 'ControlRoom' ? 'active' : ''}`}
-                onClick={() => setRole('ControlRoom')}
+                onClick={() => { setRole('ControlRoom'); setIsSidebarOpen(false); }}
                 style={{
                   width: '100%',
                   textAlign: 'left',
@@ -269,7 +360,7 @@ function App() {
 
               <button
                 className={`dev-role-btn ${role === 'Collector' ? 'active' : ''}`}
-                onClick={() => setRole('Collector')}
+                onClick={() => { setRole('Collector'); setIsSidebarOpen(false); }}
                 style={{
                   width: '100%',
                   textAlign: 'left',
@@ -289,10 +380,101 @@ function App() {
             </div>
           </div>
 
+          {/* Mobile Reset Database trigger option */}
+          {isRealMobile && (
+            <button 
+              onClick={() => { handleGlobalReset(); setIsSidebarOpen(false); }}
+              style={{
+                background: '#FF9800',
+                border: 'none',
+                color: 'white',
+                padding: '10px',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                fontWeight: 'bold',
+                marginTop: 'auto',
+                marginBottom: '10px'
+              }}
+            >
+              🔄 Reset Demo DB
+            </button>
+          )}
+
+          {/* Server Connection Settings for Mobile */}
+          {isRealMobile && (
+            <div className="glass-panel" style={{ padding: '12px', background: '#FFF3E0', borderTop: '4px solid #FF9800', marginTop: '10px', boxSizing: 'border-box' }}>
+              <h3 style={{ fontSize: '0.75rem', fontWeight: '800', color: '#E65100', textTransform: 'uppercase', marginBottom: '6px', margin: 0 }}>
+                🔗 Server IP Connection
+              </h3>
+              <p style={{ fontSize: '0.65rem', color: '#5D4037', marginBottom: '8px', marginTop: '4px', lineHeight: '1.3' }}>
+                Enter your PC's IP address to sync data on your real phone.
+              </p>
+              <input 
+                type="text" 
+                placeholder="e.g. http://192.168.1.15:5000"
+                value={serverIp}
+                onChange={(e) => setServerIp(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '6px 8px',
+                  fontSize: '0.75rem',
+                  borderRadius: '4px',
+                  border: '1px solid #FFB74D',
+                  marginBottom: '8px',
+                  boxSizing: 'border-box',
+                  background: '#FFFFFF'
+                }}
+              />
+              <button
+                onClick={() => {
+                  localStorage.setItem('backend_server_ip', serverIp);
+                  alert(`Server IP saved: ${serverIp || 'Relative paths (Default)'}`);
+                  setIsSidebarOpen(false);
+                  fetchAllData();
+                }}
+                style={{
+                  width: '100%',
+                  background: '#E65100',
+                  color: 'white',
+                  border: 'none',
+                  padding: '6px',
+                  fontSize: '0.72rem',
+                  fontWeight: 'bold',
+                  borderRadius: '4px',
+                  cursor: 'pointer'
+                }}
+              >
+                Save & Connect
+              </button>
+            </div>
+          )}
+
         </aside>
 
+        {/* Backdrop for mobile drawer */}
+        {isRealMobile && isSidebarOpen && (
+          <div 
+            onClick={() => setIsSidebarOpen(false)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              background: 'rgba(0,0,0,0.5)',
+              zIndex: 999,
+              animation: 'fadeIn 0.2s ease-out'
+            }}
+          />
+        )}
+
         {/* Right content workspace dashboard panel (Dynamic Frame) */}
-        {isMobileMode ? (
+        {isRealMobile ? (
+          <div className="mobile-mode-active" style={{ flex: 1, minWidth: 0, width: '100%' }}>
+            {getActiveView()}
+          </div>
+        ) : isMobileMode ? (
           <div style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '10px 0', minWidth: 0 }}>
             <div className="mobile-simulator" style={{ 
               width: '375px', 

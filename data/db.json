@@ -236,7 +236,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T13:36:36.671Z",
-      "escalationLevel": 0,
+      "escalationLevel": 1,
       "isDuplicate": false,
       "masterComplaintId": "",
       "duplicateCount": 0,
@@ -268,6 +268,12 @@
           "action": "Complaint Registered",
           "officerName": "WhatsApp Bot",
           "notes": "Grievance registered automatically via WhatsApp guided dialog. AI classified category as Pump Failure. Routed to Ward 61."
+        },
+        {
+          "timestamp": "2026-07-01T13:36:54.419Z",
+          "action": "SLA Escalated (Level 1)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
         }
       ]
     },
@@ -295,7 +301,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T13:31:22.692Z",
-      "escalationLevel": 0,
+      "escalationLevel": 1,
       "isDuplicate": false,
       "masterComplaintId": "",
       "duplicateCount": 0,
@@ -353,6 +359,12 @@
           "action": "Complaint Registered",
           "officerName": "WhatsApp Bot",
           "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Low Water Pressure. Routed to Ward 61."
+        },
+        {
+          "timestamp": "2026-07-01T13:31:28.856Z",
+          "action": "SLA Escalated (Level 1)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
         }
       ]
     },
@@ -380,7 +392,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T13:30:50.340Z",
-      "escalationLevel": 0,
+      "escalationLevel": 1,
       "isDuplicate": false,
       "masterComplaintId": "",
       "duplicateCount": 0,
@@ -412,6 +424,12 @@
           "action": "Complaint Registered",
           "officerName": "WhatsApp Bot",
           "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Low Water Pressure. Routed to Ward 61."
+        },
+        {
+          "timestamp": "2026-07-01T13:30:58.848Z",
+          "action": "SLA Escalated (Level 1)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
         }
       ]
     },
@@ -439,7 +457,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T13:28:15.825Z",
-      "escalationLevel": 0,
+      "escalationLevel": 1,
       "isDuplicate": false,
       "masterComplaintId": "",
       "duplicateCount": 0,
@@ -471,6 +489,12 @@
           "action": "Complaint Registered",
           "officerName": "WhatsApp Bot",
           "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Low Water Pressure. Routed to Ward 61."
+        },
+        {
+          "timestamp": "2026-07-01T13:28:28.784Z",
+          "action": "SLA Escalated (Level 1)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
         }
       ]
     },
@@ -498,7 +522,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T13:27:35.264Z",
-      "escalationLevel": 0,
+      "escalationLevel": 1,
       "isDuplicate": false,
       "masterComplaintId": "",
       "duplicateCount": 0,
@@ -542,6 +566,12 @@
           "action": "Complaint Registered",
           "officerName": "WhatsApp Bot",
           "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Broken Public Tap. Routed to Ward 61."
+        },
+        {
+          "timestamp": "2026-07-01T13:27:58.768Z",
+          "action": "SLA Escalated (Level 1)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
         }
       ]
     },
@@ -569,7 +599,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T13:27:12.017Z",
-      "escalationLevel": 0,
+      "escalationLevel": 1,
       "isDuplicate": false,
       "masterComplaintId": "",
       "duplicateCount": 0,
@@ -586,6 +616,12 @@
           "action": "Complaint Registered",
           "officerName": "WhatsApp Bot",
           "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
+        },
+        {
+          "timestamp": "2026-07-01T13:27:28.754Z",
+          "action": "SLA Escalated (Level 1)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
         }
       ]
     },
@@ -613,7 +649,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T13:27:08.634Z",
-      "escalationLevel": 0,
+      "escalationLevel": 1,
       "isDuplicate": false,
       "masterComplaintId": "",
       "duplicateCount": 0,
@@ -651,6 +687,12 @@
           "action": "Complaint Registered",
           "officerName": "WhatsApp Bot",
           "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Broken Public Tap. Routed to Ward 61."
+        },
+        {
+          "timestamp": "2026-07-01T13:27:28.754Z",
+          "action": "SLA Escalated (Level 1)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
         }
       ]
     },
@@ -678,7 +720,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T13:26:58.502Z",
-      "escalationLevel": 0,
+      "escalationLevel": 1,
       "isDuplicate": false,
       "masterComplaintId": "",
       "duplicateCount": 0,
@@ -695,6 +737,12 @@
           "action": "Complaint Registered",
           "officerName": "WhatsApp Bot",
           "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
+        },
+        {
+          "timestamp": "2026-07-01T13:26:58.748Z",
+          "action": "SLA Escalated (Level 1)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
         }
       ]
     },
@@ -722,7 +770,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T13:26:40.966Z",
-      "escalationLevel": 0,
+      "escalationLevel": 1,
       "isDuplicate": false,
       "masterComplaintId": "",
       "duplicateCount": 0,
@@ -739,6 +787,12 @@
           "action": "Complaint Registered",
           "officerName": "WhatsApp Bot",
           "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
+        },
+        {
+          "timestamp": "2026-07-01T13:26:58.748Z",
+          "action": "SLA Escalated (Level 1)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
         }
       ]
     },
@@ -766,7 +820,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T13:26:10.535Z",
-      "escalationLevel": 0,
+      "escalationLevel": 1,
       "isDuplicate": false,
       "masterComplaintId": "",
       "duplicateCount": 0,
@@ -783,6 +837,12 @@
           "action": "Complaint Registered",
           "officerName": "WhatsApp Bot",
           "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
+        },
+        {
+          "timestamp": "2026-07-01T13:26:28.736Z",
+          "action": "SLA Escalated (Level 1)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
         }
       ]
     },
@@ -852,7 +912,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T07:24:06.613Z",
-      "escalationLevel": 4,
+      "escalationLevel": 6,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
@@ -885,6 +945,18 @@
           "action": "SLA Escalated (Level 4)",
           "officerName": "System SLA Guard",
           "notes": "SLA breached by 4 hour(s). Complaint escalated automatically to: Municipal Commissioner."
+        },
+        {
+          "timestamp": "2026-07-01T11:31:29.233Z",
+          "action": "SLA Escalated (Level 5)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 5 hour(s). Complaint escalated automatically to: District Collector."
+        },
+        {
+          "timestamp": "2026-07-01T12:33:54.505Z",
+          "action": "SLA Escalated (Level 6)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 6 hour(s). Complaint escalated automatically to: State Water Department."
         }
       ]
     },

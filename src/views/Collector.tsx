@@ -92,7 +92,7 @@ export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users, i
             Officer-in-Charge: <strong style={{ color: 'var(--primary)' }}>S. Kranthi Kumar Pati, IAS (District Collector)</strong> | Jurisdiction: <strong style={{ color: 'var(--primary)' }}>Coimbatore Corporation</strong>
           </p>
         </div>
-        <div style={{ display: 'flex', gap: '10px', selfAlign: isMobile ? 'flex-start' : 'center' }}>
+        <div style={{ display: 'flex', gap: '10px', alignSelf: isMobile ? 'flex-start' : 'center' }}>
           <button className="btn btn-primary" onClick={handleExportExcel} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem' }}>
             📥 {t.exportExcel}
           </button>

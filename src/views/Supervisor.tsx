@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { translations, type Language } from '../utils/translations';
 import { SlaTimer } from '../components/SlaTimer';
+import { getBackendUrl } from '../utils/api';
 
 interface Complaint {
   id: string;
@@ -60,7 +61,7 @@ export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users,
 
     setIsAssigning(true);
     try {
-      const res = await fetch(`/api/complaints/${selectedId}/assign`, {
+      const res = await fetch(getBackendUrl(`/api/complaints/${selectedId}/assign`), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -109,7 +110,7 @@ export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users,
             Zone: <strong style={{ color: 'var(--primary)' }}>{supervisorUser.zone}</strong> | Jurisdiction: <strong style={{ color: 'var(--primary)' }}>Ward 61 & Ward 62 (South Division)</strong>
           </p>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '15px', selfAlign: isMobile ? 'flex-start' : 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px', alignSelf: isMobile ? 'flex-start' : 'center' }}>
           <div style={{ textAlign: isMobile ? 'left' : 'right' }}>
             <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>MUNICIPAL ACTIONS DESK</span>
             <p style={{ color: 'var(--accent)', fontWeight: 'bold', fontSize: '0.9rem' }}>{t.supervisor} Dashboard</p>
