@@ -46,8 +46,8 @@ export const RepairCrew: React.FC<RepairCrewProps> = ({ lang, complaints, onRefr
 
   // Set mock photos to make testing easy without needing local files
   const applyMockPhotos = () => {
-    setBeforePreview('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600'); // construction leak site
-    setAfterPreview('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=600');  // repaired pipeline joint
+    setBeforePreview('/img/before-pipe.png'); 
+    setAfterPreview('/img/after-pipe.png');  
   };
 
   const handleStartWork = async () => {
