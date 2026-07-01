@@ -137,12 +137,6 @@ export const RepairCrew: React.FC<RepairCrewProps> = ({ lang, complaints, onRefr
             Crew Assigned: <strong style={{ color: 'var(--primary)' }}>Crew Alpha (Murugan)</strong> | Area Assignment: <strong style={{ color: 'var(--primary)' }}>Ward 61 (South Zone)</strong>
           </p>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <div style={{ textAlign: isMobile ? 'left' : 'right' }}>
-            <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>BSNL FIELD CONNECTED</span>
-            <p style={{ color: 'var(--accent)', fontWeight: 'bold', fontSize: '0.9rem' }}>Reparation Desk</p>
-          </div>
-        </div>
       </div>
 
       {/* Left panel: Work List */}

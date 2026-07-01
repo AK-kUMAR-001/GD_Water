@@ -224,27 +224,33 @@
       "afterImageUrl": "",
       "verificationImageUrl": "",
       "severity": "Critical",
-      "status": "Reported",
+      "status": "Assigned",
       "citizenPhone": "+91 99887 76655",
       "citizenName": "K. Srinivasan",
-      "dateReported": "2026-07-01T15:09:31.381Z",
-      "dateAssigned": "",
+      "dateReported": "2026-07-01T17:07:49.090Z",
+      "dateAssigned": "2026-07-01T17:11:12.892Z",
       "dateCompleted": "",
       "dateVerified": "",
-      "assignedCrew": "",
+      "assignedCrew": "crew-2",
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 12,
-      "slaDeadline": "2026-07-02T01:29:25.493Z",
+      "slaDeadline": "2026-07-02T04:06:24.432Z",
       "escalationLevel": 0,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-07-01T13:29:25.493Z",
+          "timestamp": "2026-07-01T16:06:24.432Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal. AI classified issue as Pipeline Burst, Severity: Critical. Routed to South Zone."
+        },
+        {
+          "timestamp": "2026-07-01T17:11:12.892Z",
+          "action": "Assigned to Crew",
+          "officerName": "Supervisor",
+          "notes": "Clean the rust also"
         }
       ]
     },
@@ -260,33 +266,45 @@
       "afterImageUrl": "",
       "verificationImageUrl": "",
       "severity": "Medium",
-      "status": "Reported",
+      "status": "In Progress",
       "citizenPhone": "+91 94432 00987",
       "citizenName": "A. Rahim",
-      "dateReported": "2026-07-01T14:59:31.381Z",
-      "dateAssigned": "",
+      "dateReported": "2026-07-01T16:57:49.090Z",
+      "dateAssigned": "2026-07-01T17:09:02.172Z",
       "dateCompleted": "",
       "dateVerified": "",
-      "assignedCrew": "",
+      "assignedCrew": "crew-1",
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 24,
-      "slaDeadline": "2026-07-02T09:29:25.493Z",
+      "slaDeadline": "2026-07-02T12:06:24.432Z",
       "escalationLevel": 0,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-07-01T09:29:25.493Z",
+          "timestamp": "2026-07-01T12:06:24.432Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal."
         },
         {
-          "timestamp": "2026-07-01T09:59:25.493Z",
+          "timestamp": "2026-07-01T12:36:24.432Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor R. Jagadeesan",
           "notes": "Assigned to Crew Beta for immediate site inspection."
+        },
+        {
+          "timestamp": "2026-07-01T17:09:02.172Z",
+          "action": "Assigned to Crew",
+          "officerName": "Supervisor",
+          "notes": "fast"
+        },
+        {
+          "timestamp": "2026-07-01T17:09:23.897Z",
+          "action": "Work Started",
+          "officerName": "Repair Crew",
+          "notes": "Crew arrived at location and initiated pipeline cutoff."
         }
       ]
     },
@@ -305,7 +323,7 @@
       "status": "Reported",
       "citizenPhone": "+91 98421 12345",
       "citizenName": "Anonymous Citizen",
-      "dateReported": "2026-07-01T14:49:31.381Z",
+      "dateReported": "2026-07-01T16:47:49.090Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -313,25 +331,25 @@
       "supervisorId": "super-2",
       "engineerId": "eng-2",
       "slaHours": 24,
-      "slaDeadline": "2026-07-01T18:29:25.493Z",
+      "slaDeadline": "2026-07-01T21:06:24.432Z",
       "escalationLevel": 0,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-30T18:29:25.493Z",
+          "timestamp": "2026-06-30T21:06:24.432Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported anonymously. AI Severity: High."
         },
         {
-          "timestamp": "2026-06-30T19:29:25.493Z",
+          "timestamp": "2026-06-30T22:06:24.432Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor V. Ramanathan",
           "notes": "Crew Gamma dispatched to confiscate unauthorized pumping equipment."
         },
         {
-          "timestamp": "2026-07-01T04:29:25.493Z",
+          "timestamp": "2026-07-01T07:06:24.432Z",
           "action": "Work Started",
           "officerName": "Crew Gamma (Lead: Kathir)",
           "notes": "Arrived at location. Confirming illegal connection valve. Initiating cutoff."
@@ -353,7 +371,7 @@
       "status": "Reported",
       "citizenPhone": "+91 97766 55443",
       "citizenName": "M. Karpagam",
-      "dateReported": "2026-07-01T14:39:31.381Z",
+      "dateReported": "2026-07-01T16:37:49.090Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -361,37 +379,37 @@
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 12,
-      "slaDeadline": "2026-07-01T08:29:25.493Z",
+      "slaDeadline": "2026-07-01T11:06:24.432Z",
       "escalationLevel": 6,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-30T20:29:25.493Z",
+          "timestamp": "2026-06-30T23:06:24.432Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal."
         },
         {
-          "timestamp": "2026-06-30T20:59:25.493Z",
+          "timestamp": "2026-06-30T23:36:24.432Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor R. Jagadeesan",
           "notes": "Assigned to Crew Alpha. Urgently trace contamination sources."
         },
         {
-          "timestamp": "2026-07-01T08:29:25.493Z",
+          "timestamp": "2026-07-01T11:06:24.432Z",
           "action": "SLA Escalation (Level 1)",
           "officerName": "System",
           "notes": "SLA of 12 Hours exceeded. Escalated to Supervisor R. Jagadeesan."
         },
         {
-          "timestamp": "2026-07-01T12:29:25.493Z",
+          "timestamp": "2026-07-01T15:06:24.432Z",
           "action": "Repair Completed",
           "officerName": "Crew Alpha (Lead: Murugan)",
           "notes": "Identified a minor leak near the drainage crossing. Replaced the gasket and sealed the pipeline. Disinfected. Water is clear now. Awaiting JE verification."
         },
         {
-          "timestamp": "2026-07-01T15:09:33.149Z",
+          "timestamp": "2026-07-01T17:07:54.594Z",
           "action": "SLA Escalated (Level 6)",
           "officerName": "System SLA Guard",
           "notes": "SLA breached by 7 hour(s). Complaint escalated automatically to: State Water Department."
@@ -413,7 +431,7 @@
       "status": "Reported",
       "citizenPhone": "+91 90033 44556",
       "citizenName": "J. Ronald",
-      "dateReported": "2026-07-01T14:29:31.381Z",
+      "dateReported": "2026-07-01T16:27:49.090Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -421,37 +439,37 @@
       "supervisorId": "super-2",
       "engineerId": "eng-2",
       "slaHours": 24,
-      "slaDeadline": "2026-06-30T14:29:25.493Z",
+      "slaDeadline": "2026-06-30T17:06:24.432Z",
       "escalationLevel": 6,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-29T14:29:25.493Z",
+          "timestamp": "2026-06-29T17:06:24.432Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported."
         },
         {
-          "timestamp": "2026-06-29T15:29:25.493Z",
+          "timestamp": "2026-06-29T18:06:24.432Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor V. Ramanathan",
           "notes": "Assigned Crew Delta."
         },
         {
-          "timestamp": "2026-06-30T14:29:25.493Z",
+          "timestamp": "2026-06-30T17:06:24.432Z",
           "action": "Repair Completed",
           "officerName": "Crew Delta (Lead: Palani)",
           "notes": "Motor coil rewound and replaced. Operational now. Tank filled."
         },
         {
-          "timestamp": "2026-06-30T16:29:25.493Z",
+          "timestamp": "2026-06-30T19:06:24.432Z",
           "action": "Site Verified and Closed",
           "officerName": "Engineer Er. M. Preetha",
           "notes": "Visited site. Checked motor load and water pressure. Work is perfect. Closed complaint."
         },
         {
-          "timestamp": "2026-07-01T15:09:33.149Z",
+          "timestamp": "2026-07-01T17:07:54.594Z",
           "action": "SLA Escalated (Level 6)",
           "officerName": "System SLA Guard",
           "notes": "SLA breached by 25 hour(s). Complaint escalated automatically to: State Water Department."
@@ -473,7 +491,7 @@
       "status": "Reported",
       "citizenPhone": "+91 94444 88888",
       "citizenName": "Pranesh Kumar",
-      "dateReported": "2026-07-01T14:19:31.381Z",
+      "dateReported": "2026-07-01T16:17:49.090Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -481,14 +499,14 @@
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 12,
-      "slaDeadline": "2026-07-02T01:59:25.493Z",
+      "slaDeadline": "2026-07-02T04:36:24.432Z",
       "escalationLevel": 0,
       "isDuplicate": true,
       "masterComplaintId": "AQ-1001",
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-07-01T13:59:25.493Z",
+          "timestamp": "2026-07-01T16:36:24.432Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal. Auto-flagged as Duplicate of AQ-1001. Merged under master complaint."
@@ -510,7 +528,7 @@
       "status": "Reported",
       "citizenPhone": "+91 99887 76655",
       "citizenName": "K. Srinivasan",
-      "dateReported": "2026-07-01T14:09:26.888Z",
+      "dateReported": "2026-07-01T15:37:10.940Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -518,13 +536,13 @@
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 12,
-      "slaDeadline": "2026-07-02T01:06:06.922Z",
+      "slaDeadline": "2026-07-02T02:34:14.620Z",
       "escalationLevel": 0,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-07-01T13:06:06.922Z",
+          "timestamp": "2026-07-01T14:34:14.620Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal. AI classified issue as Pipeline Burst, Severity: Critical. Routed to South Zone."
@@ -546,7 +564,7 @@
       "status": "Reported",
       "citizenPhone": "+91 94432 00987",
       "citizenName": "A. Rahim",
-      "dateReported": "2026-07-01T13:59:26.888Z",
+      "dateReported": "2026-07-01T15:27:10.940Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -554,19 +572,19 @@
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 24,
-      "slaDeadline": "2026-07-02T09:06:06.922Z",
+      "slaDeadline": "2026-07-02T10:34:14.620Z",
       "escalationLevel": 0,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-07-01T09:06:06.922Z",
+          "timestamp": "2026-07-01T10:34:14.620Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal."
         },
         {
-          "timestamp": "2026-07-01T09:36:06.922Z",
+          "timestamp": "2026-07-01T11:04:14.620Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor R. Jagadeesan",
           "notes": "Assigned to Crew Beta for immediate site inspection."
@@ -588,7 +606,7 @@
       "status": "Reported",
       "citizenPhone": "+91 98421 12345",
       "citizenName": "Anonymous Citizen",
-      "dateReported": "2026-07-01T13:49:26.888Z",
+      "dateReported": "2026-07-01T15:17:10.940Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -596,25 +614,25 @@
       "supervisorId": "super-2",
       "engineerId": "eng-2",
       "slaHours": 24,
-      "slaDeadline": "2026-07-01T18:06:06.922Z",
+      "slaDeadline": "2026-07-01T19:34:14.620Z",
       "escalationLevel": 0,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-30T18:06:06.922Z",
+          "timestamp": "2026-06-30T19:34:14.620Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported anonymously. AI Severity: High."
         },
         {
-          "timestamp": "2026-06-30T19:06:06.922Z",
+          "timestamp": "2026-06-30T20:34:14.620Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor V. Ramanathan",
           "notes": "Crew Gamma dispatched to confiscate unauthorized pumping equipment."
         },
         {
-          "timestamp": "2026-07-01T04:06:06.922Z",
+          "timestamp": "2026-07-01T05:34:14.620Z",
           "action": "Work Started",
           "officerName": "Crew Gamma (Lead: Kathir)",
           "notes": "Arrived at location. Confirming illegal connection valve. Initiating cutoff."
@@ -636,7 +654,7 @@
       "status": "Reported",
       "citizenPhone": "+91 97766 55443",
       "citizenName": "M. Karpagam",
-      "dateReported": "2026-07-01T13:39:26.888Z",
+      "dateReported": "2026-07-01T15:07:10.940Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -644,37 +662,37 @@
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 12,
-      "slaDeadline": "2026-07-01T08:06:06.922Z",
+      "slaDeadline": "2026-07-01T09:34:14.620Z",
       "escalationLevel": 6,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-30T20:06:06.922Z",
+          "timestamp": "2026-06-30T21:34:14.620Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal."
         },
         {
-          "timestamp": "2026-06-30T20:36:06.922Z",
+          "timestamp": "2026-06-30T22:04:14.620Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor R. Jagadeesan",
           "notes": "Assigned to Crew Alpha. Urgently trace contamination sources."
         },
         {
-          "timestamp": "2026-07-01T08:06:06.922Z",
+          "timestamp": "2026-07-01T09:34:14.620Z",
           "action": "SLA Escalation (Level 1)",
           "officerName": "System",
           "notes": "SLA of 12 Hours exceeded. Escalated to Supervisor R. Jagadeesan."
         },
         {
-          "timestamp": "2026-07-01T12:06:06.922Z",
+          "timestamp": "2026-07-01T13:34:14.620Z",
           "action": "Repair Completed",
           "officerName": "Crew Alpha (Lead: Murugan)",
           "notes": "Identified a minor leak near the drainage crossing. Replaced the gasket and sealed the pipeline. Disinfected. Water is clear now. Awaiting JE verification."
         },
         {
-          "timestamp": "2026-07-01T14:09:37.177Z",
+          "timestamp": "2026-07-01T15:37:14.886Z",
           "action": "SLA Escalated (Level 6)",
           "officerName": "System SLA Guard",
           "notes": "SLA breached by 7 hour(s). Complaint escalated automatically to: State Water Department."
@@ -696,7 +714,7 @@
       "status": "Reported",
       "citizenPhone": "+91 90033 44556",
       "citizenName": "J. Ronald",
-      "dateReported": "2026-07-01T13:29:26.888Z",
+      "dateReported": "2026-07-01T14:57:10.940Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -704,37 +722,37 @@
       "supervisorId": "super-2",
       "engineerId": "eng-2",
       "slaHours": 24,
-      "slaDeadline": "2026-06-30T14:06:06.922Z",
+      "slaDeadline": "2026-06-30T15:34:14.620Z",
       "escalationLevel": 6,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-29T14:06:06.922Z",
+          "timestamp": "2026-06-29T15:34:14.620Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported."
         },
         {
-          "timestamp": "2026-06-29T15:06:06.922Z",
+          "timestamp": "2026-06-29T16:34:14.620Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor V. Ramanathan",
           "notes": "Assigned Crew Delta."
         },
         {
-          "timestamp": "2026-06-30T14:06:06.922Z",
+          "timestamp": "2026-06-30T15:34:14.620Z",
           "action": "Repair Completed",
           "officerName": "Crew Delta (Lead: Palani)",
           "notes": "Motor coil rewound and replaced. Operational now. Tank filled."
         },
         {
-          "timestamp": "2026-06-30T16:06:06.922Z",
+          "timestamp": "2026-06-30T17:34:14.620Z",
           "action": "Site Verified and Closed",
           "officerName": "Engineer Er. M. Preetha",
           "notes": "Visited site. Checked motor load and water pressure. Work is perfect. Closed complaint."
         },
         {
-          "timestamp": "2026-07-01T14:09:37.177Z",
+          "timestamp": "2026-07-01T15:37:14.886Z",
           "action": "SLA Escalated (Level 6)",
           "officerName": "System SLA Guard",
           "notes": "SLA breached by 25 hour(s). Complaint escalated automatically to: State Water Department."
@@ -756,7 +774,7 @@
       "status": "Reported",
       "citizenPhone": "+91 94444 88888",
       "citizenName": "Pranesh Kumar",
-      "dateReported": "2026-07-01T13:19:26.888Z",
+      "dateReported": "2026-07-01T14:47:10.940Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -764,14 +782,14 @@
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 12,
-      "slaDeadline": "2026-07-02T01:36:06.922Z",
+      "slaDeadline": "2026-07-02T03:04:14.620Z",
       "escalationLevel": 0,
       "isDuplicate": true,
       "masterComplaintId": "AQ-1001",
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-07-01T13:36:06.922Z",
+          "timestamp": "2026-07-01T15:04:14.620Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal. Auto-flagged as Duplicate of AQ-1001. Merged under master complaint."
@@ -781,19 +799,19 @@
   ],
   "auditLogs": [
     {
-      "timestamp": "2026-07-01T15:09:31.384Z",
+      "timestamp": "2026-07-01T17:07:49.093Z",
       "user": "Admin",
       "action": "Insert Demo Data",
       "notes": "Injected 6 mock complaints into active database."
     },
     {
-      "timestamp": "2026-07-01T14:09:26.889Z",
+      "timestamp": "2026-07-01T15:37:10.942Z",
       "user": "Admin",
       "action": "Insert Demo Data",
       "notes": "Injected 6 mock complaints into active database."
     },
     {
-      "timestamp": "2026-07-01T14:09:24.121Z",
+      "timestamp": "2026-07-01T15:37:08.174Z",
       "user": "Admin",
       "action": "Reset Database",
       "notes": "Cleared all complaints and logs to zero."
