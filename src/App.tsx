@@ -450,54 +450,52 @@ function App() {
             </div>
           )}
 
-          {/* Server Connection Settings for Mobile */}
-          {isRealMobile && (
-            <div className="glass-panel" style={{ padding: '12px', background: '#FFF3E0', borderTop: '4px solid #FF9800', marginTop: '10px', boxSizing: 'border-box' }}>
-              <h3 style={{ fontSize: '0.75rem', fontWeight: '800', color: '#E65100', textTransform: 'uppercase', marginBottom: '6px', margin: 0 }}>
-                🔗 Server IP Connection
-              </h3>
-              <p style={{ fontSize: '0.65rem', color: '#5D4037', marginBottom: '8px', marginTop: '4px', lineHeight: '1.3' }}>
-                Enter your PC's IP address to sync data on your real phone.
-              </p>
-              <input 
-                type="text" 
-                placeholder="e.g. http://192.168.1.15:5000"
-                value={serverIp}
-                onChange={(e) => setServerIp(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '6px 8px',
-                  fontSize: '0.75rem',
-                  borderRadius: '4px',
-                  border: '1px solid #FFB74D',
-                  marginBottom: '8px',
-                  boxSizing: 'border-box',
-                  background: '#FFFFFF'
-                }}
-              />
-              <button
-                onClick={() => {
-                  localStorage.setItem('backend_server_ip', serverIp);
-                  alert(`Server IP saved: ${serverIp || 'Relative paths (Default)'}`);
-                  setIsSidebarOpen(false);
-                  fetchAllData();
-                }}
-                style={{
-                  width: '100%',
-                  background: '#E65100',
-                  color: 'white',
-                  border: 'none',
-                  padding: '6px',
-                  fontSize: '0.72rem',
-                  fontWeight: 'bold',
-                  borderRadius: '4px',
-                  cursor: 'pointer'
-                }}
-              >
-                Save & Connect
-              </button>
-            </div>
-          )}
+          {/* Server Connection Settings for Both Desktop & Mobile */}
+          <div className="glass-panel" style={{ padding: '12px', background: '#FFF3E0', borderTop: '4px solid #FF9800', marginTop: '10px', boxSizing: 'border-box' }}>
+            <h3 style={{ fontSize: '0.75rem', fontWeight: '800', color: '#E65100', textTransform: 'uppercase', marginBottom: '6px', margin: 0 }}>
+              🔗 Server IP Connection
+            </h3>
+            <p style={{ fontSize: '0.65rem', color: '#5D4037', marginBottom: '8px', marginTop: '4px', lineHeight: '1.3' }}>
+              Enter your PC's IP address to sync data on your real phone.
+            </p>
+            <input 
+              type="text" 
+              placeholder="e.g. http://192.168.1.15:5000"
+              value={serverIp}
+              onChange={(e) => setServerIp(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '6px 8px',
+                fontSize: '0.75rem',
+                borderRadius: '4px',
+                border: '1px solid #FFB74D',
+                marginBottom: '8px',
+                boxSizing: 'border-box',
+                background: '#FFFFFF'
+              }}
+            />
+            <button
+              onClick={() => {
+                localStorage.setItem('backend_server_ip', serverIp);
+                alert(`Server IP saved: ${serverIp || 'Relative paths (Default)'}`);
+                setIsSidebarOpen(false);
+                fetchAllData();
+              }}
+              style={{
+                width: '100%',
+                background: '#E65100',
+                color: 'white',
+                border: 'none',
+                padding: '6px',
+                fontSize: '0.72rem',
+                fontWeight: 'bold',
+                borderRadius: '4px',
+                cursor: 'pointer'
+              }}
+            >
+              Save & Connect
+            </button>
+          </div>
 
         </aside>
 

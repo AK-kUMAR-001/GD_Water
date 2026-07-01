@@ -213,640 +213,6 @@
   ],
   "complaints": [
     {
-      "id": "AQ-1016",
-      "category": "Pump Failure",
-      "latitude": 10.9578,
-      "longitude": 76.974,
-      "locationName": "Rathinam tech zone ,2 turn near Grand hall, Coimbatore",
-      "description": "Pump breaking",
-      "voiceDescription": "",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
-      "afterImageUrl": "",
-      "verificationImageUrl": "",
-      "severity": "Medium",
-      "status": "Reported",
-      "citizenPhone": "919944319337",
-      "citizenName": "WhatsApp User (919944319337)",
-      "dateReported": "2026-06-30T13:36:36.671Z",
-      "dateAssigned": "",
-      "dateCompleted": "",
-      "dateVerified": "",
-      "assignedCrew": "",
-      "supervisorId": "super-1",
-      "engineerId": "eng-1",
-      "slaHours": 24,
-      "slaDeadline": "2026-07-01T13:36:36.671Z",
-      "escalationLevel": 1,
-      "isDuplicate": false,
-      "masterComplaintId": "",
-      "duplicateCount": 0,
-      "aiModelDetails": {
-        "predictedCategory": "Pump Failure",
-        "confidence": 46,
-        "matchLogs": {
-          "Water Theft": {
-            "score": 33,
-            "matchedWords": [
-              "pump"
-            ]
-          },
-          "Pump Failure": {
-            "score": 33,
-            "matchedWords": [
-              "pump"
-            ]
-          }
-        },
-        "matchedTokens": [
-          "pump"
-        ],
-        "inputText": "Pump breaking"
-      },
-      "history": [
-        {
-          "timestamp": "2026-06-30T13:36:36.671Z",
-          "action": "Complaint Registered",
-          "officerName": "WhatsApp Bot",
-          "notes": "Grievance registered automatically via WhatsApp guided dialog. AI classified category as Pump Failure. Routed to Ward 61."
-        },
-        {
-          "timestamp": "2026-07-01T13:36:54.419Z",
-          "action": "SLA Escalated (Level 1)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
-        }
-      ]
-    },
-    {
-      "id": "AQ-1015",
-      "category": "Low Water Pressure",
-      "latitude": 10.9578,
-      "longitude": 76.974,
-      "locationName": "Sundarapuram Bypass Road, Coimbatore",
-      "description": "Neer Ugam (நீர் யுகம்) Alert: Grievance registered successfully!\n\nTicket ID: AQ-1014\nCategory: Low Water Pressure\nRouted to: Ward 61 (Sundarapuram Bypass Road, Coimbatore)\nSLA Target: 24 Hours\n\nTrack status anytime on: http://localhost:5173/",
-      "voiceDescription": "",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
-      "afterImageUrl": "",
-      "verificationImageUrl": "",
-      "severity": "Medium",
-      "status": "Reported",
-      "citizenPhone": "919944319337",
-      "citizenName": "WhatsApp Citizen",
-      "dateReported": "2026-06-30T13:31:22.692Z",
-      "dateAssigned": "",
-      "dateCompleted": "",
-      "dateVerified": "",
-      "assignedCrew": "",
-      "supervisorId": "super-1",
-      "engineerId": "eng-1",
-      "slaHours": 24,
-      "slaDeadline": "2026-07-01T13:31:22.692Z",
-      "escalationLevel": 1,
-      "isDuplicate": false,
-      "masterComplaintId": "",
-      "duplicateCount": 0,
-      "aiModelDetails": {
-        "predictedCategory": "Low Water Pressure",
-        "confidence": 9,
-        "matchLogs": {
-          "Water Leakage": {
-            "score": 3,
-            "matchedWords": [
-              "low"
-            ]
-          },
-          "Water Theft": {
-            "score": 3,
-            "matchedWords": [
-              "bypass"
-            ]
-          },
-          "Illegal Connection": {
-            "score": 3,
-            "matchedWords": [
-              "registered"
-            ]
-          },
-          "Low Water Pressure": {
-            "score": 6,
-            "matchedWords": [
-              "low",
-              "pressure"
-            ]
-          },
-          "Contaminated Water": {
-            "score": 3,
-            "matchedWords": [
-              "low"
-            ]
-          },
-          "Overflowing Tank": {
-            "score": 3,
-            "matchedWords": [
-              "low"
-            ]
-          }
-        },
-        "matchedTokens": [
-          "low",
-          "pressure"
-        ],
-        "inputText": "Neer Ugam (நீர் யுகம்) Alert: Grievance registered successfully!\n\nTicket ID: AQ-1014\nCategory: Low Water Pressure\nRouted to: Ward 61 (Sundarapuram Bypass Road, Coimbatore)\nSLA Target: 24 Hours\n\nTrack status anytime on: http://localhost:5173/"
-      },
-      "history": [
-        {
-          "timestamp": "2026-06-30T13:31:22.692Z",
-          "action": "Complaint Registered",
-          "officerName": "WhatsApp Bot",
-          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Low Water Pressure. Routed to Ward 61."
-        },
-        {
-          "timestamp": "2026-07-01T13:31:28.856Z",
-          "action": "SLA Escalated (Level 1)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
-        }
-      ]
-    },
-    {
-      "id": "AQ-1014",
-      "category": "Low Water Pressure",
-      "latitude": 10.9578,
-      "longitude": 76.974,
-      "locationName": "Sundarapuram Bypass Road, Coimbatore",
-      "description": "Hi pipeline issue at sundarapuram \nLocation 3rd Street",
-      "voiceDescription": "",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
-      "afterImageUrl": "",
-      "verificationImageUrl": "",
-      "severity": "Medium",
-      "status": "Reported",
-      "citizenPhone": "919944319337",
-      "citizenName": "WhatsApp Citizen",
-      "dateReported": "2026-06-30T13:30:50.340Z",
-      "dateAssigned": "",
-      "dateCompleted": "",
-      "dateVerified": "",
-      "assignedCrew": "",
-      "supervisorId": "super-1",
-      "engineerId": "eng-1",
-      "slaHours": 24,
-      "slaDeadline": "2026-07-01T13:30:50.340Z",
-      "escalationLevel": 1,
-      "isDuplicate": false,
-      "masterComplaintId": "",
-      "duplicateCount": 0,
-      "aiModelDetails": {
-        "predictedCategory": "Low Water Pressure",
-        "confidence": 21,
-        "matchLogs": {
-          "Pipeline Burst": {
-            "score": 14,
-            "matchedWords": [
-              "hi"
-            ]
-          },
-          "Low Water Pressure": {
-            "score": 15,
-            "matchedWords": [
-              "hi"
-            ]
-          }
-        },
-        "matchedTokens": [
-          "hi"
-        ],
-        "inputText": "Hi pipeline issue at sundarapuram \nLocation 3rd Street"
-      },
-      "history": [
-        {
-          "timestamp": "2026-06-30T13:30:50.340Z",
-          "action": "Complaint Registered",
-          "officerName": "WhatsApp Bot",
-          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Low Water Pressure. Routed to Ward 61."
-        },
-        {
-          "timestamp": "2026-07-01T13:30:58.848Z",
-          "action": "SLA Escalated (Level 1)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
-        }
-      ]
-    },
-    {
-      "id": "AQ-1013",
-      "category": "Low Water Pressure",
-      "latitude": 10.9578,
-      "longitude": 76.974,
-      "locationName": "Sundarapuram Bypass Road, Coimbatore",
-      "description": "Hi",
-      "voiceDescription": "",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
-      "afterImageUrl": "",
-      "verificationImageUrl": "",
-      "severity": "Medium",
-      "status": "Reported",
-      "citizenPhone": "919944319337",
-      "citizenName": "WhatsApp Citizen",
-      "dateReported": "2026-06-30T13:28:15.825Z",
-      "dateAssigned": "",
-      "dateCompleted": "",
-      "dateVerified": "",
-      "assignedCrew": "",
-      "supervisorId": "super-1",
-      "engineerId": "eng-1",
-      "slaHours": 24,
-      "slaDeadline": "2026-07-01T13:28:15.825Z",
-      "escalationLevel": 1,
-      "isDuplicate": false,
-      "masterComplaintId": "",
-      "duplicateCount": 0,
-      "aiModelDetails": {
-        "predictedCategory": "Low Water Pressure",
-        "confidence": 90,
-        "matchLogs": {
-          "Pipeline Burst": {
-            "score": 63,
-            "matchedWords": [
-              "hi"
-            ]
-          },
-          "Low Water Pressure": {
-            "score": 64,
-            "matchedWords": [
-              "hi"
-            ]
-          }
-        },
-        "matchedTokens": [
-          "hi"
-        ],
-        "inputText": "Hi"
-      },
-      "history": [
-        {
-          "timestamp": "2026-06-30T13:28:15.825Z",
-          "action": "Complaint Registered",
-          "officerName": "WhatsApp Bot",
-          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Low Water Pressure. Routed to Ward 61."
-        },
-        {
-          "timestamp": "2026-07-01T13:28:28.784Z",
-          "action": "SLA Escalated (Level 1)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
-        }
-      ]
-    },
-    {
-      "id": "AQ-1012",
-      "category": "Broken Public Tap",
-      "latitude": 10.9578,
-      "longitude": 76.974,
-      "locationName": "Sundarapuram Bypass Road, Coimbatore",
-      "description": "Ahh ok pah",
-      "voiceDescription": "",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
-      "afterImageUrl": "",
-      "verificationImageUrl": "",
-      "severity": "Medium",
-      "status": "Reported",
-      "citizenPhone": "919789280911",
-      "citizenName": "WhatsApp Citizen",
-      "dateReported": "2026-06-30T13:27:35.264Z",
-      "dateAssigned": "",
-      "dateCompleted": "",
-      "dateVerified": "",
-      "assignedCrew": "",
-      "supervisorId": "super-1",
-      "engineerId": "eng-1",
-      "slaHours": 24,
-      "slaDeadline": "2026-07-01T13:27:35.264Z",
-      "escalationLevel": 1,
-      "isDuplicate": false,
-      "masterComplaintId": "",
-      "duplicateCount": 0,
-      "aiModelDetails": {
-        "predictedCategory": "Broken Public Tap",
-        "confidence": 33,
-        "matchLogs": {
-          "Pipeline Burst": {
-            "score": 22,
-            "matchedWords": [
-              "ok"
-            ]
-          },
-          "Illegal Connection": {
-            "score": 23,
-            "matchedWords": [
-              "ok"
-            ]
-          },
-          "Broken Public Tap": {
-            "score": 24,
-            "matchedWords": [
-              "ok"
-            ]
-          },
-          "Water Meter Damage": {
-            "score": 24,
-            "matchedWords": [
-              "ok"
-            ]
-          }
-        },
-        "matchedTokens": [
-          "ok"
-        ],
-        "inputText": "Ahh ok pah"
-      },
-      "history": [
-        {
-          "timestamp": "2026-06-30T13:27:35.264Z",
-          "action": "Complaint Registered",
-          "officerName": "WhatsApp Bot",
-          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Broken Public Tap. Routed to Ward 61."
-        },
-        {
-          "timestamp": "2026-07-01T13:27:58.768Z",
-          "action": "SLA Escalated (Level 1)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
-        }
-      ]
-    },
-    {
-      "id": "AQ-1011",
-      "category": "Others",
-      "latitude": 10.9578,
-      "longitude": 76.974,
-      "locationName": "Sundarapuram Bypass Road, Coimbatore",
-      "description": "3 time",
-      "voiceDescription": "",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
-      "afterImageUrl": "",
-      "verificationImageUrl": "",
-      "severity": "Medium",
-      "status": "Reported",
-      "citizenPhone": "919789280911",
-      "citizenName": "WhatsApp Citizen",
-      "dateReported": "2026-06-30T13:27:12.017Z",
-      "dateAssigned": "",
-      "dateCompleted": "",
-      "dateVerified": "",
-      "assignedCrew": "",
-      "supervisorId": "super-1",
-      "engineerId": "eng-1",
-      "slaHours": 24,
-      "slaDeadline": "2026-07-01T13:27:12.017Z",
-      "escalationLevel": 1,
-      "isDuplicate": false,
-      "masterComplaintId": "",
-      "duplicateCount": 0,
-      "aiModelDetails": {
-        "predictedCategory": "Others",
-        "confidence": 100,
-        "matchLogs": {},
-        "matchedTokens": [],
-        "inputText": "3 time"
-      },
-      "history": [
-        {
-          "timestamp": "2026-06-30T13:27:12.017Z",
-          "action": "Complaint Registered",
-          "officerName": "WhatsApp Bot",
-          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
-        },
-        {
-          "timestamp": "2026-07-01T13:27:28.754Z",
-          "action": "SLA Escalated (Level 1)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
-        }
-      ]
-    },
-    {
-      "id": "AQ-1010",
-      "category": "Broken Public Tap",
-      "latitude": 10.9578,
-      "longitude": 76.974,
-      "locationName": "Sundarapuram Bypass Road, Coimbatore",
-      "description": "Ena achu da",
-      "voiceDescription": "",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
-      "afterImageUrl": "",
-      "verificationImageUrl": "",
-      "severity": "Medium",
-      "status": "Reported",
-      "citizenPhone": "919789280911",
-      "citizenName": "WhatsApp Citizen",
-      "dateReported": "2026-06-30T13:27:08.634Z",
-      "dateAssigned": "",
-      "dateCompleted": "",
-      "dateVerified": "",
-      "assignedCrew": "",
-      "supervisorId": "super-1",
-      "engineerId": "eng-1",
-      "slaHours": 24,
-      "slaDeadline": "2026-07-01T13:27:08.634Z",
-      "escalationLevel": 1,
-      "isDuplicate": false,
-      "masterComplaintId": "",
-      "duplicateCount": 0,
-      "aiModelDetails": {
-        "predictedCategory": "Broken Public Tap",
-        "confidence": 33,
-        "matchLogs": {
-          "No Water Supply": {
-            "score": 23,
-            "matchedWords": [
-              "da"
-            ]
-          },
-          "Broken Public Tap": {
-            "score": 24,
-            "matchedWords": [
-              "da"
-            ]
-          },
-          "Water Meter Damage": {
-            "score": 24,
-            "matchedWords": [
-              "da"
-            ]
-          }
-        },
-        "matchedTokens": [
-          "da"
-        ],
-        "inputText": "Ena achu da"
-      },
-      "history": [
-        {
-          "timestamp": "2026-06-30T13:27:08.634Z",
-          "action": "Complaint Registered",
-          "officerName": "WhatsApp Bot",
-          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Broken Public Tap. Routed to Ward 61."
-        },
-        {
-          "timestamp": "2026-07-01T13:27:28.754Z",
-          "action": "SLA Escalated (Level 1)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
-        }
-      ]
-    },
-    {
-      "id": "AQ-1009",
-      "category": "Others",
-      "latitude": 10.9578,
-      "longitude": 76.974,
-      "locationName": "Sundarapuram Bypass Road, Coimbatore",
-      "description": "Oi",
-      "voiceDescription": "",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
-      "afterImageUrl": "",
-      "verificationImageUrl": "",
-      "severity": "Medium",
-      "status": "Reported",
-      "citizenPhone": "919789280911",
-      "citizenName": "WhatsApp Citizen",
-      "dateReported": "2026-06-30T13:26:58.502Z",
-      "dateAssigned": "",
-      "dateCompleted": "",
-      "dateVerified": "",
-      "assignedCrew": "",
-      "supervisorId": "super-1",
-      "engineerId": "eng-1",
-      "slaHours": 24,
-      "slaDeadline": "2026-07-01T13:26:58.502Z",
-      "escalationLevel": 1,
-      "isDuplicate": false,
-      "masterComplaintId": "",
-      "duplicateCount": 0,
-      "aiModelDetails": {
-        "predictedCategory": "Others",
-        "confidence": 100,
-        "matchLogs": {},
-        "matchedTokens": [],
-        "inputText": "Oi"
-      },
-      "history": [
-        {
-          "timestamp": "2026-06-30T13:26:58.502Z",
-          "action": "Complaint Registered",
-          "officerName": "WhatsApp Bot",
-          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
-        },
-        {
-          "timestamp": "2026-07-01T13:26:58.748Z",
-          "action": "SLA Escalated (Level 1)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
-        }
-      ]
-    },
-    {
-      "id": "AQ-1008",
-      "category": "Others",
-      "latitude": 10.9578,
-      "longitude": 76.974,
-      "locationName": "Sundarapuram Bypass Road, Coimbatore",
-      "description": "Yathuku ithu",
-      "voiceDescription": "",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
-      "afterImageUrl": "",
-      "verificationImageUrl": "",
-      "severity": "Medium",
-      "status": "Reported",
-      "citizenPhone": "919789280911",
-      "citizenName": "WhatsApp Citizen",
-      "dateReported": "2026-06-30T13:26:40.966Z",
-      "dateAssigned": "",
-      "dateCompleted": "",
-      "dateVerified": "",
-      "assignedCrew": "",
-      "supervisorId": "super-1",
-      "engineerId": "eng-1",
-      "slaHours": 24,
-      "slaDeadline": "2026-07-01T13:26:40.966Z",
-      "escalationLevel": 1,
-      "isDuplicate": false,
-      "masterComplaintId": "",
-      "duplicateCount": 0,
-      "aiModelDetails": {
-        "predictedCategory": "Others",
-        "confidence": 100,
-        "matchLogs": {},
-        "matchedTokens": [],
-        "inputText": "Yathuku ithu"
-      },
-      "history": [
-        {
-          "timestamp": "2026-06-30T13:26:40.966Z",
-          "action": "Complaint Registered",
-          "officerName": "WhatsApp Bot",
-          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
-        },
-        {
-          "timestamp": "2026-07-01T13:26:58.748Z",
-          "action": "SLA Escalated (Level 1)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
-        }
-      ]
-    },
-    {
-      "id": "AQ-1007",
-      "category": "Others",
-      "latitude": 10.9578,
-      "longitude": 76.974,
-      "locationName": "Sundarapuram Bypass Road, Coimbatore",
-      "description": "Oi",
-      "voiceDescription": "",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600",
-      "afterImageUrl": "",
-      "verificationImageUrl": "",
-      "severity": "Medium",
-      "status": "Reported",
-      "citizenPhone": "919789280911",
-      "citizenName": "WhatsApp Citizen",
-      "dateReported": "2026-06-30T13:26:10.535Z",
-      "dateAssigned": "",
-      "dateCompleted": "",
-      "dateVerified": "",
-      "assignedCrew": "",
-      "supervisorId": "super-1",
-      "engineerId": "eng-1",
-      "slaHours": 24,
-      "slaDeadline": "2026-07-01T13:26:10.535Z",
-      "escalationLevel": 1,
-      "isDuplicate": false,
-      "masterComplaintId": "",
-      "duplicateCount": 0,
-      "aiModelDetails": {
-        "predictedCategory": "Others",
-        "confidence": 100,
-        "matchLogs": {},
-        "matchedTokens": [],
-        "inputText": "Oi"
-      },
-      "history": [
-        {
-          "timestamp": "2026-06-30T13:26:10.535Z",
-          "action": "Complaint Registered",
-          "officerName": "WhatsApp Bot",
-          "notes": "Grievance registered automatically via WhatsApp bot emulator. AI classified category as Others. Routed to Ward 61."
-        },
-        {
-          "timestamp": "2026-07-01T13:26:28.736Z",
-          "action": "SLA Escalated (Level 1)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 1 hour(s). Complaint escalated automatically to: Supervisor R. Jagadeesan."
-        }
-      ]
-    },
-    {
       "id": "AQ-1001",
       "category": "Pipeline Burst",
       "latitude": 10.9582,
@@ -861,7 +227,7 @@
       "status": "Reported",
       "citizenPhone": "+91 99887 76655",
       "citizenName": "K. Srinivasan",
-      "dateReported": "2026-06-30T11:24:06.612Z",
+      "dateReported": "2026-07-01T14:09:26.888Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -869,22 +235,16 @@
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 12,
-      "slaDeadline": "2026-06-30T23:24:06.613Z",
-      "escalationLevel": 6,
+      "slaDeadline": "2026-07-02T01:06:06.922Z",
+      "escalationLevel": 0,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-30T11:24:06.613Z",
+          "timestamp": "2026-07-01T13:06:06.922Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal. AI classified issue as Pipeline Burst, Severity: Critical. Routed to South Zone."
-        },
-        {
-          "timestamp": "2026-07-01T09:17:52.978Z",
-          "action": "SLA Escalated (Level 6)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 10 hour(s). Complaint escalated automatically to: State Water Department."
         }
       ]
     },
@@ -900,63 +260,33 @@
       "afterImageUrl": "",
       "verificationImageUrl": "",
       "severity": "Medium",
-      "status": "Assigned",
+      "status": "Reported",
       "citizenPhone": "+91 94432 00987",
       "citizenName": "A. Rahim",
-      "dateReported": "2026-06-30T07:24:06.613Z",
-      "dateAssigned": "2026-06-30T07:54:06.613Z",
+      "dateReported": "2026-07-01T13:59:26.888Z",
+      "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
-      "assignedCrew": "crew-2",
+      "assignedCrew": "",
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 24,
-      "slaDeadline": "2026-07-01T07:24:06.613Z",
-      "escalationLevel": 6,
+      "slaDeadline": "2026-07-02T09:06:06.922Z",
+      "escalationLevel": 0,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-30T07:24:06.613Z",
+          "timestamp": "2026-07-01T09:06:06.922Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal."
         },
         {
-          "timestamp": "2026-06-30T07:54:06.613Z",
+          "timestamp": "2026-07-01T09:36:06.922Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor R. Jagadeesan",
           "notes": "Assigned to Crew Beta for immediate site inspection."
-        },
-        {
-          "timestamp": "2026-07-01T09:17:52.978Z",
-          "action": "SLA Escalated (Level 2)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 2 hour(s). Complaint escalated automatically to: Assistant Engineer."
-        },
-        {
-          "timestamp": "2026-07-01T09:24:23.055Z",
-          "action": "SLA Escalated (Level 3)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 3 hour(s). Complaint escalated automatically to: Executive Engineer."
-        },
-        {
-          "timestamp": "2026-07-01T10:24:14.800Z",
-          "action": "SLA Escalated (Level 4)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 4 hour(s). Complaint escalated automatically to: Municipal Commissioner."
-        },
-        {
-          "timestamp": "2026-07-01T11:31:29.233Z",
-          "action": "SLA Escalated (Level 5)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 5 hour(s). Complaint escalated automatically to: District Collector."
-        },
-        {
-          "timestamp": "2026-07-01T12:33:54.505Z",
-          "action": "SLA Escalated (Level 6)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 6 hour(s). Complaint escalated automatically to: State Water Department."
         }
       ]
     },
@@ -972,45 +302,39 @@
       "afterImageUrl": "",
       "verificationImageUrl": "",
       "severity": "High",
-      "status": "In Progress",
+      "status": "Reported",
       "citizenPhone": "+91 98421 12345",
       "citizenName": "Anonymous Citizen",
-      "dateReported": "2026-06-29T16:24:06.613Z",
-      "dateAssigned": "2026-06-29T17:24:06.613Z",
+      "dateReported": "2026-07-01T13:49:26.888Z",
+      "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
-      "assignedCrew": "crew-3",
+      "assignedCrew": "",
       "supervisorId": "super-2",
       "engineerId": "eng-2",
       "slaHours": 24,
-      "slaDeadline": "2026-06-30T16:24:06.613Z",
-      "escalationLevel": 6,
+      "slaDeadline": "2026-07-01T18:06:06.922Z",
+      "escalationLevel": 0,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-29T16:24:06.613Z",
+          "timestamp": "2026-06-30T18:06:06.922Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported anonymously. AI Severity: High."
         },
         {
-          "timestamp": "2026-06-29T17:24:06.613Z",
+          "timestamp": "2026-06-30T19:06:06.922Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor V. Ramanathan",
           "notes": "Crew Gamma dispatched to confiscate unauthorized pumping equipment."
         },
         {
-          "timestamp": "2026-06-30T02:24:06.613Z",
+          "timestamp": "2026-07-01T04:06:06.922Z",
           "action": "Work Started",
           "officerName": "Crew Gamma (Lead: Kathir)",
           "notes": "Arrived at location. Confirming illegal connection valve. Initiating cutoff."
-        },
-        {
-          "timestamp": "2026-07-01T09:17:52.978Z",
-          "action": "SLA Escalated (Level 6)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 17 hour(s). Complaint escalated automatically to: State Water Department."
         }
       ]
     },
@@ -1026,48 +350,48 @@
       "afterImageUrl": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=600",
       "verificationImageUrl": "",
       "severity": "Critical",
-      "status": "Pending Verification",
+      "status": "Reported",
       "citizenPhone": "+91 97766 55443",
       "citizenName": "M. Karpagam",
-      "dateReported": "2026-06-29T18:24:06.613Z",
-      "dateAssigned": "2026-06-29T18:54:06.613Z",
-      "dateCompleted": "2026-06-30T10:24:06.613Z",
+      "dateReported": "2026-07-01T13:39:26.888Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
       "dateVerified": "",
-      "assignedCrew": "crew-1",
+      "assignedCrew": "",
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 12,
-      "slaDeadline": "2026-06-30T06:24:06.613Z",
+      "slaDeadline": "2026-07-01T08:06:06.922Z",
       "escalationLevel": 6,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-29T18:24:06.613Z",
+          "timestamp": "2026-06-30T20:06:06.922Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal."
         },
         {
-          "timestamp": "2026-06-29T18:54:06.613Z",
+          "timestamp": "2026-06-30T20:36:06.922Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor R. Jagadeesan",
           "notes": "Assigned to Crew Alpha. Urgently trace contamination sources."
         },
         {
-          "timestamp": "2026-06-30T06:24:06.613Z",
+          "timestamp": "2026-07-01T08:06:06.922Z",
           "action": "SLA Escalation (Level 1)",
           "officerName": "System",
           "notes": "SLA of 12 Hours exceeded. Escalated to Supervisor R. Jagadeesan."
         },
         {
-          "timestamp": "2026-06-30T10:24:06.613Z",
+          "timestamp": "2026-07-01T12:06:06.922Z",
           "action": "Repair Completed",
           "officerName": "Crew Alpha (Lead: Murugan)",
           "notes": "Identified a minor leak near the drainage crossing. Replaced the gasket and sealed the pipeline. Disinfected. Water is clear now. Awaiting JE verification."
         },
         {
-          "timestamp": "2026-06-30T12:25:08.362Z",
+          "timestamp": "2026-07-01T14:09:37.177Z",
           "action": "SLA Escalated (Level 6)",
           "officerName": "System SLA Guard",
           "notes": "SLA breached by 7 hour(s). Complaint escalated automatically to: State Water Department."
@@ -1086,45 +410,51 @@
       "afterImageUrl": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600",
       "verificationImageUrl": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=600",
       "severity": "High",
-      "status": "Resolved",
+      "status": "Reported",
       "citizenPhone": "+91 90033 44556",
       "citizenName": "J. Ronald",
-      "dateReported": "2026-06-28T12:24:06.613Z",
-      "dateAssigned": "2026-06-28T13:24:06.613Z",
-      "dateCompleted": "2026-06-29T12:24:06.613Z",
-      "dateVerified": "2026-06-29T14:24:06.613Z",
-      "assignedCrew": "crew-4",
+      "dateReported": "2026-07-01T13:29:26.888Z",
+      "dateAssigned": "",
+      "dateCompleted": "",
+      "dateVerified": "",
+      "assignedCrew": "",
       "supervisorId": "super-2",
       "engineerId": "eng-2",
       "slaHours": 24,
-      "slaDeadline": "2026-06-29T12:24:06.613Z",
-      "escalationLevel": 0,
+      "slaDeadline": "2026-06-30T14:06:06.922Z",
+      "escalationLevel": 6,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-28T12:24:06.613Z",
+          "timestamp": "2026-06-29T14:06:06.922Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported."
         },
         {
-          "timestamp": "2026-06-28T13:24:06.613Z",
+          "timestamp": "2026-06-29T15:06:06.922Z",
           "action": "Assigned to Crew",
           "officerName": "Supervisor V. Ramanathan",
           "notes": "Assigned Crew Delta."
         },
         {
-          "timestamp": "2026-06-29T12:24:06.613Z",
+          "timestamp": "2026-06-30T14:06:06.922Z",
           "action": "Repair Completed",
           "officerName": "Crew Delta (Lead: Palani)",
           "notes": "Motor coil rewound and replaced. Operational now. Tank filled."
         },
         {
-          "timestamp": "2026-06-29T14:24:06.613Z",
+          "timestamp": "2026-06-30T16:06:06.922Z",
           "action": "Site Verified and Closed",
           "officerName": "Engineer Er. M. Preetha",
           "notes": "Visited site. Checked motor load and water pressure. Work is perfect. Closed complaint."
+        },
+        {
+          "timestamp": "2026-07-01T14:09:37.177Z",
+          "action": "SLA Escalated (Level 6)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 25 hour(s). Complaint escalated automatically to: State Water Department."
         }
       ]
     },
@@ -1143,7 +473,7 @@
       "status": "Reported",
       "citizenPhone": "+91 94444 88888",
       "citizenName": "Pranesh Kumar",
-      "dateReported": "2026-06-30T11:54:06.613Z",
+      "dateReported": "2026-07-01T13:19:26.888Z",
       "dateAssigned": "",
       "dateCompleted": "",
       "dateVerified": "",
@@ -1151,105 +481,33 @@
       "supervisorId": "super-1",
       "engineerId": "eng-1",
       "slaHours": 12,
-      "slaDeadline": "2026-06-30T23:54:06.613Z",
-      "escalationLevel": 6,
+      "slaDeadline": "2026-07-02T01:36:06.922Z",
+      "escalationLevel": 0,
       "isDuplicate": true,
       "masterComplaintId": "AQ-1001",
       "duplicateCount": 0,
       "history": [
         {
-          "timestamp": "2026-06-30T11:54:06.613Z",
+          "timestamp": "2026-07-01T13:36:06.922Z",
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal. Auto-flagged as Duplicate of AQ-1001. Merged under master complaint."
-        },
-        {
-          "timestamp": "2026-07-01T09:17:52.978Z",
-          "action": "SLA Escalated (Level 6)",
-          "officerName": "System SLA Guard",
-          "notes": "SLA breached by 10 hour(s). Complaint escalated automatically to: State Water Department."
         }
       ]
     }
   ],
   "auditLogs": [
     {
-      "timestamp": "2026-06-30T13:36:36.674Z",
-      "user": "WhatsApp Bot",
-      "action": "Register Complaint",
-      "notes": "Registered ticket AQ-1016 for 919944319337"
+      "timestamp": "2026-07-01T14:09:26.889Z",
+      "user": "Admin",
+      "action": "Insert Demo Data",
+      "notes": "Injected 6 mock complaints into active database."
     },
     {
-      "timestamp": "2026-06-30T13:31:22.694Z",
-      "user": "WhatsApp Bot",
-      "action": "Emulator Register",
-      "notes": "Registered ticket AQ-1015 for 919944319337"
-    },
-    {
-      "timestamp": "2026-06-30T13:30:50.341Z",
-      "user": "WhatsApp Bot",
-      "action": "Emulator Register",
-      "notes": "Registered ticket AQ-1014 for 919944319337"
-    },
-    {
-      "timestamp": "2026-06-30T13:28:15.828Z",
-      "user": "WhatsApp Bot",
-      "action": "Emulator Register",
-      "notes": "Registered ticket AQ-1013 for 919944319337"
-    },
-    {
-      "timestamp": "2026-06-30T13:27:35.265Z",
-      "user": "WhatsApp Bot",
-      "action": "Emulator Register",
-      "notes": "Registered ticket AQ-1012 for 919789280911"
-    },
-    {
-      "timestamp": "2026-06-30T13:27:12.018Z",
-      "user": "WhatsApp Bot",
-      "action": "Emulator Register",
-      "notes": "Registered ticket AQ-1011 for 919789280911"
-    },
-    {
-      "timestamp": "2026-06-30T13:27:08.635Z",
-      "user": "WhatsApp Bot",
-      "action": "Emulator Register",
-      "notes": "Registered ticket AQ-1010 for 919789280911"
-    },
-    {
-      "timestamp": "2026-06-30T13:26:58.503Z",
-      "user": "WhatsApp Bot",
-      "action": "Emulator Register",
-      "notes": "Registered ticket AQ-1009 for 919789280911"
-    },
-    {
-      "timestamp": "2026-06-30T13:26:40.967Z",
-      "user": "WhatsApp Bot",
-      "action": "Emulator Register",
-      "notes": "Registered ticket AQ-1008 for 919789280911"
-    },
-    {
-      "timestamp": "2026-06-30T13:26:10.536Z",
-      "user": "WhatsApp Bot",
-      "action": "Emulator Register",
-      "notes": "Registered ticket AQ-1007 for 919789280911"
-    },
-    {
-      "timestamp": "2026-06-28T12:24:06.613Z",
-      "user": "System",
-      "action": "Initialize Database",
-      "notes": "AquaAlert AI system DB successfully configured and launched."
-    },
-    {
-      "timestamp": "2026-06-29T12:24:06.613Z",
-      "user": "eng2",
-      "action": "Verify Repair",
-      "notes": "Verified and closed AQ-1005 (Pump Failure Sathy Road)."
-    },
-    {
-      "timestamp": "2026-06-30T06:24:06.613Z",
-      "user": "System",
-      "action": "Auto-Escalation Engine",
-      "notes": "Complaint AQ-1004 SLA deadline exceeded. System escalated target to Level 2 (JE/AE Rajesh)."
+      "timestamp": "2026-07-01T14:09:24.121Z",
+      "user": "Admin",
+      "action": "Reset Database",
+      "notes": "Cleared all complaints and logs to zero."
     }
   ]
 }
