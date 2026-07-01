@@ -15,13 +15,15 @@ interface GisMapProps {
   selectedComplaintId?: string;
   onSelectComplaint?: (id: string) => void;
   height?: string;
+  showLegend?: boolean;
 }
 
 export const GisMap: React.FC<GisMapProps> = ({
   complaints,
   selectedComplaintId,
   onSelectComplaint,
-  height = '350px'
+  height = '350px',
+  showLegend = true
 }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
@@ -145,34 +147,36 @@ export const GisMap: React.FC<GisMapProps> = ({
     <div className="gis-map" style={{ height, position: 'relative' }}>
       
       {/* Floating Interactive Map Legend Box overlay */}
-      <div style={{
-        position: 'absolute',
-        top: '12px',
-        left: '12px',
-        background: 'rgba(255, 255, 255, 0.95)',
-        border: '1.5px solid var(--border-color)',
-        borderRadius: '4px',
-        padding: '8px 12px',
-        fontSize: '0.7rem',
-        zIndex: 1000,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '4px',
-        boxShadow: 'var(--box-shadow)'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold' }}>
-          <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#E64A19', display: 'inline-block' }}></span> Critical Burst/Pollution
+      {showLegend && (
+        <div style={{
+          position: 'absolute',
+          top: '12px',
+          left: '12px',
+          background: 'rgba(255, 255, 255, 0.95)',
+          border: '1.5px solid var(--border-color)',
+          borderRadius: '4px',
+          padding: '8px 12px',
+          fontSize: '0.7rem',
+          zIndex: 1000,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '4px',
+          boxShadow: 'var(--box-shadow)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold' }}>
+            <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#E64A19', display: 'inline-block' }}></span> Critical Burst/Pollution
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold' }}>
+            <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#FF9800', display: 'inline-block' }}></span> High Severity Theft/Leak
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold' }}>
+            <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#FFC107', display: 'inline-block' }}></span> Medium/Low Leakage
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold' }}>
+            <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#138808', display: 'inline-block' }}></span> Resolved Repairs
+          </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold' }}>
-          <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#FF9800', display: 'inline-block' }}></span> High Severity Theft/Leak
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold' }}>
-          <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#FFC107', display: 'inline-block' }}></span> Medium/Low Leakage
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold' }}>
-          <span style={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: '#138808', display: 'inline-block' }}></span> Resolved Repairs
-        </div>
-      </div>
+      )}
 
       <div 
         ref={mapContainerRef} 

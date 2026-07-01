@@ -208,6 +208,7 @@ export const RepairCrew: React.FC<RepairCrewProps> = ({ lang, complaints, onRefr
                   selectedComplaintId={activeTask.id}
                   onSelectComplaint={() => {}}
                   height="160px"
+                  showLegend={false}
                 />
               </div>
 
