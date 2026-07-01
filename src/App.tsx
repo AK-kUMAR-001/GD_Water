@@ -51,11 +51,11 @@ function App() {
   };
 
   const handleGlobalReset = async () => {
-    if (!confirm('Are you sure you want to reset all grievances to default mock records?')) return;
+    if (!confirm('Are you sure you want to clear all grievances to 0 complaints?')) return;
     try {
       const res = await fetch(getBackendUrl('/api/reset-demo'), { method: 'POST' });
       if (res.ok) {
-        alert('Database reset successful! Workflow is ready.');
+        alert('All complaints cleared! Ready to submit new complaints.');
         fetchAllData();
       } else {
         alert('Reset failed.');
@@ -63,6 +63,21 @@ function App() {
     } catch (err) {
       console.error(err);
       alert('Network error during reset.');
+    }
+  };
+
+  const handleInsertDemoData = async () => {
+    try {
+      const res = await fetch(getBackendUrl('/api/insert-demo'), { method: 'POST' });
+      if (res.ok) {
+        alert('Initial demo complaints injected successfully!');
+        fetchAllData();
+      } else {
+        alert('Injection failed.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Network error during data injection.');
     }
   };
 
@@ -170,23 +185,41 @@ function App() {
           </div>
 
           {/* Right: Reset, Language Toggle & Device Simulator switch buttons */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '10px', width: '380px' }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '8px', minWidth: '450px' }}>
             <button 
               onClick={handleGlobalReset}
               style={{
-                background: '#FF9800',
+                background: '#EF4444',
                 border: 'none',
                 color: 'white',
                 padding: '0.4rem 0.8rem',
                 borderRadius: '4px',
                 cursor: 'pointer',
-                fontSize: '0.75rem',
+                fontSize: '0.72rem',
                 fontWeight: '700',
                 transition: 'var(--transition)'
               }}
-              title="Reset Database to initial template"
+              title="Clear all complaints in database to 0"
             >
-              🔄 Reset Demo DB
+              🧹 Clear Database
+            </button>
+
+            <button 
+              onClick={handleInsertDemoData}
+              style={{
+                background: '#10B981',
+                border: 'none',
+                color: 'white',
+                padding: '0.4rem 0.8rem',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '0.72rem',
+                fontWeight: '700',
+                transition: 'var(--transition)'
+              }}
+              title="Inject mock complaints into active database"
+            >
+              📥 Insert Demo Data
             </button>
 
             <button 
@@ -380,25 +413,41 @@ function App() {
             </div>
           </div>
 
-          {/* Mobile Reset Database trigger option */}
+          {/* Mobile Database Control Actions */}
           {isRealMobile && (
-            <button 
-              onClick={() => { handleGlobalReset(); setIsSidebarOpen(false); }}
-              style={{
-                background: '#FF9800',
-                border: 'none',
-                color: 'white',
-                padding: '10px',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                fontSize: '0.8rem',
-                fontWeight: 'bold',
-                marginTop: 'auto',
-                marginBottom: '10px'
-              }}
-            >
-              🔄 Reset Demo DB
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: 'auto', marginBottom: '10px' }}>
+              <button 
+                onClick={() => { handleGlobalReset(); setIsSidebarOpen(false); }}
+                style={{
+                  background: '#EF4444',
+                  border: 'none',
+                  color: 'white',
+                  padding: '10px',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '0.78rem',
+                  fontWeight: 'bold'
+                }}
+              >
+                🧹 Clear Database (0)
+              </button>
+
+              <button 
+                onClick={() => { handleInsertDemoData(); setIsSidebarOpen(false); }}
+                style={{
+                  background: '#10B981',
+                  border: 'none',
+                  color: 'white',
+                  padding: '10px',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '0.78rem',
+                  fontWeight: 'bold'
+                }}
+              >
+                📥 Insert Demo Data
+              </button>
+            </div>
           )}
 
           {/* Server Connection Settings for Mobile */}

@@ -329,5 +329,6 @@ module.exports = {
   writeData,
   logAudit,
   initDB,
-  resetDB
+  resetDB,
+  mockComplaints
 };

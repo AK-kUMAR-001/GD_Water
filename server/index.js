@@ -152,7 +152,15 @@ app.post('/api/complaints', upload.single('photo'), (req, res) => {
     // 3. Smart Duplicate Detection
     const duplicateMatch = checkDuplicate(lat, lng, finalCategory, data.complaints);
     
-    const newId = `AQ-${1000 + data.complaints.length + 1}`;
+    let maxIdNum = 1000;
+    data.complaints.forEach(c => {
+      const match = c.id.match(/AQ-(\d+)/);
+      if (match) {
+        const num = parseInt(match[1], 10);
+        if (num > maxIdNum) maxIdNum = num;
+      }
+    });
+    const newId = `AQ-${maxIdNum + 1}`;
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
 
     const newComplaint = {
@@ -723,13 +731,56 @@ app.post('/api/admin/categories', (req, res) => {
   res.json({ message: 'Categories updated successfully.' });
 });
 
-// Demo database reset endpoint
+// Demo database reset endpoint (Clears to 0 complaints)
 app.post('/api/reset-demo', (req, res) => {
   try {
-    db.resetDB();
-    res.json({ success: true, message: 'Database reset successfully to mock template.' });
+    const data = db.readData();
+    data.complaints = [];
+    data.auditLogs = [];
+    db.writeData(data);
+    db.logAudit('Admin', 'Reset Database', 'Cleared all complaints and logs to zero.');
+    res.json({ success: true, message: 'Database cleared successfully to 0 complaints.' });
   } catch (err) {
     console.error('Error resetting database:', err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Demo database inject mock data endpoint (Appends template data)
+app.post('/api/insert-demo', (req, res) => {
+  try {
+    const data = db.readData();
+    
+    // Find highest ID number in complaints list to prevent duplicate ID collisions
+    let maxIdNum = 1000;
+    data.complaints.forEach(c => {
+      const match = c.id.match(/AQ-(\d+)/);
+      if (match) {
+        const num = parseInt(match[1], 10);
+        if (num > maxIdNum) maxIdNum = num;
+      }
+    });
+
+    const mockComplaints = db.mockComplaints || [];
+    const complaintsToInsert = JSON.parse(JSON.stringify(mockComplaints)).map((c, index) => {
+      maxIdNum += 1;
+      const newC = { ...c };
+      newC.id = `AQ-${maxIdNum}`;
+      newC.dateReported = new Date(Date.now() - index * 600000).toISOString();
+      newC.dateAssigned = '';
+      newC.dateCompleted = '';
+      newC.dateVerified = '';
+      newC.status = 'Reported';
+      newC.assignedCrew = '';
+      return newC;
+    });
+
+    data.complaints = [...complaintsToInsert, ...data.complaints];
+    db.writeData(data);
+    db.logAudit('Admin', 'Insert Demo Data', `Injected ${complaintsToInsert.length} mock complaints into active database.`);
+    res.json({ success: true, message: `Successfully injected ${complaintsToInsert.length} complaints.` });
+  } catch (err) {
+    console.error('Error inserting demo data:', err);
     res.status(500).json({ success: false, error: err.message });
   }
 });
