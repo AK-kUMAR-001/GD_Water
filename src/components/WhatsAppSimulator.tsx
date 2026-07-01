@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { appFetch } from '../utils/api';
 
 interface WhatsAppSimulatorProps {
   onRefresh: () => void;
@@ -46,7 +47,7 @@ export const WhatsAppSimulator: React.FC<WhatsAppSimulatorProps> = ({ onRefresh 
     setIsTyping(true);
 
     try {
-      const res = await fetch('/api/whatsapp/emulator', {
+      const res = await appFetch('/api/whatsapp/emulator', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

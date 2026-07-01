@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { type Language } from '../utils/translations';
 import { GisMap } from '../components/GisMap';
-import { getBackendUrl } from '../utils/api';
+import { getBackendUrl, appFetch } from '../utils/api';
 
 interface Complaint {
   id: string;
@@ -54,7 +54,7 @@ export const RepairCrew: React.FC<RepairCrewProps> = ({ lang, complaints, onRefr
     if (!activeTaskId) return;
     setIsUpdating(true);
     try {
-      const res = await fetch(getBackendUrl(`/api/complaints/${activeTaskId}/crew-update`), {
+      const res = await appFetch(getBackendUrl(`/api/complaints/${activeTaskId}/crew-update`), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -99,7 +99,7 @@ export const RepairCrew: React.FC<RepairCrewProps> = ({ lang, complaints, onRefr
         ? {} 
         : { 'Content-Type': 'application/json' };
 
-      const res = await fetch(getBackendUrl(`/api/complaints/${activeTaskId}/crew-update`), {
+      const res = await appFetch(getBackendUrl(`/api/complaints/${activeTaskId}/crew-update`), {
         method: 'POST',
         headers,
         body: beforeFile || afterFile ? formData : bodyPayload

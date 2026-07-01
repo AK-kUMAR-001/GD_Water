@@ -6,7 +6,7 @@ import { Supervisor } from './views/Supervisor';
 import { RepairCrew } from './views/RepairCrew';
 import { Collector } from './views/Collector';
 import { WhatsAppSimulator } from './components/WhatsAppSimulator';
-import { getBackendUrl } from './utils/api';
+import { getBackendUrl, appFetch, isStandalone, setStandaloneMode } from './utils/api';
 
 function App() {
   const [lang, setLang] = useState<Language>('en');
@@ -15,6 +15,7 @@ function App() {
   const [isRealMobile, setIsRealMobile] = useState(window.innerWidth < 1024);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [serverIp, setServerIp] = useState(localStorage.getItem('backend_server_ip') || '');
+  const [standalone, setStandalone] = useState(isStandalone());
   const [connectionStatus, setConnectionStatus] = useState<'connected' | 'failed' | 'connecting'>('connecting');
   const [complaints, setComplaints] = useState<any[]>([]);
   const [users, setUsers] = useState<any[]>([]);
@@ -34,8 +35,8 @@ function App() {
   const fetchAllData = async () => {
     try {
       const [compRes, userRes] = await Promise.all([
-        fetch(getBackendUrl('/api/complaints')),
-        fetch(getBackendUrl('/api/users'))
+        appFetch(getBackendUrl('/api/complaints')),
+        appFetch(getBackendUrl('/api/users'))
       ]);
 
       if (compRes.ok && userRes.ok) {
@@ -58,7 +59,7 @@ function App() {
   const handleGlobalReset = async () => {
     if (!confirm('Are you sure you want to clear all grievances to 0 complaints?')) return;
     try {
-      const res = await fetch(getBackendUrl('/api/reset-demo'), { method: 'POST' });
+      const res = await appFetch(getBackendUrl('/api/reset-demo'), { method: 'POST' });
       if (res.ok) {
         alert('All complaints cleared! Ready to submit new complaints.');
         fetchAllData();
@@ -73,7 +74,7 @@ function App() {
 
   const handleInsertDemoData = async () => {
     try {
-      const res = await fetch(getBackendUrl('/api/insert-demo'), { method: 'POST' });
+      const res = await appFetch(getBackendUrl('/api/insert-demo'), { method: 'POST' });
       if (res.ok) {
         alert('Initial demo complaints injected successfully!');
         fetchAllData();
@@ -457,58 +458,88 @@ function App() {
 
           {/* Server Connection Settings for Both Desktop & Mobile */}
           <div className="glass-panel" style={{ padding: '12px', background: '#FFF3E0', borderTop: '4px solid #FF9800', marginTop: '10px', boxSizing: 'border-box' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px', borderBottom: '1px solid #FFE0B2', paddingBottom: '8px' }}>
+              <input 
+                type="checkbox" 
+                id="standalone-checkbox" 
+                checked={standalone}
+                onChange={(e) => {
+                  const val = e.target.checked;
+                  setStandalone(val);
+                  setStandaloneMode(val);
+                  triggerToast(val ? 'Standalone Offline Demo Mode Activated' : 'Server Sync Mode Activated');
+                  fetchAllData();
+                }}
+                style={{ cursor: 'pointer' }}
+              />
+              <label htmlFor="standalone-checkbox" style={{ fontSize: '0.7rem', fontWeight: 'bold', color: '#E65100', cursor: 'pointer' }}>
+                💾 Standalone Offline Mode (Demo)
+              </label>
+            </div>
+
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
               <h3 style={{ fontSize: '0.75rem', fontWeight: '800', color: '#E65100', textTransform: 'uppercase', margin: 0 }}>
-                🔗 Server IP Connection
+                🔗 Connection Status
               </h3>
               <span style={{ fontSize: '0.62rem', fontWeight: 'bold' }}>
-                {connectionStatus === 'connected' && <span style={{ color: 'var(--success)' }}>🟢 Live</span>}
-                {connectionStatus === 'failed' && <span style={{ color: 'var(--danger)' }}>🔴 Offline</span>}
-                {connectionStatus === 'connecting' && <span style={{ color: 'var(--warning)' }}>🟡 Syncing</span>}
+                {standalone ? (
+                  <span style={{ color: 'var(--success)' }}>🟢 Standalone (Safe)</span>
+                ) : (
+                  <>
+                    {connectionStatus === 'connected' && <span style={{ color: 'var(--success)' }}>🟢 Server Live</span>}
+                    {connectionStatus === 'failed' && <span style={{ color: 'var(--danger)' }}>🔴 Server Offline</span>}
+                    {connectionStatus === 'connecting' && <span style={{ color: 'var(--warning)' }}>🟡 Syncing</span>}
+                  </>
+                )}
               </span>
             </div>
-            <p style={{ fontSize: '0.62rem', color: '#5D4037', marginBottom: '8px', marginTop: '2px', lineHeight: '1.3' }}>
-              {connectionStatus === 'failed' 
-                ? '⚠️ Offline: Ensure phone & PC are on SAME Wi-Fi, and firewall allows port 5000.'
-                : 'Enter your PC\'s IP address to sync data on your real phone.'}
-            </p>
-            <input 
-              type="text" 
-              placeholder="e.g. http://192.168.1.15:5000"
-              value={serverIp}
-              onChange={(e) => setServerIp(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '6px 8px',
-                fontSize: '0.75rem',
-                borderRadius: '4px',
-                border: '1px solid #FFB74D',
-                marginBottom: '8px',
-                boxSizing: 'border-box',
-                background: '#FFFFFF'
-              }}
-            />
-            <button
-              onClick={() => {
-                localStorage.setItem('backend_server_ip', serverIp);
-                alert(`Server IP saved: ${serverIp || 'Relative paths (Default)'}`);
-                setIsSidebarOpen(false);
-                fetchAllData();
-              }}
-              style={{
-                width: '100%',
-                background: '#E65100',
-                color: 'white',
-                border: 'none',
-                padding: '6px',
-                fontSize: '0.72rem',
-                fontWeight: 'bold',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              Save & Connect
-            </button>
+
+            {!standalone && (
+              <>
+                <p style={{ fontSize: '0.62rem', color: '#5D4037', marginBottom: '8px', marginTop: '2px', lineHeight: '1.3' }}>
+                  {connectionStatus === 'failed' 
+                    ? '⚠️ Offline: Ensure phone & PC are on SAME Wi-Fi, and firewall allows port 5000.'
+                    : 'Enter your PC\'s IP address to sync data on your real phone.'}
+                </p>
+                <input 
+                  type="text" 
+                  placeholder="e.g. http://192.168.1.15:5000"
+                  value={serverIp}
+                  onChange={(e) => setServerIp(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '6px 8px',
+                    fontSize: '0.75rem',
+                    borderRadius: '4px',
+                    border: '1px solid #FFB74D',
+                    marginBottom: '8px',
+                    boxSizing: 'border-box',
+                    background: '#FFFFFF'
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    localStorage.setItem('backend_server_ip', serverIp);
+                    alert(`Server IP saved: ${serverIp || 'Relative paths (Default)'}`);
+                    setIsSidebarOpen(false);
+                    fetchAllData();
+                  }}
+                  style={{
+                    width: '100%',
+                    background: '#E65100',
+                    color: 'white',
+                    border: 'none',
+                    padding: '6px',
+                    fontSize: '0.72rem',
+                    fontWeight: 'bold',
+                    borderRadius: '4px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Save & Connect
+                </button>
+              </>
+            )}
           </div>
 
         </aside>

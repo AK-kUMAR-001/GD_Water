@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { translations, type Language } from '../utils/translations';
 import { GisMap } from '../components/GisMap';
-import { getBackendUrl } from '../utils/api';
+import { getBackendUrl, appFetch } from '../utils/api';
 
 interface Complaint {
   id: string;
@@ -65,7 +65,7 @@ export const ControlRoom: React.FC<ControlRoomProps> = ({ lang, complaints, user
 
     setIsActioning(true);
     try {
-      const res = await fetch(getBackendUrl(`/api/complaints/${selectedId}/assign`), {
+      const res = await appFetch(getBackendUrl(`/api/complaints/${selectedId}/assign`), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

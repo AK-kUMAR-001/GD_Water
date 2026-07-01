@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { translations, type Language } from '../utils/translations';
 import { SlaTimer } from '../components/SlaTimer';
-import { getBackendUrl } from '../utils/api';
+import { getBackendUrl, appFetch } from '../utils/api';
 
 interface CitizenProps {
   lang: Language;
@@ -211,7 +211,7 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast, 
     }
 
     try {
-      const res = await fetch(getBackendUrl('/api/complaints'), {
+      const res = await appFetch(getBackendUrl('/api/complaints'), {
         method: 'POST',
         body: formData
       });
@@ -248,7 +248,7 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast, 
     setTrackError('');
     setTrackedComplaint(null);
     try {
-      const res = await fetch(getBackendUrl('/api/complaints'));
+      const res = await appFetch(getBackendUrl('/api/complaints'));
       const complaints = await res.json();
       const match = complaints.find((c: any) => c.id.toUpperCase() === searchId.toUpperCase().trim());
       if (match) {
