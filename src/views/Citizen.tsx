@@ -6,9 +6,10 @@ interface CitizenProps {
   lang: Language;
   onRefresh: () => void;
   onShowToast?: (msg: string) => void;
+  isMobile?: boolean;
 }
 
-export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast }) => {
+export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast, isMobile }) => {
   const t = translations[lang];
 
   // Reporting Form States
@@ -261,7 +262,7 @@ export const Citizen: React.FC<CitizenProps> = ({ lang, onRefresh, onShowToast }
   };
 
   return (
-    <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '20px' }}>
+    <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)', gap: '20px' }}>
       
       {/* Citizens Info Banner */}
       <div className="col-12 glass-panel" style={{ padding: '15px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#ECEFF1', borderLeft: '4px solid var(--accent)' }}>

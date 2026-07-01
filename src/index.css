@@ -633,3 +633,59 @@ body {
     opacity: 1;
   }
 }
+
+/* Force stacked columns and grid wrapping inside simulated Mobile View */
+.mobile-mode-active .col-8,
+.mobile-mode-active .col-6,
+.mobile-mode-active .col-5,
+.mobile-mode-active .col-4,
+.mobile-mode-active .col-3 {
+  grid-column: span 12 !important;
+}
+
+.mobile-mode-active .dashboard-grid {
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+  padding: 2px !important;
+}
+
+.mobile-mode-active .stat-card-row,
+.mobile-mode-active .grid-row {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.mobile-mode-active .glass-panel {
+  padding: 8px !important;
+}
+
+.mobile-mode-active h2 {
+  font-size: 0.95rem !important;
+}
+
+.mobile-mode-active h3 {
+  font-size: 0.8rem !important;
+}
+
+.mobile-mode-active table {
+  font-size: 0.65rem !important;
+}
+
+.mobile-mode-active th,
+.mobile-mode-active td {
+  padding: 6px 4px !important;
+}
+
+.mobile-mode-active .btn {
+  padding: 4px 8px !important;
+  font-size: 0.65rem !important;
+}
+
+.mobile-mode-active .stat-card {
+  padding: 10px !important;
+}
+
+.mobile-mode-active .stat-val {
+  font-size: 1.1rem !important;
+}

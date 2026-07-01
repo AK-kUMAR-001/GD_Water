@@ -27,9 +27,10 @@ interface SupervisorProps {
   users: any[];
   onRefresh: () => void;
   onShowToast?: (msg: string) => void;
+  isMobile?: boolean;
 }
 
-export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users, onRefresh, onShowToast }) => {
+export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users, onRefresh, onShowToast, isMobile }) => {
   const t = translations[lang];
 
   // Assume supervisor logged in is super-1 (R. Jagadeesan - South Zone)
@@ -98,7 +99,7 @@ export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users,
   };
 
   return (
-    <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '20px' }}>
+    <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)', gap: '20px' }}>
       
       {/* Header Profile Info */}
       <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderLeft: '4px solid var(--accent)' }}>
@@ -117,7 +118,7 @@ export const Supervisor: React.FC<SupervisorProps> = ({ lang, complaints, users,
       </div>
 
       {/* SLA Risk Warnings */}
-      <div className="col-12" style={{ display: 'flex', gap: '15px' }}>
+      <div className="col-12" style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '15px' }}>
         <div className="glass-panel stat-card col-4" style={{ flex: 1 }}>
           <div>
             <span className="stat-label">Pending Dispatch</span>

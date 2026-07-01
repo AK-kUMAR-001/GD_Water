@@ -77,17 +77,17 @@ function App() {
   const getActiveView = () => {
     switch (role) {
       case 'Citizen':
-        return <Citizen lang={lang} onRefresh={fetchAllData} onShowToast={triggerToast} />;
+        return <Citizen lang={lang} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode} />;
       case 'ControlRoom':
-        return <ControlRoom lang={lang} complaints={complaints} users={users} onRefresh={fetchAllData} onShowToast={triggerToast} />;
+        return <ControlRoom lang={lang} complaints={complaints} users={users} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode} />;
       case 'Supervisor':
-        return <Supervisor lang={lang} complaints={complaints} users={users} onRefresh={fetchAllData} onShowToast={triggerToast} />;
+        return <Supervisor lang={lang} complaints={complaints} users={users} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode} />;
       case 'Crew':
-        return <RepairCrew lang={lang} complaints={complaints} onRefresh={fetchAllData} onShowToast={triggerToast} />;
+        return <RepairCrew lang={lang} complaints={complaints} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode} />;
       case 'Collector':
-        return <Collector lang={lang} complaints={complaints} users={users} />;
+        return <Collector lang={lang} complaints={complaints} users={users} isMobile={isMobileMode} />;
       default:
-        return <Citizen lang={lang} onRefresh={fetchAllData} onShowToast={triggerToast} />;
+        return <Citizen lang={lang} onRefresh={fetchAllData} onShowToast={triggerToast} isMobile={isMobileMode} />;
     }
   };
 
@@ -199,14 +199,14 @@ function App() {
                 fontWeight: 'bold'
               }}
             >
-              👤 {t.citizen}
+              🙋‍♂️ {lang === 'ta' ? 'புகார் செய்ய' : 'Report Water Issue'}
             </button>
           </div>
 
           {/* Container 2: Government Member Section */}
-          <div className="glass-panel" style={{ padding: '15px', background: '#FFFFFF', borderTop: '4px solid var(--secondary)' }}>
+          <div className="glass-panel" style={{ padding: '15px', background: '#FFFFFF', borderTop: '4px solid var(--primary)' }}>
             <h3 style={{ fontSize: '0.78rem', fontWeight: '800', color: 'var(--primary)', textTransform: 'uppercase', marginBottom: '10px', borderBottom: '1.5px solid var(--border-color)', paddingBottom: '6px' }}>
-              🏛 {lang === 'ta' ? 'அதிகாரிகள் பிரிவு' : 'Government Member'}
+              🏛 {lang === 'ta' ? 'அரசு அதிகாரிகள்' : 'Government Member'}
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               
@@ -245,7 +245,7 @@ function App() {
                   fontWeight: 'bold'
                 }}
               >
-                👷‍♂️ {t.supervisor}
+                👨‍💼 {t.supervisor}
               </button>
 
               <button
@@ -294,9 +294,42 @@ function App() {
         {/* Right content workspace dashboard panel (Dynamic Frame) */}
         {isMobileMode ? (
           <div style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '10px 0', minWidth: 0 }}>
-            <div className="mobile-simulator" style={{ border: '12px solid #2d3748', background: '#FFFFFF', position: 'relative' }}>
-              <div style={{ height: '20px', width: '140px', background: '#2d3748', margin: '0 auto 8px', borderRadius: '0 0 10px 10px', position: 'absolute', left: 'calc(50% - 70px)', top: 0, zIndex: 100 }}></div>
-              <div className="mobile-content" style={{ paddingTop: '24px' }}>
+            <div className="mobile-simulator" style={{ 
+              width: '375px', 
+              height: '780px', 
+              border: '14px solid #1e293b', 
+              borderRadius: '36px',
+              background: '#F8FAFC', 
+              position: 'relative',
+              boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column'
+            }}>
+              {/* Notch */}
+              <div style={{ 
+                height: '24px', 
+                width: '150px', 
+                background: '#1e293b', 
+                margin: '0 auto', 
+                borderRadius: '0 0 16px 16px', 
+                position: 'absolute', 
+                left: '50%', 
+                transform: 'translateX(-50%)', 
+                top: 0, 
+                zIndex: 100 
+              }}></div>
+              {/* Screen Content with mobile-mode-active class */}
+              <div className="mobile-content mobile-mode-active" style={{ 
+                flex: 1, 
+                overflowY: 'auto', 
+                padding: '36px 12px 16px 12px',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px',
+                boxSizing: 'border-box'
+              }}>
                 {getActiveView()}
               </div>
             </div>

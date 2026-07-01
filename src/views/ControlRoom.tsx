@@ -24,9 +24,10 @@ interface ControlRoomProps {
   users: any[];
   onRefresh: () => void;
   onShowToast?: (msg: string) => void;
+  isMobile?: boolean;
 }
 
-export const ControlRoom: React.FC<ControlRoomProps> = ({ lang, complaints, users, onRefresh, onShowToast }) => {
+export const ControlRoom: React.FC<ControlRoomProps> = ({ lang, complaints, users, onRefresh, onShowToast, isMobile }) => {
   const t = translations[lang];
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -101,7 +102,7 @@ export const ControlRoom: React.FC<ControlRoomProps> = ({ lang, complaints, user
   };
 
   return (
-    <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '20px' }}>
+    <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)', gap: '20px' }}>
       
       {/* Header Info */}
       <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderLeft: '4px solid var(--primary)' }}>
@@ -121,7 +122,7 @@ export const ControlRoom: React.FC<ControlRoomProps> = ({ lang, complaints, user
       </div>
 
       {/* Live Operations KPI Bar */}
-      <div className="col-12" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
+      <div className="col-12" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', gap: '15px' }}>
         <div className="glass-panel" style={{ padding: '12px 16px', background: '#FFFFFF', borderLeft: '3px solid var(--accent)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.3px', fontWeight: 'bold' }}>Active Backlog</span>

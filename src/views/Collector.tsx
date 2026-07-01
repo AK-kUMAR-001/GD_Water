@@ -23,9 +23,10 @@ interface CollectorProps {
   lang: Language;
   complaints: Complaint[];
   users: any[];
+  isMobile?: boolean;
 }
 
-export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users }) => {
+export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users, isMobile }) => {
   const t = translations[lang];
 
   // Aggregated Statistics (Calculated Dynamically)
@@ -81,7 +82,7 @@ export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users })
   const ramanathanActive = complaints.filter(c => c.supervisorId === 'super-2' && c.status !== 'Resolved').length;
 
   return (
-    <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '20px' }}>
+    <div className="dashboard-grid col-12" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)', gap: '20px' }}>
       
       {/* Header Profile Info */}
       <div className="col-12 glass-panel" style={{ padding: '15px 20px', background: '#F8FAFC', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderLeft: '4px solid var(--accent)' }}>
@@ -99,7 +100,7 @@ export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users })
       </div>
 
       {/* KPI Cards */}
-      <div className="col-12" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
+      <div className="col-12" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', gap: '15px' }}>
         
         <div className="glass-panel stat-card">
           <div>

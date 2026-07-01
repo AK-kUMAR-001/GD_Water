@@ -810,7 +810,7 @@
       "engineerId": "eng-1",
       "slaHours": 12,
       "slaDeadline": "2026-06-30T23:24:06.613Z",
-      "escalationLevel": 0,
+      "escalationLevel": 6,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
@@ -819,6 +819,12 @@
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal. AI classified issue as Pipeline Burst, Severity: Critical. Routed to South Zone."
+        },
+        {
+          "timestamp": "2026-07-01T09:17:52.978Z",
+          "action": "SLA Escalated (Level 6)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 10 hour(s). Complaint escalated automatically to: State Water Department."
         }
       ]
     },
@@ -846,7 +852,7 @@
       "engineerId": "eng-1",
       "slaHours": 24,
       "slaDeadline": "2026-07-01T07:24:06.613Z",
-      "escalationLevel": 0,
+      "escalationLevel": 3,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
@@ -861,6 +867,18 @@
           "action": "Assigned to Crew",
           "officerName": "Supervisor R. Jagadeesan",
           "notes": "Assigned to Crew Beta for immediate site inspection."
+        },
+        {
+          "timestamp": "2026-07-01T09:17:52.978Z",
+          "action": "SLA Escalated (Level 2)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 2 hour(s). Complaint escalated automatically to: Assistant Engineer."
+        },
+        {
+          "timestamp": "2026-07-01T09:24:23.055Z",
+          "action": "SLA Escalated (Level 3)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 3 hour(s). Complaint escalated automatically to: Executive Engineer."
         }
       ]
     },
@@ -888,7 +906,7 @@
       "engineerId": "eng-2",
       "slaHours": 24,
       "slaDeadline": "2026-06-30T16:24:06.613Z",
-      "escalationLevel": 0,
+      "escalationLevel": 6,
       "isDuplicate": false,
       "duplicateCount": 0,
       "history": [
@@ -909,6 +927,12 @@
           "action": "Work Started",
           "officerName": "Crew Gamma (Lead: Kathir)",
           "notes": "Arrived at location. Confirming illegal connection valve. Initiating cutoff."
+        },
+        {
+          "timestamp": "2026-07-01T09:17:52.978Z",
+          "action": "SLA Escalated (Level 6)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 17 hour(s). Complaint escalated automatically to: State Water Department."
         }
       ]
     },
@@ -1050,7 +1074,7 @@
       "engineerId": "eng-1",
       "slaHours": 12,
       "slaDeadline": "2026-06-30T23:54:06.613Z",
-      "escalationLevel": 0,
+      "escalationLevel": 6,
       "isDuplicate": true,
       "masterComplaintId": "AQ-1001",
       "duplicateCount": 0,
@@ -1060,6 +1084,12 @@
           "action": "Complaint Submitted",
           "officerName": "Citizen",
           "notes": "Reported via Web Portal. Auto-flagged as Duplicate of AQ-1001. Merged under master complaint."
+        },
+        {
+          "timestamp": "2026-07-01T09:17:52.978Z",
+          "action": "SLA Escalated (Level 6)",
+          "officerName": "System SLA Guard",
+          "notes": "SLA breached by 10 hour(s). Complaint escalated automatically to: State Water Department."
         }
       ]
     }
