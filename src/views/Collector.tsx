@@ -60,20 +60,6 @@ export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users, i
     'Ward 15': complaints.filter(c => c.locationName.includes('Ward 15') || c.locationName.includes('Ganapathy')).length,
   };
 
-  // Dynamic Category Calculations
-  const bursts = complaints.filter(c => c.category === 'Pipeline Burst').length;
-  const sewer = complaints.filter(c => c.category === 'Sewer Mixing').length;
-  const contamination = complaints.filter(c => c.category === 'Water Contamination').length;
-  const lowPressure = complaints.filter(c => c.category === 'Low Water Pressure').length;
-  const others = complaints.filter(c => !['Pipeline Burst', 'Sewer Mixing', 'Water Contamination', 'Low Water Pressure'].includes(c.category)).length;
-
-  const categoriesList = [
-    { name: lang === 'ta' ? 'குழாய் வெடிப்பு (Pipeline Burst)' : 'Pipeline Burst', count: bursts, color: '#E64A19' },
-    { name: lang === 'ta' ? 'சாக்கடை கலப்பு (Sewer Mixing)' : 'Sewer Mixing', count: sewer, color: '#D81B60' },
-    { name: lang === 'ta' ? 'நீர் மாசுபாடு (Water Contamination)' : 'Water Contamination', count: contamination, color: '#8E24AA' },
-    { name: lang === 'ta' ? 'குறைந்த நீர் அழுத்தம் (Low Water Pressure)' : 'Low Water Pressure', count: lowPressure, color: '#0288D1' },
-    { name: lang === 'ta' ? 'இதர புகார்கள் (Others)' : 'Other Complaints', count: others, color: '#00897B' },
-  ];
 
   // Dynamic Staff active workload counters
   const rajeshActive = complaints.filter(c => c.engineerId === 'eng-1' && c.status !== 'Resolved').length;
@@ -89,7 +75,7 @@ export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users, i
         <div>
           <h2 style={{ color: 'var(--primary)', fontSize: '1.2rem', fontWeight: 800 }}>Coimbatore District Collectorate Desk</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', marginTop: '2px' }}>
-            Officer-in-Charge: <strong style={{ color: 'var(--primary)' }}>S. Kranthi Kumar Pati, IAS (District Collector)</strong> | Jurisdiction: <strong style={{ color: 'var(--primary)' }}>Coimbatore Corporation</strong>
+            Officer-in-Charge: <strong style={{ color: 'var(--primary)' }}>Thiru. Pavankumar G Giriyappanavar, I.A.S. (District Collector)</strong> | Jurisdiction: <strong style={{ color: 'var(--primary)' }}>Coimbatore Corporation</strong>
           </p>
         </div>
         <div style={{ display: 'flex', gap: '10px', alignSelf: isMobile ? 'flex-start' : 'center' }}>
@@ -258,31 +244,6 @@ export const Collector: React.FC<CollectorProps> = ({ lang, complaints, users, i
             </div>
 
           </div>
-        </div>
-      </div>
-
-      {/* Row 3: Dynamic Category Analytics Chart Panel */}
-      <div className="col-12 glass-panel">
-        <div className="card-header">
-          <h3>📈 Dynamic Grievance Category Distribution</h3>
-        </div>
-        <div className="card-body" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {categoriesList.map((cat, index) => {
-            const pct = total > 0 ? ((cat.count / total) * 100).toFixed(1) : '0.0';
-            return (
-              <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                <span style={{ width: '220px', fontSize: '0.78rem', fontWeight: 'bold', color: 'var(--text-dark)' }}>
-                  {cat.name}
-                </span>
-                <div style={{ flex: 1, background: '#ECEFF1', height: '16px', borderRadius: '4px', overflow: 'hidden' }}>
-                  <div style={{ width: `${pct}%`, background: cat.color, height: '100%', borderRadius: '4px', transition: 'width 0.5s ease-out' }}></div>
-                </div>
-                <span style={{ width: '80px', fontSize: '0.78rem', fontWeight: 'bold', color: cat.color, textAlign: 'right' }}>
-                  {cat.count} ({pct}%)
-                </span>
-              </div>
-            );
-          })}
         </div>
       </div>
 
